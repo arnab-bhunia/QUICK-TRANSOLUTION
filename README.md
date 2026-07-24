@@ -95,4 +95,4 @@ simplified for a cleaner MERN single-page rebuild:
   than pulling third-party images.
 
 Happy to add more pages, wire up MongoDB for you, or adjust the visual
-direction — just say what you'd like next.
+direction 
