@@ -1,7 +1,7 @@
 {
-  "name": "sugam-server",
+  "name": "Quick Transolution Pvt. Ltd.-server",
   "version": "1.0.0",
-  "description": "MERN backend for the Sugam Group website",
+  "description": "MERN backend for the Quick Transolution Pvt. Ltd. website",
   "main": "src/index.js",
   "type": "module",
   "scripts": {

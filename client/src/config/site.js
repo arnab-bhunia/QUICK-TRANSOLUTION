@@ -5,22 +5,23 @@
 // ============================================================================
 
 export const site = {
-  companyName: "Sugam Group",
-  legalName: "Sugam Parivahan Pvt. Ltd.",
-  tagline: "Delivering Trust Since 1950s",
-  shortTagline: "#1 India \u2013 Nepal Transportation Provider",
+  companyName: "Quick Transolution",
+  legalName: "Quick Transolution Pvt. Ltd.",
+  tagline: "Delivering Trust Since 2026s",
+  shortTagline: "#1 India \u2026 West Bengal Transportation Provider",
 
   contact: {
     phoneDisplay: "1800 112 243",
     phoneHref: "tel:1800112243",
     mobileDisplay: "+91-9319097898",
     mobileHref: "tel:+919319097898",
-    email: "sales@sugamgroup.com",
-    emailHref: "mailto:sales@sugamgroup.com",
+    email: "sales@quicktransolution.com",
+    emailHref: "mailto:sales@quicktransolution.com",
     address: [
-      "Plot No. 027, Block B,",
-      "Sector 59, Noida \u2013 201301,",
-      "Uttar Pradesh, India",
+      "Unit No. 504, 5th Floor,",
+  "Infinity Benchmark, Sector V, Salt Lake,",
+  "Kolkata – 700091,",
+  "West Bengal, India",
     ],
   },
 
@@ -41,8 +42,8 @@ export const site = {
   ],
 
   hero: {
-    eyebrow: "Single-Window Logistics Since the 1950s",
-    heading: "Delivering Trust\nAcross the SAARC Region",
+    eyebrow: "Single-Window Logistics Since the 2026s",
+    heading: "Delivering Trust\nAcross the Region",
     body: "With over 50 years in the logistics industry, we move freight across India, Nepal, Bhutan & Bangladesh \u2014 by road, rail, air and sea \u2014 under one accountable roof.",
     primaryCta: { label: "Get a Quote", href: "#contact" },
     secondaryCta: { label: "Track a Shipment", href: "#track" },
@@ -102,33 +103,33 @@ export const site = {
     },
   ],
 
-  whyUs: [
-    {
-      id: "network",
-      title: "Largest Own Network Across Nepal & NE India",
-      body: "Presence in 32 of 36 states and union territories in India, with deep specialization in North East India, established operations in Bhutan, Bangladesh, and reach across the wider SAARC region.",
-    },
-    {
-      id: "trusted",
-      title: "Most Trusted Logistics Provider",
-      body: "Tailor-made solutions for clients across industries, with end-to-end supply chain support for manufacturers, distributors, and service providers, and secure shipping to every destination we serve.",
-    },
-    {
-      id: "digital",
-      title: "Digital Payment & Tracking",
-      body: "A GPS-enabled fleet feeds real-time shipment updates into a digital client dashboard, backed by transparent, fully digital transactions.",
-    },
-    {
-      id: "single-window",
-      title: "Single Window Transportation",
-      body: "Invoicing, warehousing, and documentation sit alongside logistics under one roof, with a single operator coordinating multimodal shipping across the region.",
-    },
-    {
-      id: "customs",
-      title: "Customs & Regulatory Specialists",
-      body: "Clear guidance on documentation for inter-state and international transport, and specialized customs clearance built specifically for the Indo-Nepal corridor.",
-    },
-  ],
+whyUs: [
+  {
+    id: "network",
+    title: "Strong Network Across India & West Bengal",
+    body: "Operating across major states of India with a strong logistics presence in West Bengal, we provide reliable transportation solutions through an extensive network of partners, warehouses, and distribution hubs, ensuring seamless connectivity nationwide.",
+  },
+  {
+    id: "trusted",
+    title: "Trusted Logistics Partner Since 2026",
+    body: "Since our establishment in 2026, we have been committed to delivering dependable, customer-focused logistics solutions with safe, timely, and cost-effective transportation services for businesses across multiple industries.",
+  },
+  {
+    id: "digital",
+    title: "Digital Tracking & Secure Payments",
+    body: "Our GPS-enabled fleet and digital tracking platform provide real-time shipment visibility, while secure online payment options and transparent communication ensure a smooth customer experience from pickup to delivery.",
+  },
+  {
+    id: "single-window",
+    title: "Complete Logistics Under One Roof",
+    body: "From transportation and warehousing to documentation and invoicing, we offer comprehensive logistics solutions through a single point of contact, simplifying supply chain management for businesses across India.",
+  },
+  {
+    id: "customs",
+    title: "Compliance & Documentation Support",
+    body: "We assist customers with transportation documentation, e-way bills, GST-related logistics compliance, and regulatory requirements, ensuring smooth and hassle-free movement of goods across India.",
+  },
+],
 
   testimonials: [
     {
@@ -162,6 +163,9 @@ export const site = {
         "Vehicles placed exactly to our need, with prompt performance and timely delivery every time.",
     },
   ],
+
+
+
 
   sectors: [
     "FMCG",
