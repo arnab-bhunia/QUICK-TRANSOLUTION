@@ -1,0 +1,94 @@
+.route-map {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.route-edge {
+  stroke: var(--color-primary-light);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  fill: none;
+  opacity: 0;
+  stroke-dashoffset: 24;
+  transition: opacity 0.6s ease;
+}
+
+.route-map.is-active .route-edge {
+  opacity: 0.55;
+  animation: dash-flow 2.4s linear infinite;
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+.route-pulse {
+  fill: var(--color-accent);
+  opacity: 0;
+}
+
+.route-map.is-active .route-pulse {
+  animation: pulse-fade 3.2s ease-in-out infinite;
+}
+
+@keyframes pulse-fade {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.route-node {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.route-map.is-active .route-node {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.route-node-dot {
+  fill: var(--color-signal);
+}
+
+.route-node-ring {
+  fill: none;
+  stroke: var(--color-signal);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+.route-map.is-active .route-node-ring {
+  animation: ring-pulse 2.6s ease-out infinite;
+}
+
+@keyframes ring-pulse {
+  0% { r: 6; opacity: 0.5; }
+  100% { r: 16; opacity: 0; }
+}
+
+.route-node-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-map.is-active .route-edge,
+  .route-map.is-active .route-pulse,
+  .route-map.is-active .route-node-ring {
+    animation: none;
+  }
+  .route-map.is-active .route-edge {
+    opacity: 0.55;
+  }
+}

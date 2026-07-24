@@ -1,0 +1,72 @@
+.sticky-contact {
+  position: fixed;
+  right: 22px;
+  bottom: 28px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sticky-contact-btn {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lifted);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.sticky-contact-btn:hover {
+  background: var(--color-signal);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.sticky-contact-btn:nth-child(3) {
+  background: var(--color-signal);
+}
+
+.sticky-contact-btn:nth-child(3):hover {
+  background: var(--color-accent-dark);
+}
+
+.sticky-contact-tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--color-bg-ink);
+  color: var(--color-white);
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sticky-contact-btn:hover .sticky-contact-tip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 720px) {
+  .sticky-contact {
+    right: 14px;
+    bottom: 18px;
+  }
+  .sticky-contact-btn {
+    width: 42px;
+    height: 42px;
+  }
+  .sticky-contact-tip {
+    display: none;
+  }
+}

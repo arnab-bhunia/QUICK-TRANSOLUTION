@@ -1,0 +1,109 @@
+.newsletter {
+  background: var(--color-primary);
+  background-image: radial-gradient(
+    500px 260px at 90% 0%,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+}
+
+.newsletter-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 88px 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.newsletter-inner.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.newsletter-copy .eyebrow {
+  color: var(--color-accent);
+}
+
+.newsletter-copy .eyebrow::before {
+  background: var(--color-accent);
+}
+
+.newsletter-copy h2 {
+  color: var(--color-white);
+  margin-top: 14px;
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1.15;
+}
+
+.newsletter-copy p {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 420px;
+}
+
+.newsletter-form {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 28px;
+}
+
+.newsletter-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.newsletter-fields input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  font-size: 14.5px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.newsletter-fields input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-fields input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.newsletter-submit {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.newsletter-status {
+  margin-top: 12px;
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.newsletter-status.is-success {
+  color: #8FE3B0;
+}
+
+.newsletter-status.is-error {
+  color: #F3A2A2;
+}
+
+@media (max-width: 820px) {
+  .newsletter-inner {
+    grid-template-columns: 1fr;
+  }
+}

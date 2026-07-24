@@ -1,0 +1,54 @@
+.topbar {
+  background: var(--color-bg-ink);
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+}
+
+.topbar-contact,
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar-link {
+  color: inherit;
+  transition: color 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.topbar-link:hover {
+  color: var(--color-white);
+}
+
+.topbar-link--accent {
+  color: var(--color-accent);
+}
+
+.topbar-divider {
+  width: 1px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 720px) {
+  .topbar-inner {
+    height: auto;
+    padding: 8px 0;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    text-align: center;
+  }
+  .topbar-divider {
+    display: none;
+  }
+}
