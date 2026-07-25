@@ -1,6 +1,6 @@
-MERN Recreation
+MERN 
 
-A single-page recreation of sugamgroup.com built on the MERN stack (MongoDB,
+A single-page web built on the MERN stack (MongoDB,
 Express, React, Node), with the company branding and color theme fully
 separated from the code so either can be changed without touching a single
 component.
