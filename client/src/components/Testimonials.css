@@ -5,6 +5,7 @@
 .testimonial-stage {
   max-width: 760px;
   margin: 0 auto;
+  overflow: hidden; 
 }
 
 .testimonial-track {
