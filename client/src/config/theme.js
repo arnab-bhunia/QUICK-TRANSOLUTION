@@ -17,7 +17,8 @@ export const theme = {
     signal: "#D6482B",        // brick-red — CTA buttons, urgent actions only
 
     // Neutrals
-    bg: "#F4F6F5",            // page background (cool paper, not warm cream)
+    // bg: "#F4F6F5",            // page background (cool paper, not warm cream)
+    bg: "#f1f1f1",
     bgAlt: "#FFFFFF",         // card surfaces
     bgInk: "#0A1F2E",         // near-black section backgrounds (footer, stats)
     line: "#DDE3E1",          // hairline borders / dividers

@@ -11,9 +11,11 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
 import StickyContact from "./components/StickyContact";
+import ChatBot from "./components/ChatBot";
 
 function App() {
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
 
   return (
     <>
@@ -29,7 +31,12 @@ function App() {
         <Newsletter />
       </main>
       <Footer />
-      <StickyContact onOpenQuote={() => setQuoteOpen(true)} />
+      <StickyContact
+        onOpenQuote={() => setQuoteOpen(true)}
+        onToggleChat={() => setChatOpen((v) => !v)}
+        chatOpen={chatOpen}
+      />
+      <ChatBot open={chatOpen} onClose={() => setChatOpen(false)} />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </>
   );

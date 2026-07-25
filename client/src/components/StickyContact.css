@@ -35,6 +35,10 @@
   background: var(--color-accent-dark);
 }
 
+.sticky-contact-btn--chat.is-active {
+  background: var(--color-bg-ink);
+}
+
 .sticky-contact-tip {
   position: absolute;
   right: calc(100% + 12px);

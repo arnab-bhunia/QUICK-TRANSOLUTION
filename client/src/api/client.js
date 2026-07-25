@@ -29,3 +29,11 @@ export function subscribeNewsletter(payload) {
 export function submitQuote(payload) {
   return request("/quotes", payload);
 }
+
+export function submitChatQuery(payload) {
+  return request("/chat", payload);
+}
+
+export function submitUnansweredQuery(payload) {
+  return request("/chat/unanswered", payload);
+}

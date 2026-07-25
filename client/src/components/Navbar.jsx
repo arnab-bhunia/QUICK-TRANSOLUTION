@@ -21,12 +21,7 @@ export default function Navbar({ onOpenQuote }) {
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="container navbar-inner">
         <a href="#home" className="navbar-brand">
-          <span className="navbar-brand-mark">
-            {site.companyName
-              .split(" ")
-              .map((w) => w[0])
-              .join("")}
-          </span>
+          <img src="/logo.png" alt={site.companyName} className="navbar-brand-mark" />
           <span className="navbar-brand-name">{site.companyName}</span>
         </a>
 
