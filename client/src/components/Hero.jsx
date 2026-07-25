@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { site } from "../config/site";
-import RouteMap from "./RouteMap";
+import TransportScene from "./TransportScene";
 import "./Hero.css";
 
 export default function Hero({ onOpenQuote }) {
@@ -13,6 +13,15 @@ export default function Hero({ onOpenQuote }) {
 
   return (
     <section id="home" className="hero">
+      {/* Desktop: right-half illustration. Mobile: bottom-45% illustration. */}
+      <div className="hero-scene-bg" aria-hidden="true">
+        <TransportScene active={mounted} />
+      </div>
+
+      {/* Mobile-only background image behind the top-55% text zone.
+          Desktop hides this entirely - see Hero.css */}
+      <div className="hero-mobile-bg" aria-hidden="true" />
+
       <div className="container hero-inner">
         <div className={`hero-copy ${mounted ? "is-in" : ""}`}>
           <span className="eyebrow">{site.hero.eyebrow}</span>
@@ -32,10 +41,6 @@ export default function Hero({ onOpenQuote }) {
               {site.hero.secondaryCta.label}
             </a>
           </div>
-        </div>
-
-        <div className={`hero-visual ${mounted ? "is-in" : ""}`}>
-          <RouteMap active={mounted} />
         </div>
       </div>
     </section>

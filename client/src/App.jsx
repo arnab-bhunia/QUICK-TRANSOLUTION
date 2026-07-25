@@ -12,15 +12,25 @@ import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
 import StickyContact from "./components/StickyContact";
 import ChatBot from "./components/ChatBot";
+import { useMeasuredHeight } from "./hooks/useMeasuredHeight";
 
 function App() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
+  // Measures the real height of the sticky topbar+navbar stack (which
+  // changes when the topbar wraps on narrow screens) so Hero.css can
+  // size itself to exactly "the rest of the screen" via
+  // calc(100dvh - var(--header-height)) instead of guessing a fixed
+  // pixel number that breaks on different devices.
+  const headerRef = useMeasuredHeight("--header-height");
+
   return (
     <>
-      <TopBar />
-      <Navbar onOpenQuote={() => setQuoteOpen(true)} />
+      <div ref={headerRef}>
+        <TopBar />
+        <Navbar onOpenQuote={() => setQuoteOpen(true)} />
+      </div>
       <main>
         <Hero onOpenQuote={() => setQuoteOpen(true)} />
         <Stats />

@@ -30,6 +30,7 @@
   --shadow-lifted: 0 12px 32px rgba(11, 59, 96, 0.16);
 
   --container-w: 1200px;
+  --header-height: 114px;
   color-scheme: light;
 }
 
