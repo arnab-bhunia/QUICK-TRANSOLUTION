@@ -2,7 +2,7 @@
   position: fixed;
   right: 22px;
   bottom: 28px;
-  z-index: 90;
+  z-index: 101;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -13,30 +13,79 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: var(--color-signal);
   color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-lifted);
-  transition: background 0.25s ease, transform 0.25s ease;
+  box-shadow: 3px 6px 14px rgba(214, 72, 43, 0.28);
+  transition: background 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .sticky-contact-btn:hover {
-  background: var(--color-signal);
+  background: var(--color-accent-dark);
+  box-shadow: 4px 8px 18px rgba(214, 72, 43, 0.35);
   transform: translateY(-2px) scale(1.05);
 }
 
-.sticky-contact-btn:nth-child(3) {
-  background: var(--color-signal);
+.sticky-contact-btn:active {
+  transform: scale(0.9);
+  transition: transform 0.12s ease;
 }
 
-.sticky-contact-btn:nth-child(3):hover {
-  background: var(--color-accent-dark);
+.sticky-contact-btn:nth-child(2) {
+  background: var(--color-primary);
+  box-shadow: 3px 6px 14px rgba(8, 42, 71, 0.3);
+}
+
+.sticky-contact-btn:nth-child(2):hover {
+  background: var(--color-primary-dark);
+  box-shadow: 4px 8px 18px rgba(8, 42, 71, 0.38);
 }
 
 .sticky-contact-btn--chat.is-active {
   background: var(--color-bg-ink);
+  box-shadow: 3px 6px 14px rgba(10, 31, 46, 0.35);
+}
+
+.sticky-contact-btn:nth-child(1) {
+  animation: phone-vibrate 9s ease-in-out infinite;
+}
+
+@keyframes phone-vibrate {
+  0%,
+  4%,
+  100% {
+    transform: translateX(0);
+  }
+  4.5% {
+    transform: translateX(-3px) rotate(-6deg);
+  }
+  5% {
+    transform: translateX(3px) rotate(6deg);
+  }
+  5.5% {
+    transform: translateX(-3px) rotate(-6deg);
+  }
+  6% {
+    transform: translateX(3px) rotate(6deg);
+  }
+  6.5% {
+    transform: translateX(-2px) rotate(-3deg);
+  }
+  7% {
+    transform: translateX(2px) rotate(3deg);
+  }
+  7.5% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-contact-btn:nth-child(1) {
+    animation: none;
+  }
 }
 
 .sticky-contact-tip {

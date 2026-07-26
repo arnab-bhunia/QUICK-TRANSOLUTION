@@ -2,7 +2,7 @@
   position: fixed;
   right: 22px;
   bottom: 96px;
-  z-index: 94;
+  z-index: 150;
   width: min(340px, calc(100vw - 44px));
   height: min(460px, calc(100vh - 160px));
   background: var(--color-bg-alt);
