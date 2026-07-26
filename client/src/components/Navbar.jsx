@@ -50,30 +50,31 @@ export default function Navbar({ onOpenQuote }) {
           <span />
         </button>
       </div>
-
-      <div className={`navbar-mobile ${menuOpen ? "is-open" : ""}`}>
-        <nav className="navbar-mobile-links">
-          {site.nav.map((item, i) => (
-            <a
-              key={item.href}
-              href={item.href}
-              style={{ transitionDelay: `${i * 40}ms` }}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <button
-          className="btn btn-primary navbar-mobile-cta"
-          onClick={() => {
-            setMenuOpen(false);
-            onOpenQuote();
-          }}
+<div className={`navbar-mobile ${menuOpen ? "is-open" : ""}`}>
+  <div className="navbar-mobile-content">
+    <nav className="navbar-mobile-links">
+      {site.nav.map((item, i) => (
+        <a
+          key={item.href}
+          href={item.href}
+          style={{ transitionDelay: `${i * 40}ms` }}
+          onClick={() => setMenuOpen(false)}
         >
-          Get a Quote
-        </button>
-      </div>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <button
+      className="btn btn-primary navbar-mobile-cta"
+      onClick={() => {
+        setMenuOpen(false);
+        onOpenQuote();
+      }}
+    >
+      Get a Quote
+    </button>
+  </div>
+</div>
     </header>
   );
 }

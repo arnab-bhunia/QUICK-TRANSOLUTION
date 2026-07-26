@@ -105,16 +105,22 @@
 }
 
 .navbar-mobile {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  background: var(--color-bg-alt);
   border-bottom: 1px solid transparent;
-  transition: max-height 0.35s ease, border-color 0.35s ease;
+  background: var(--color-bg-alt);
+  transition: grid-template-rows 0.35s ease, border-color 0.35s ease;
 }
 
 .navbar-mobile.is-open {
-  max-height: 480px;
+  grid-template-rows: 1fr;
   border-bottom-color: var(--color-line);
+}
+
+.navbar-mobile-content {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .navbar-mobile-links {
