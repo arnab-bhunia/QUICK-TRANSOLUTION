@@ -2,6 +2,7 @@ import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
 import { useCountUp } from "../hooks/useCountUp";
 import "./Stats.css";
+import GridPulse from "./GridPulse";
 
 function StatItem({ stat, active, index }) {
   const count = useCountUp(stat.value, active);
@@ -24,6 +25,12 @@ export default function Stats() {
 
   return (
     <section className="stats" ref={ref}>
+
+
+      {/* <GridPulse />  */}
+      <div className="stats-grid-bg" aria-hidden="true" />
+
+      
       <div className="container stats-strip">
         {site.stats.map((stat, i) => (
           <StatItem key={stat.label} stat={stat} active={visible} index={i} />

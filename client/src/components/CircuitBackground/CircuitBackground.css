@@ -1,0 +1,168 @@
+/* ==========================================================
+   CircuitBackground.css
+   Production Version (Engine V2)
+   ========================================================== */
+
+.circuit-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  isolation: isolate;
+}
+
+.circuit-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
+
+  overflow: visible;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ==========================================================
+   Grid
+   ========================================================== */
+
+.circuit-grid {
+  opacity: 1;
+}
+
+.circuit-line {
+  stroke: rgba(255, 255, 255, 0.055);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+.circuit-node {
+  fill: rgba(255, 255, 255, 0.10);
+  transition: fill 180ms ease;
+}
+
+.circuit-node.active {
+  fill: #ffffff;
+}
+
+/* ==========================================================
+   Rendering Layers
+   ========================================================== */
+
+.circuit-trail-layer {
+  mix-blend-mode: screen;
+}
+
+.circuit-pulse-layer {
+  mix-blend-mode: screen;
+}
+
+.circuit-particle-layer {
+  mix-blend-mode: screen;
+}
+
+.circuit-light-layer {
+  mix-blend-mode: screen;
+}
+
+/* ==========================================================
+   Pulse
+   ========================================================== */
+
+.pulse-core {
+  fill: #ffffff;
+}
+
+.pulse-glow {
+  fill: #f2a93b;
+  opacity: 0.9;
+}
+
+.pulse-halo {
+  fill: #f2a93b;
+  opacity: 0.25;
+}
+
+/* ==========================================================
+   Ribbon Trail
+   ========================================================== */
+
+.trail-path {
+  fill: none;
+
+  stroke: #f2a93b;
+
+  stroke-width: 2.2;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  opacity: .95;
+}
+
+/* ==========================================================
+   Sparks
+   ========================================================== */
+
+.spark {
+  fill: #ffffff;
+  opacity: 0;
+}
+
+/* ==========================================================
+   Lighting
+   ========================================================== */
+
+.light-bloom {
+  fill: #f2a93b;
+  opacity: .18;
+}
+
+/* ==========================================================
+   Optional Ambient Fade
+   ========================================================== */
+
+.circuit-background::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+      radial-gradient(
+          circle at center,
+          transparent 0%,
+          rgba(0,0,0,.08) 75%,
+          rgba(0,0,0,.18) 100%
+      );
+
+  pointer-events: none;
+}
+
+/* ==========================================================
+   Motion Accessibility
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .circuit-node,
+  .pulse-core,
+  .pulse-glow,
+  .pulse-halo,
+  .trail-path,
+  .spark,
+  .light-bloom {
+
+      transition: none !important;
+      animation: none !important;
+
+  }
+
+}
