@@ -17,6 +17,8 @@
   --color-ink-soft: #4B6272;
   --color-ink-faint: #8299A6;
   --color-white: #FFFFFF;
+  --color-highlight: #F2C14E;
+  --color-highlight-dark: #D9A72E;
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -188,14 +190,19 @@ ul {
 }
 
 .btn-outline {
-  background: transparent;
-  color: var(--color-primary);
-  border: 1.5px solid var(--color-line);
+  background: var(--color-highlight);
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-highlight);
 }
 
 .btn-outline:hover {
-  border-color: var(--color-primary);
-  background: var(--color-bg);
+  background: var(--color-highlight-dark);
+  border-color: var(--color-highlight-dark);
+}
+
+.btn-outline:active {
+  transform: scale(0.96);
+  transition: transform 0.12s ease;
 }
 
 ::selection {

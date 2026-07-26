@@ -10,6 +10,8 @@ export const theme = {
     primary: "#0B3B60",       // deep freight-navy — headers, nav, primary buttons
     primaryDark: "#082A47",   // hover / pressed states, footer base
     primaryLight: "#2C5F87",  // secondary text on navy, subtle borders
+    highlight: "#F2C14E",     // warm yellow — the outline/secondary button's own color
+    highlightDark: "#D9A72E", // hover/pressed state for the highlight button
 
     // Accent (route / signal colors — used sparingly, for the one signature moment)
     accent: "#F2A93B",        // amber — route line, highlights, active tab

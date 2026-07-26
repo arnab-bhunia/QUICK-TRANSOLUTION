@@ -9,7 +9,7 @@
   --color-ink: #1a1a1a;
   --color-ink-soft: #666666;
   /* New variable for the gray truck body */
-  --color-truck: #6B7280;
+  --color-truck: #cdcdcd;
 }
 
 .transport-scene-wrapper {

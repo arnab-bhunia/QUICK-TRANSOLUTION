@@ -34,12 +34,13 @@
   transition: transform 0.12s ease;
 }
 
-.sticky-contact-btn:nth-child(2) {
+.sticky-contact-btn:nth-child(3) {
   background: var(--color-primary);
+  border: 3px solid var(--color-signal);
   box-shadow: 3px 6px 14px rgba(8, 42, 71, 0.3);
 }
 
-.sticky-contact-btn:nth-child(2):hover {
+.sticky-contact-btn:nth-child(3):hover {
   background: var(--color-primary-dark);
   box-shadow: 4px 8px 18px rgba(8, 42, 71, 0.38);
 }
