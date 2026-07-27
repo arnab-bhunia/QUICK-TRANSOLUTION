@@ -1,10 +1,21 @@
 export const OfficeIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11z"/>
-    <rect x="9.2" y="7.5" width="5.6" height="6.5" rx="1"/>
-    <path d="M11 10h.01M13 10h.01"/>
-    <path d="M12 14v-2"/>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
+<path d="M4 21h16"/>
+<path d="M7 21V6l5-3 5 3v15"/>
+<path d="M9 9h6"/>
+<path d="M9 12h6"/>
+<path d="M9 15h6"/>
+<path d="M12 21v-3"/>
+<circle cx="12" cy="3" r="1.2"/>
+</svg>
 );
 
 export const TruckIcon = () => (

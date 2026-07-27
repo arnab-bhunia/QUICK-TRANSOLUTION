@@ -77,14 +77,13 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  padding: 56px 24px;
+  padding: 45px 22px;
 }
 
 .stat-item {
   display: flex;
   align-items: center;
   gap: 18px;
-
   opacity: 0;
   transform: translateY(14px);
   transition: opacity .6s ease, transform .6s ease;
@@ -160,20 +159,17 @@
   width: 60px;
   height: 60px;
   flex-shrink: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: var(--color-accent);
-
   border-radius: 16px;
   background: rgba(255,255,255,.04);
 }
 
 .stat-icon svg {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   stroke: currentColor;
   transition: .35s ease;
 }
