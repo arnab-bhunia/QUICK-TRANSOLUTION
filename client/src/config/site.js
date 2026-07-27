@@ -1,3 +1,4 @@
+import {OfficeIcon, TruckIcon,WarehouseIcon,CustomerIcon,} from "../assets/statIcons";
 // ============================================================================
 // SITE CONFIG
 // Company name, contact details, nav, and every section's copy lives here.
@@ -58,10 +59,10 @@ export const site = {
   },
 
   stats: [
-    { value: 150, suffix: "+", label: "Offices in the SAARC Region" },
-    { value: 2500, suffix: "+", label: "GPS-Enabled Vehicles" },
-    { value: 5, suffix: "M+", label: "Sqft of Warehousing Space" },
-    { value: 10000, suffix: "+", label: "Customers Served Annually" },
+    { icon: OfficeIcon, value: 150, suffix: "+", label: "Offices in the SAARC Region" },
+    { icon: TruckIcon, value: 2500, suffix: "+", label: "GPS-Enabled Vehicles" },
+    { icon: WarehouseIcon, value: 5, suffix: "M+", label: "Sqft of Warehousing Space" },
+    { icon: CustomerIcon,value: 10000, suffix: "+", label: "Customers Served Annually" },
   ],
 
   services: [

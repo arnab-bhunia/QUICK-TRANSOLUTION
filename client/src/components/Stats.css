@@ -82,14 +82,19 @@
 
 .stat-item {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-right: 24px;
-  /* border-right: 1px solid rgba(255, 255, 255, 0.12); */
+  align-items: center;
+  gap: 18px;
+
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity .6s ease, transform .6s ease;
 }
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .stat-item.is-in {
   opacity: 1;
@@ -150,4 +155,29 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
+}
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-accent);
+
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+}
+
+.stat-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+  transition: .35s ease;
+}
+
+.stat-item:hover .stat-icon svg {
+  transform: scale(1.1) rotate(-5deg);
 }
