@@ -2,7 +2,7 @@ import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
 import { useCountUp } from "../hooks/useCountUp";
 import "./Stats.css";
-import GridPulse from "./GridPulse";
+import CircuitBackground from "../components/CircuitBackground/CircuitBackground";
 
 function StatItem({ stat, active, index }) {
   const count = useCountUp(stat.value, active);
@@ -27,8 +27,8 @@ export default function Stats() {
     <section className="stats" ref={ref}>
 
 
-      {/* <GridPulse />  */}
-      <div className="stats-grid-bg" aria-hidden="true" />
+      <CircuitBackground />
+      {/* <div className="stats-grid-bg" aria-hidden="true" /> */}
 
       
       <div className="container stats-strip">

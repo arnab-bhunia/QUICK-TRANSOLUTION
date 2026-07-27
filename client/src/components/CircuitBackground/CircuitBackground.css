@@ -24,6 +24,9 @@
 
   transform: translateZ(0);
   backface-visibility: hidden;
+
+  will-change: transform;
+  contain: layout style paint;
 }
 
 /* ==========================================================
@@ -94,25 +97,24 @@
 
 .trail-path {
   fill: none;
-
   stroke: #f2a93b;
-
   stroke-width: 2.2;
-
   stroke-linecap: round;
-
   stroke-linejoin: round;
-
-  opacity: .95;
+  opacity: 0.9;
+  filter: url(#circuitGlow);
 }
 
 /* ==========================================================
-   Sparks
+   Particle
    ========================================================== */
 
-.spark {
+.particle {
   fill: #ffffff;
-  opacity: 0;
+  opacity: 1;
+  filter: url(#circuitGlow);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 /* ==========================================================
@@ -121,7 +123,10 @@
 
 .light-bloom {
   fill: #f2a93b;
-  opacity: .18;
+  opacity: 0.3;
+  filter: url(#circuitGlow);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 /* ==========================================================
@@ -130,11 +135,8 @@
 
 .circuit-background::after {
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   background:
       radial-gradient(
           circle at center,
@@ -142,7 +144,6 @@
           rgba(0,0,0,.08) 75%,
           rgba(0,0,0,.18) 100%
       );
-
   pointer-events: none;
 }
 
@@ -151,18 +152,14 @@
    ========================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-
   .circuit-node,
   .pulse-core,
   .pulse-glow,
   .pulse-halo,
   .trail-path,
-  .spark,
+  .particle,
   .light-bloom {
-
-      transition: none !important;
-      animation: none !important;
-
+    transition: none !important;
+    animation: none !important;
   }
-
 }

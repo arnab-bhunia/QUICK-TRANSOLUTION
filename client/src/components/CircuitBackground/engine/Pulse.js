@@ -6,23 +6,27 @@ const DEFAULTS = {
     minSpeed: 260,
     maxSpeed: 620,
     coreRadius: 1.2,
-    glowRadius: 2.4,
-    haloRadius: 5.5
+    glowRadius: 1.3,
+    haloRadius: 1.5
 };
 
 export default class Pulse {
 
     constructor({
-        layer,
-        graph,
-        lighting
-    }) {
+    layer,
+    graph,
+    lighting,
+    trail,
+    particles
+}){
 
         this.layer = layer;
 
         this.graph = graph;
 
         this.lighting = lighting;
+        this.trail = trail;
+        this.particles = particles;
 
         this.path = [];
 
@@ -166,6 +170,15 @@ export default class Pulse {
 
         this.render();
 
+        if (this.trail) {
+
+        this.trail.addPoint(
+        this.position.x,
+        this.position.y
+    );
+
+}
+
     }
 
     render() {
@@ -296,13 +309,12 @@ export default class Pulse {
 
         this.render();
 
-        if (this.lighting) {
-
-            this.lighting.update(
+        // Record trail point during movement
+        if (this.trail) {
+            this.trail.addPoint(
                 this.position.x,
                 this.position.y
             );
-
         }
 
     }
@@ -326,6 +338,24 @@ export default class Pulse {
         node.element.classList.add(
             "active"
         );
+if (this.lighting) {
+
+    this.lighting.flash(
+        node.x,
+        node.y,
+        18
+    );
+
+}
+        if (this.particles) {
+
+    this.particles.emit(
+        node.x,
+        node.y,
+        5
+    );
+
+}
 
         clearTimeout(
             node.flashTimer

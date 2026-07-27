@@ -69,7 +69,7 @@ export const site = {
       id: "multimodal",
       title: "Multimodal Transportation",
       summary:
-        "A trusted multimodal transporter across North East India, Nepal, Bhutan & Bangladesh, moving freight by whichever combination of road, rail, air and sea gets it there safest.",
+        "A trusted multimodal transporter across India & Bangladesh, moving freight by whichever combination gets it there safest.",
     },
     {
       id: "warehousing",

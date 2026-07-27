@@ -12,7 +12,7 @@ export default function CircuitBackground() {
 
   const [size, setSize] = useState({
     width: 1200,
-    height: 300,
+    height: 2500,
   });
 
   // Observe container resize
@@ -77,7 +77,7 @@ export default function CircuitBackground() {
         width="100%"
         height="100%"
         viewBox={`0 0 ${size.width} ${size.height}`}
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid slice"
       />
     </div>
   );

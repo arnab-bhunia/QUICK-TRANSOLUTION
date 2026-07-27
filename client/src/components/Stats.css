@@ -85,7 +85,7 @@
   flex-direction: column;
   gap: 8px;
   padding-right: 24px;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  /* border-right: 1px solid rgba(255, 255, 255, 0.12); */
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -127,7 +127,7 @@
     border-right: none;
   }
   .stat-item:nth-child(odd) {
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: 0px solid rgba(255, 255, 255, 0.12);
   }
 }
 
@@ -137,10 +137,17 @@
   }
   .stat-item {
     border-right: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    padding-bottom: 20px;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.12); */
+    padding-bottom: 5px;
   }
   .stat-item:last-child {
     border-bottom: none;
   }
+}
+
+.circuit-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
 }
