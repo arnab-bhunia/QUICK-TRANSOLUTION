@@ -17,7 +17,7 @@ export const theme = {
     accent: "#F2A93B",        // amber — route line, highlights, active tab
     accentDark: "#D98F1F",
     signal: "#D6482B",        // brick-red — CTA buttons, urgent actions only
-
+    signalDark: "#C23E24",
     // Neutrals
     // bg: "#F4F6F5",            // page background (cool paper, not warm cream)
     bg: "#f1f1f1",

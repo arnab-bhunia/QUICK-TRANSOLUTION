@@ -71,37 +71,41 @@ export const site = {
       title: "Multimodal Transportation",
       summary:
         "A trusted multimodal transporter across India & Bangladesh, moving freight by whichever combination gets it there safest.",
-    },
+      image: "services/multimodal-transportation-bg.webp", 
+      },
     {
       id: "warehousing",
       title: "Warehousing",
       summary:
         "Strategically located, tech-enabled warehousing that keeps your inventory moving, not just stored.",
-    },
+    image: "services/warehouse-bg.png",
+      },
     {
       id: "custom-clearance",
       title: "Custom Clearance",
       summary:
         "Specialized customs and regulatory clearance for cross-border trade, including Indo-Nepal transport corridors.",
-    },
+    image: "services/custom-clearance-bg.webp",
+      },
     {
       id: "express-cargo",
       title: "Express Cargo",
       summary:
         "Time-critical consignments handled with priority routing and real-time visibility from pickup to delivery.",
-    },
+    image: "services/express-cargo-bg.webp",
+      },
     {
       id: "supply-chain",
       title: "Supply Chain & 3PL",
       summary:
         "End-to-end supply chain management for manufacturers and distributors who need one partner, not five.",
-    },
+    image: "services/supply-chain-bg.webp",},
     {
       id: "import-export",
       title: "Import Export Trading",
       summary:
         "Trade facilitation and documentation support that keeps shipments compliant on both sides of the border.",
-    },
+    image: "services/import-export.png",},
   ],
 
 whyUs: [
