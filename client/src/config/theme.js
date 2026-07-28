@@ -35,6 +35,7 @@ export const theme = {
     display: "'Barlow Condensed', sans-serif", // headlines — road-sign character
     body: "'Inter', sans-serif",               // paragraphs, UI
     mono: "'IBM Plex Mono', monospace",        // stats, tracking numbers, labels
+    box: "'Space Mono', sans-serif",
   },
 
   radius: {

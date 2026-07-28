@@ -89,7 +89,6 @@ function ServiceCard({ service, index }) {
       style={{ transitionDelay: `${index * 70}ms` }}
     >
       <span className="service-dots service-dots--tl" aria-hidden="true" />
-      <span className="service-diagonal" aria-hidden="true" />
 
       <div className="service-card-text">
         <span className="service-index">
@@ -110,7 +109,6 @@ function ServiceCard({ service, index }) {
         className="service-card-media"
         style={{ backgroundImage: `url(${service.image})` }}
       >
-        <span className="service-dots service-dots--br" aria-hidden="true" />
       </div>
     </article>
   );
