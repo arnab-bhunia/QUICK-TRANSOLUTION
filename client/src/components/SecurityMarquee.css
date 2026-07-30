@@ -1,0 +1,130 @@
+
+.security-marquee {
+  position: sticky;
+  top: var(--navbar-height, 76px);
+  left: 0;
+  right: 0;
+  height: 35px;
+  z-index: 99;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--color-signal), #ef6438);
+  box-shadow: 0 8px 20px rgba(226, 74, 38, 0.12);
+  pointer-events: none;
+  animation: marqueeBar 22s ease-in-out infinite;
+}
+
+.security-marquee-track {
+
+  position: relative;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding-left: 100%;
+
+  color: #fff;
+
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+
+  animation: tickerMove 22s linear infinite;
+
+}
+
+
+@keyframes marqueeBar{
+
+    0%{
+
+        transform:translateY(-100%);
+        opacity:0;
+
+    }
+
+    4%{
+
+        transform:translateY(0);
+        opacity:1;
+
+    }
+
+    72%{
+
+        transform:translateY(0);
+        opacity:1;
+
+    }
+
+    76%{
+
+        transform:translateY(-100%);
+        opacity:0;
+
+    }
+
+    100%{
+
+        transform:translateY(-100%);
+        opacity:0;
+
+    }
+
+}
+
+@keyframes tickerMove{
+
+    0%{
+
+        transform:
+        translateY(-50%)
+        translateX(0);
+
+    }
+
+    72%{
+
+        transform:
+        translateY(-50%)
+        translateX(-220%);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(-50%)
+        translateX(-220%);
+
+    }
+
+}
+
+
+@media (max-width:768px){
+
+.security-marquee{
+
+    height:30px;
+
+}
+
+.security-marquee-track{
+
+    font-size:.78rem;
+
+    font-weight:500;
+
+}
+
+}
+.security-icon{
+    font-size:1rem;
+    flex-shrink:0;
+}

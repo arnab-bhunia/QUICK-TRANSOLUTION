@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TopBar from "./components/TopBar";
 import Navbar from "./components/Navbar";
+import SecurityMarquee from "./components/SecurityMarquee";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import Services from "./components/Services";
@@ -18,18 +19,17 @@ function App() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
-  // Measures the real height of the sticky topbar+navbar stack (which
-  // changes when the topbar wraps on narrow screens) so Hero.css can
-  // size itself to exactly "the rest of the screen" via
-  // calc(100dvh - var(--header-height)) instead of guessing a fixed
-  // pixel number that breaks on different devices.
   const headerRef = useMeasuredHeight("--header-height");
+  const navbarRef = useMeasuredHeight("--navbar-height");
 
   return (
     <>
       <div ref={headerRef}>
         <TopBar />
-        <Navbar onOpenQuote={() => setQuoteOpen(true)} />
+        <div ref={navbarRef}>
+          <Navbar onOpenQuote={() => setQuoteOpen(true)} />
+        </div>
+        <SecurityMarquee />
       </div>
       <main>
         <Hero onOpenQuote={() => setQuoteOpen(true)} />

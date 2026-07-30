@@ -34,10 +34,37 @@ export default function Testimonials() {
           >
             {site.testimonials.map((t) => (
               <figure className="testimonial-slide" key={t.name}>
+                <span className="decoration-dots decoration-dots--tl" aria-hidden="true" />
                 <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
+                 <div className="mini-line"></div>
                 <figcaption>
-                  <span className="testimonial-name">{t.name}</span>
-                  <span className="testimonial-role">{t.role}</span>
+    <div className="testimonial-person">
+
+      <img
+        src={t.image}
+        alt={t.name}
+        className="testimonial-avatar"
+      />
+
+      <div className="testimonial-info">
+
+        <h3>{t.name}</h3>
+
+        <span className="testimonial-role">
+          {t.role}
+        </span>
+        <strong>{t.company}</strong>
+        <div className="testimonial-stars">
+          ★★★★★
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* <div className="testimonial-company">
+      <img src={t.logo} alt={t.company} />
+    </div> */}
                 </figcaption>
               </figure>
             ))}

@@ -15,7 +15,7 @@ export default function WhyUs() {
           <span className="eyebrow">Why Choose Us</span>
           <h2>Single-window logistics, tailor-made for you</h2>
           <p>
-            The Sugam Group offers single-window solutions for multimodal
+            The Quick Transolution Pvt. Ltd. offers single-window solutions for multimodal
             transport by air, rail, sea and land, backed by integrated
             technology and end-to-end infrastructure.
           </p>

@@ -78,34 +78,34 @@ export const site = {
       title: "Warehousing",
       summary:
         "Strategically located, tech-enabled warehousing that keeps your inventory moving, not just stored.",
-    image: "services/warehouse-bg.png",
+      image: "services/warehouse-bg.png",
       },
     {
       id: "custom-clearance",
       title: "Custom Clearance",
       summary:
         "Specialized customs and regulatory clearance for cross-border trade, including Indo-Nepal transport corridors.",
-    image: "services/custom-clearance-bg.webp",
+      image: "services/custom-clearance-bg.webp",
       },
     {
       id: "express-cargo",
       title: "Express Cargo",
       summary:
         "Time-critical consignments handled with priority routing and real-time visibility from pickup to delivery.",
-    image: "services/express-cargo-bg.webp",
+      image: "services/express-cargo-bg.webp",
       },
     {
       id: "supply-chain",
       title: "Supply Chain & 3PL",
       summary:
         "End-to-end supply chain management for manufacturers and distributors who need one partner, not five.",
-    image: "services/supply-chain-bg.webp",},
+      image: "services/supply-chain-bg.webp",},
     {
       id: "import-export",
       title: "Import Export Trading",
       summary:
         "Trade facilitation and documentation support that keeps shipments compliant on both sides of the border.",
-    image: "services/import-export.png",},
+      image: "services/import-export-bg.webp",},
   ],
 
 whyUs: [
@@ -139,34 +139,49 @@ whyUs: [
   testimonials: [
     {
       name: "Latish Poojari",
-      role: "Godrej Consumer Products Ltd.",
+      role: "Supply Chain Head",
       quote:
         "Thank you for the quality of service your team provides \u2014 efficient, gracious, and consistent in how you conduct business.",
-    },
+      company: "Godrej Consumer Products Ltd.",
+      image: "/testimonials/testimonials-common.png",
+      logo: "//godrej.svg"
+      },
     {
       name: "Ankush Koundal",
       role: "CPPD Custom & Transport",
+      company: "Godrej Consumer Products Ltd.",
       quote:
         "Your team completed shipment clearance and delivery across every distribution site with steady dedication, working out solutions whenever our timelines were at risk.",
-    },
+    image: "/testimonials/testimonials-common.png",
+      logo: "//godrej.svg"
+      },
     {
       name: "Abhishek Ghimire",
       role: "Factory Operations Director",
+      company: "Godrej Consumer Products Ltd.",
       quote:
         "Every consignment, from small parcels to bulk cargo, has been loaded, unloaded and transported safely and on schedule.",
-    },
+    image: "/testimonials/testimonials-common.png",
+      logo: "//godrej.svg"
+      },
     {
       name: "Manoj Kr. Punj",
       role: "Senior Manager, Export Logistics",
+      company: "Godrej Consumer Products Ltd.",
       quote:
         "Good coordination and monitoring on every movement of our goods, with a track record we've come to rely on.",
-    },
+    image: "/testimonials/testimonials-common.png",
+      logo: "//godrej.svg"
+      },
     {
       name: "Balaiyya B. Guglot",
       role: "Head, Supply Chain",
+      company: "Godrej Consumer Products Ltd.",
       quote:
         "Vehicles placed exactly to our need, with prompt performance and timely delivery every time.",
-    },
+    image: "/testimonials/testimonials-common.png",
+      logo: "//godrej.svg"
+      },
   ],
 
 
