@@ -1,16 +1,31 @@
 
-.security-marquee {
+/*
+ * IMPORTANT: `position: sticky` and a `transform`-based animation must never
+ * live on the same element. A transform creates a new containing block,
+ * which makes several mobile browsers (notably iOS Safari) miscalculate or
+ * "freeze" sticky offsets mid-scroll — this was the cause of the marquee
+ * getting stuck. Fix: sticky positioning lives on an outer wrapper that is
+ * never animated; the show/hide + scrolling-text animations live on inner
+ * elements that are NOT position:sticky.
+ */
+.security-marquee-sticky {
   position: sticky;
   top: var(--navbar-height, 76px);
   left: 0;
   right: 0;
-  height: 35px;
   z-index: 99;
+  height: 35px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.security-marquee {
+  height: 100%;
   overflow: hidden;
   background: linear-gradient(90deg, var(--color-signal), #ef6438);
   box-shadow: 0 8px 20px rgba(226, 74, 38, 0.12);
-  pointer-events: none;
   animation: marqueeBar 22s ease-in-out infinite;
+  will-change: transform;
 }
 
 .security-marquee-track {
@@ -35,6 +50,7 @@
   letter-spacing: .2px;
 
   animation: tickerMove 22s linear infinite;
+  will-change: transform;
 
 }
 
