@@ -8,14 +8,19 @@
 }
 
 /*
- * Previously this stretched the SVG scene to 100% of the hero's height,
- * which on desktop is close to full viewport height. Because the scene's
- * own aspect ratio (1200x720, ~1.67:1) is much wider than the ~half-width
- * column it sits in, forcing it to fill 100% height meant the SVG got
- * massively over-scaled/cropped ("xMidYMid slice") — the ugly full-height
- * stretch. Fix: keep the wrapper's natural aspect ratio and only let it
- * grow up to the available space, centered vertically, instead of forcing
- * height:100%.
+ * The scene fills its container completely (width:100%, height:100%,
+ * SVG preserveAspectRatio="slice") on BOTH mobile and desktop — that part
+ * was never the bug. On mobile this container is a fixed 45%-height band
+ * at the bottom, meant to look like a cover photo behind the text, so it
+ * needs to fill edge-to-edge with no letterboxing.
+ *
+ * The actual desktop bug was that the container itself (.hero-scene-bg)
+ * could get extremely tall relative to its width on big/tall screens,
+ * making the "cover" crop zoom in too far. So we cap the container's own
+ * height on desktop only, instead of changing how the SVG fills it —
+ * that previous attempt (aspect-ratio + "meet"/contain on the wrapper)
+ * fought with the mobile band's fixed height and caused the clipped
+ * bottoms / cars-outside-the-background bugs on phones and tablets.
  */
 .hero-scene-bg {
   position: absolute;
@@ -27,17 +32,17 @@
   justify-content: center;
 }
 
-.hero-scene-bg .transport-scene-wrapper {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  aspect-ratio: 1200 / 720;
-  min-height: 0;
-}
-
+.hero-scene-bg .transport-scene-wrapper,
 .hero-scene-bg .transport-scene {
   width: 100%;
   height: 100%;
+  min-height: 0;
+}
+
+@media (min-width: 961px) {
+  .hero-scene-bg {
+    max-height: 760px;
+  }
 }
 
 .hero-mobile-bg {

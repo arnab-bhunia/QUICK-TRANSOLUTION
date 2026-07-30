@@ -7,7 +7,7 @@ const TransportScene = ({ active }) => {
       <svg
         className="transport-scene"
         viewBox="0 0 1200 720"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* === SKY & ATMOSPHERE === */}
