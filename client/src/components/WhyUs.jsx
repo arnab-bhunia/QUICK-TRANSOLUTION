@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
+import {
+  NetworkIcon,
+  ShieldIcon,
+  TrackingIcon,
+  PackageIcon,
+  DocumentIcon,
+} from "../assets/promotionsIcon";
 import "./WhyUs.css";
+
+const whyUsIcons = [NetworkIcon, ShieldIcon, TrackingIcon, PackageIcon, DocumentIcon];
 
 export default function WhyUs() {
   const [active, setActive] = useState(0);
@@ -29,20 +38,23 @@ export default function WhyUs() {
         <div ref={ref} className="why-us-reveal">
           <div className={`why-us-panel ${visible ? "is-in" : ""}`}>
             <div className="why-us-tabs" role="tablist" aria-orientation="vertical">
-              {site.whyUs.map((item, i) => (
-                <button
-                  key={item.id}
-                  role="tab"
-                  aria-selected={active === i}
-                  className={`why-us-tab ${active === i ? "is-active" : ""}`}
-                  onClick={() => setActive(i)}
-                >
-                  <span className="why-us-tab-index">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="why-us-tab-label">{item.title}</span>
-                </button>
-              ))}
+              {site.whyUs.map((item, i) => {
+                const Icon = whyUsIcons[i];
+                return (
+                  <button
+                    key={item.id}
+                    role="tab"
+                    aria-selected={active === i}
+                    className={`why-us-tab ${active === i ? "is-active" : ""}`}
+                    onClick={() => setActive(i)}
+                  >
+                    <span className="why-us-tab-icon">
+                      {Icon && <Icon />}
+                    </span>
+                    <span className="why-us-tab-label">{item.title}</span>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="why-us-content" key={current.id}>
@@ -58,6 +70,7 @@ export default function WhyUs() {
           <div className={`why-us-accordion ${visible ? "is-in" : ""}`}>
             {site.whyUs.map((item, i) => {
               const isOpen = active === i;
+              const Icon = whyUsIcons[i];
               return (
                 <div
                   key={item.id}
@@ -68,21 +81,23 @@ export default function WhyUs() {
                     aria-expanded={isOpen}
                     onClick={() => setActive(isOpen ? -1 : i)}
                   >
-                    <span className="why-us-tab-index">
-                      {String(i + 1).padStart(2, "0")}
+                    <span className="why-us-tab-icon">
+                      {Icon && <Icon />}
                     </span>
                     <span className="why-us-tab-label">{item.title}</span>
                     <span className="why-us-acc-chevron" aria-hidden="true" />
                   </button>
 
                   <div className="why-us-acc-body-wrap">
-                    <div className="why-us-acc-body">
-                      <p>{item.body}</p>
-                      <a href="#contact" className="btn btn-outline">
-                        Enquire Now
-                      </a>
-                    </div>
-                  </div>
+  <div className="why-us-acc-body">
+    <div className="why-us-acc-body-inner">
+      <p>{item.body}</p>
+      <a href="#contact" className="btn btn-outline">
+        Enquire Now
+      </a>
+    </div>
+  </div>
+</div>
                 </div>
               );
             })}
