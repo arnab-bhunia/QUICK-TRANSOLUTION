@@ -2,13 +2,19 @@
   position: relative;
   overflow: hidden;
   height: calc(100vh - var(--header-height));
-  height: calc(100svh - var(--header-height)); 
+  /*
+   * NOT 100dvh: dvh is designed to live-update as the mobile browser's
+   * address bar/toolbar shows and hides while scrolling — which meant the
+   * hero was literally resizing itself mid-scroll, causing the sudden
+   * height jump. svh is fixed to the viewport size with the browser UI
+   * fully expanded, so it never recalculates during a scroll gesture.
+   */
+  height: calc(100svh - var(--header-height));
   display: flex;
   align-items: center;
 }
 
 /*
- * dvh for real time viewport height on mobile, svh for static viewport height.
  * The scene fills its container completely (width:100%, height:100%,
  * SVG preserveAspectRatio="slice") on BOTH mobile and desktop — that part
  * was never the bug. On mobile this container is a fixed 45%-height band
