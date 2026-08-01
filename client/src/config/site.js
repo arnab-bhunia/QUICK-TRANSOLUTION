@@ -78,7 +78,7 @@ export const site = {
       title: "Warehousing",
       summary:
         "Strategically located, tech-enabled warehousing that keeps your inventory moving, not just stored.",
-      image: "services/warehouse-bg.png",
+      image: "services/warehouse-bg.webp",
       },
     {
       id: "custom-clearance",

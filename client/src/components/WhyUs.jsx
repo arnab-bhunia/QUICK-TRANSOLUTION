@@ -19,19 +19,16 @@ export default function WhyUs() {
 
   return (
     <section id="why-us" className="section why-us">
-      <div className="why-us-banner">
-        <div className="container">
-          <div className={`section-head ${visible ? "is-in" : ""}`}>
-            <span className="eyebrow">Why Choose Us</span>
-            <h2>Single-window logistics, tailor-made for <span className="header-span">you</span></h2>
-            <p>
-              The Quick Transolution Pvt. Ltd. offers single-window solutions for multimodal
-              transport by air, rail, sea and land, backed by integrated
-              technology and end-to-end infrastructure.
-            </p>
-          </div>
+      <div className="container">
+        <div className={`section-head ${visible ? "is-in" : ""}`}>
+          <span className="eyebrow">Why Choose Us</span>
+          <h2>Single-window logistics, tailor-made for you</h2>
+          <p>
+            The Quick Transolution Pvt. Ltd. offers single-window solutions for multimodal
+            transport by air, rail, sea and land, backed by integrated
+            technology and end-to-end infrastructure.
+          </p>
         </div>
-      </div>
 
       <div className="container">
         {/* Tablet / desktop: tab list on the left, shared content panel on the right */}

@@ -2,16 +2,41 @@
   position: relative;
   overflow: hidden;
   height: calc(100vh - var(--header-height));
-  height: calc(100dvh - var(--header-height));
+  /*
+   * NOT 100dvh: dvh is designed to live-update as the mobile browser's
+   * address bar/toolbar shows and hides while scrolling — which meant the
+   * hero was literally resizing itself mid-scroll, causing the sudden
+   * height jump. svh is fixed to the viewport size with the browser UI
+   * fully expanded, so it never recalculates during a scroll gesture.
+   */
+  height: calc(100svh - var(--header-height));
   display: flex;
   align-items: center;
 }
 
+/*
+ * The scene fills its container completely (width:100%, height:100%,
+ * SVG preserveAspectRatio="slice") on BOTH mobile and desktop — that part
+ * was never the bug. On mobile this container is a fixed 45%-height band
+ * at the bottom, meant to look like a cover photo behind the text, so it
+ * needs to fill edge-to-edge with no letterboxing.
+ *
+ * The actual desktop bug was that the container itself (.hero-scene-bg)
+ * could get extremely tall relative to its width on big/tall screens,
+ * making the "cover" crop zoom in too far. So we cap the container's own
+ * height on desktop only, instead of changing how the SVG fills it —
+ * that previous attempt (aspect-ratio + "meet"/contain on the wrapper)
+ * fought with the mobile band's fixed height and caused the clipped
+ * bottoms / cars-outside-the-background bugs on phones and tablets.
+ */
 .hero-scene-bg {
   position: absolute;
   inset: 0;
   left: 50%;
   z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-scene-bg .transport-scene-wrapper,
@@ -19,6 +44,12 @@
   width: 100%;
   height: 100%;
   min-height: 0;
+}
+
+@media (min-width: 961px) {
+  .hero-scene-bg {
+    max-height: 760px;
+  }
 }
 
 .hero-mobile-bg {
