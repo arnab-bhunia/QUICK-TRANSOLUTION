@@ -1,18 +1,14 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import TopBar from "./components/TopBar";
 import Navbar from "./components/Navbar";
 import SecurityMarquee from "./components/SecurityMarquee";
-import Hero from "./components/Hero";
-import Stats from "./components/Stats";
-import Services from "./components/Services";
-import WhyUs from "./components/WhyUs";
-import Testimonials from "./components/Testimonials";
-import Sectors from "./components/Sectors";
-import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
 import StickyContact from "./components/StickyContact";
 import ChatBot from "./components/ChatBot";
+import Home from "./pages/Home";
+import TrackPage from "./pages/TrackPage";
 import { useMeasuredHeight } from "./hooks/useMeasuredHeight";
 
 function App() {
@@ -32,13 +28,10 @@ function App() {
         <SecurityMarquee />
       </div>
       <main>
-        <Hero onOpenQuote={() => setQuoteOpen(true)} />
-        <Stats />
-        <Services />
-        <WhyUs />
-        <Testimonials />
-        <Sectors />
-        <Newsletter />
+        <Routes>
+          <Route path="/" element={<Home onOpenQuote={() => setQuoteOpen(true)} />} />
+          <Route path="/track" element={<TrackPage />} />
+        </Routes>
       </main>
       <Footer />
       <StickyContact

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { site } from "../config/site";
+import SmartLink from "./SmartLink";
 import "./Navbar.css";
 
 export default function Navbar({ onOpenQuote }) {
@@ -20,16 +21,16 @@ export default function Navbar({ onOpenQuote }) {
   return (
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="container navbar-inner">
-        <a href="#home" className="navbar-brand">
+        <SmartLink href="#home" className="navbar-brand">
           <img src="/logo.webp" alt={site.companyName} className="navbar-brand-mark" />
           <span className="navbar-brand-name">{site.companyName}</span>
-        </a>
+        </SmartLink>
 
         <nav className="navbar-links" aria-label="Primary">
           {site.nav.map((item) => (
-            <a key={item.href} href={item.href}>
+            <SmartLink key={item.href} href={item.href}>
               {item.label}
-            </a>
+            </SmartLink>
           ))}
         </nav>
 
@@ -50,31 +51,31 @@ export default function Navbar({ onOpenQuote }) {
           <span />
         </button>
       </div>
-<div className={`navbar-mobile ${menuOpen ? "is-open" : ""}`}>
-  <div className="navbar-mobile-content">
-    <nav className="navbar-mobile-links">
-      {site.nav.map((item, i) => (
-        <a
-          key={item.href}
-          href={item.href}
-          style={{ transitionDelay: `${i * 40}ms` }}
-          onClick={() => setMenuOpen(false)}
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
-    <button
-      className="btn btn-primary navbar-mobile-cta"
-      onClick={() => {
-        setMenuOpen(false);
-        onOpenQuote();
-      }}
-    >
-      Get a Quote
-    </button>
-  </div>
-</div>
+      <div className={`navbar-mobile ${menuOpen ? "is-open" : ""}`}>
+        <div className="navbar-mobile-content">
+          <nav className="navbar-mobile-links">
+            {site.nav.map((item, i) => (
+              <SmartLink
+                key={item.href}
+                href={item.href}
+                style={{ transitionDelay: `${i * 40}ms` }}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </SmartLink>
+            ))}
+          </nav>
+          <button
+            className="btn btn-primary navbar-mobile-cta"
+            onClick={() => {
+              setMenuOpen(false);
+              onOpenQuote();
+            }}
+          >
+            Get a Quote
+          </button>
+        </div>
+      </div>
     </header>
   );
 }

@@ -39,6 +39,7 @@ export const site = {
     { label: "Why Us", href: "#why-us" },
     { label: "Clients", href: "#clients" },
     { label: "Sectors", href: "#sectors" },
+    { label: "Track Shipment", href: "/track" },
     { label: "Contact", href: "#contact" },
   ],
 
@@ -47,7 +48,7 @@ export const site = {
     heading: "Delivering Trust\nAcross the Region",
     body: "With over 50 years in the logistics industry, we move freight across India, Nepal, Bhutan & Bangladesh \u2014 by road, rail, air and sea \u2014 under one accountable roof.",
     primaryCta: { label: "Get a Quote", href: "#contact" },
-    secondaryCta: { label: "Track a Shipment", href: "#track" },
+    secondaryCta: { label: "Track a Shipment", href: "/track" },
     routeNodes: [
       { id: "delhi", label: "Delhi", x: 120, y: 210 },
       { id: "kolkata", label: "Kolkata", x: 330, y: 260 },

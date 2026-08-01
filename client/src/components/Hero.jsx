@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { site } from "../config/site";
 import TransportScene from "./TransportScene";
+import SmartLink from "./SmartLink";
 import "./Hero.css";
 
 export default function Hero({ onOpenQuote }) {
@@ -37,9 +38,9 @@ export default function Hero({ onOpenQuote }) {
             <button className="btn btn-primary" onClick={onOpenQuote}>
               {site.hero.primaryCta.label}
             </button>
-            <a href={site.hero.secondaryCta.href} className="btn btn-outline">
+            <SmartLink href={site.hero.secondaryCta.href} className="btn btn-outline">
               {site.hero.secondaryCta.label}
-            </a>
+            </SmartLink>
           </div>
         </div>
       </div>

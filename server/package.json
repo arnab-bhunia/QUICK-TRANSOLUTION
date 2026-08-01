@@ -6,18 +6,26 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "create-admin": "node src/scripts/createAdmin.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^4.22.2",
     "express-async-errors": "^3.1.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.8.0",
-    "morgan": "^1.11.0"
+    "morgan": "^1.11.0",
+    "nanoid": "^5.0.9"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

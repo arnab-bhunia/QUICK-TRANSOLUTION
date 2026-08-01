@@ -13,7 +13,11 @@ export function errorHandler(err, req, res, next) {
     return res.status(400).json({ message: err.message });
   }
 
+  // Everything else (DB timeouts, driver errors, bugs) is logged in full
+  // above but NEVER shown to the client verbatim — raw error text can
+  // leak internal details (db/collection names, driver internals) and
+  // isn't written for a visitor to read anyway.
   res.status(err.status || 500).json({
-    message: err.message || "Something went wrong on our end",
+    message: "Something went wrong on our end. Please try again shortly.",
   });
 }
