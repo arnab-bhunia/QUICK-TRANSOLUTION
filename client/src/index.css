@@ -219,3 +219,7 @@ ul {
     margin-bottom: 36px;
   }
 }
+
+.header-span{
+  color: var(--color-signal);
+}

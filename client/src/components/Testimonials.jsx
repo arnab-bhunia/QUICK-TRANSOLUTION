@@ -24,7 +24,7 @@ export default function Testimonials() {
       <div className="container">
         <div className={`section-head ${headVisible ? "is-in" : ""}`} ref={headRef}>
           <span className="eyebrow">Our Clients</span>
-          <h2>Satisfied clients are our greatest reward</h2>
+          <h2>Satisfied clients are our greatest <span className="header-span">Reward</span></h2>
         </div>
 
         <div className="testimonial-stage">

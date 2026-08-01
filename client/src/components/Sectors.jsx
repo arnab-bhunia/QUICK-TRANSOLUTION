@@ -10,7 +10,7 @@ export default function Sectors() {
       <div className="container">
         <div className={`section-head ${visible ? "is-in" : ""}`} ref={ref}>
           <span className="eyebrow">Our Key Sectors</span>
-          <h2>Comprehensive logistics for major industries</h2>
+          <h2>Comprehensive logistics for major <span className="header-span">Industries</span></h2>
         </div>
 
         <div className="sectors-grid">

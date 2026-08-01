@@ -23,7 +23,7 @@ export default function WhyUs() {
         <div className="container">
           <div className={`section-head ${visible ? "is-in" : ""}`}>
             <span className="eyebrow">Why Choose Us</span>
-            <h2>Single-window logistics, tailor-made for you</h2>
+            <h2>Single-window logistics, tailor-made for <span className="header-span">you</span></h2>
             <p>
               The Quick Transolution Pvt. Ltd. offers single-window solutions for multimodal
               transport by air, rail, sea and land, backed by integrated
