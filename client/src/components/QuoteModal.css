@@ -107,12 +107,6 @@
   cursor: wait;
 }
 
-.quote-modal-error {
-  color: var(--color-signal);
-  font-size: 13.5px;
-  text-align: center;
-}
-
 .quote-modal-success {
   padding: 20px 0 4px;
   text-align: center;

@@ -2,12 +2,14 @@ import { useState } from "react";
 import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
 import { subscribeNewsletter } from "../api/client";
+import { useAlert } from "../context/AlertContext";
 import "./Newsletter.css";
 
 export default function Newsletter() {
   const [ref, visible] = useReveal(0.3);
   const [form, setForm] = useState({ name: "", email: "", mobile: "" });
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [status, setStatus] = useState("idle"); // idle | loading — only drives the button now
+  const alert = useAlert();
 
   const update = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -17,10 +19,12 @@ export default function Newsletter() {
     setStatus("loading");
     try {
       await subscribeNewsletter(form);
-      setStatus("success");
       setForm({ name: "", email: "", mobile: "" });
-    } catch {
-      setStatus("error");
+      alert.success("Subscribed — welcome aboard.");
+    } catch (err) {
+      alert.error(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setStatus("idle");
     }
   };
 
@@ -69,16 +73,6 @@ export default function Newsletter() {
           >
             {status === "loading" ? "Submitting..." : "Subscribe"}
           </button>
-          {status === "success" && (
-            <p className="newsletter-status is-success">
-              Subscribed &mdash; welcome aboard.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="newsletter-status is-error">
-              Something went wrong. Please try again.
-            </p>
-          )}
         </form>
       </div>
     </section>

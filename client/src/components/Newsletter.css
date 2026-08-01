@@ -88,20 +88,6 @@
   cursor: wait;
 }
 
-.newsletter-status {
-  margin-top: 12px;
-  font-size: 13.5px;
-  text-align: center;
-}
-
-.newsletter-status.is-success {
-  color: #8FE3B0;
-}
-
-.newsletter-status.is-error {
-  color: #F3A2A2;
-}
-
 @media (max-width: 820px) {
   .newsletter-inner {
     grid-template-columns: 1fr;

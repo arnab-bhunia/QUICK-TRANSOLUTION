@@ -1,0 +1,116 @@
+/*
+ * Central alert stack. Always fixed to the top of the viewport, above
+ * everything else on the page (z-index above the navbar/modals). Height
+ * of the stack is whatever the content needs — each alert sizes itself,
+ * the container just stacks them with a gap.
+ */
+.alert-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(440px, 92vw);
+  pointer-events: none; /* let clicks pass through the gaps between alerts */
+}
+
+.alert-item {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-line);
+  border-left: 4px solid var(--alert-color, var(--color-primary));
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lifted);
+  padding: 14px 16px;
+  animation: alert-in 0.25s ease;
+}
+
+.alert-item.is-leaving {
+  animation: alert-out 0.2s ease forwards;
+}
+
+@keyframes alert-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes alert-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  margin-top: 1px;
+  color: var(--alert-color, var(--color-primary));
+}
+
+.alert-message {
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.alert-close {
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-ink-faint);
+  padding: 0 2px;
+  transition: color 0.2s ease;
+}
+
+.alert-close:hover {
+  color: var(--color-ink);
+}
+
+/* One color variable per type — this is the only place that ever needs
+   editing to restyle a given alert type across the whole site. */
+.alert-success {
+  --alert-color: #1e9e5a;
+}
+
+.alert-error {
+  --alert-color: var(--color-signal);
+}
+
+.alert-info {
+  --alert-color: var(--color-primary);
+}
+
+.alert-warning {
+  --alert-color: var(--color-highlight-dark);
+}
+
+@media (max-width: 480px) {
+  .alert-container {
+    top: 10px;
+    width: 94vw;
+  }
+
+  .alert-item {
+    padding: 12px 14px;
+  }
+}

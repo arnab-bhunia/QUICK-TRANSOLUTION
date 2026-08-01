@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { submitQuote } from "../api/client";
+import { useAlert } from "../context/AlertContext";
 import "./QuoteModal.css";
 
 const initialForm = {
@@ -15,6 +16,7 @@ const initialForm = {
 export default function QuoteModal({ open, onClose }) {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle");
+  const alert = useAlert();
 
   useEffect(() => {
     if (!open) return;
@@ -43,8 +45,10 @@ export default function QuoteModal({ open, onClose }) {
     try {
       await submitQuote(form);
       setStatus("success");
-    } catch {
-      setStatus("error");
+      alert.success("Request received — our team will reach out shortly.");
+    } catch (err) {
+      setStatus("idle");
+      alert.error(err.message || "Something went wrong. Please try again.");
     }
   };
 
@@ -140,11 +144,6 @@ export default function QuoteModal({ open, onClose }) {
               >
                 {status === "loading" ? "Sending..." : "Connect With Experts"}
               </button>
-              {status === "error" && (
-                <p className="quote-modal-error">
-                  Something went wrong. Please try again.
-                </p>
-              )}
             </form>
           </>
         )}
