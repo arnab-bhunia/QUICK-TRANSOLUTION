@@ -1,98 +1,205 @@
-MERN 
+# Quick Transolution
 
-A single-page web built on the MERN stack (MongoDB,
-Express, React, Node), with the company branding and color theme fully
-separated from the code so either can be changed without touching a single
-component.
+A modern, responsive logistics website built with the **MERN stack** (MongoDB, Express.js, React, and Node.js). The project is designed with a configuration-driven architecture, allowing branding, company information, and theme colors to be updated without modifying application components.
 
-## Structure
+---
 
+## ✨ Features
+
+* Modern, responsive user interface
+* Configuration-based branding and theme system
+* Interactive service and "Why Choose Us" sections
+* Testimonial carousel
+* Shipment tracking
+* Contact and quotation forms
+* Newsletter subscription
+* Google reCAPTCHA support for form protection
+* REST API powered by Express.js
+* MongoDB integration with Mongoose
+* Production-ready project structure
+
+---
+
+## 📁 Project Structure
+
+```text
+quick-transolution/
+├── client/          # React + Vite frontend
+├── server/          # Express + MongoDB backend
+└── README.md
 ```
-client/   React frontend (Vite)
-server/   Express + MongoDB backend
-```
 
-## Rebranding: change the company name or colors
+---
 
-Everything brand-specific lives in two files:
+## 🚀 Getting Started
 
-- **`client/src/config/site.js`** — company name, tagline, contact info,
-  nav links, hero copy, services, testimonials, sectors, footer links.
-  Change the company name once here and it updates everywhere (nav, footer,
-  newsletter copy, etc).
-- **`client/src/config/theme.js`** — every color and font as a named
-  token (`primary`, `accent`, `signal`, fonts, radii, shadows). Edit a hex
-  value here and the whole site re-themes, since every component reads
-  colors through CSS variables (`var(--color-primary)`) rather than
-  hard-coded hex values.
+### Prerequisites
 
-No component file needs to change for a rebrand.
+* Node.js (v18 or later recommended)
+* MongoDB (Local or MongoDB Atlas)
+* npm
 
-## Frontend (`client/`)
+---
 
-Built with React + Vite, plain CSS (no framework) for full control over the
-distinctive visual direction: a freight-navy / amber palette, Barlow
-Condensed display type, and an animated route-map in the hero that draws
-itself in on load and pulses along the India–Nepal–Bhutan–Bangladesh
-network — tying the visual language directly to the business.
+## Frontend Setup
 
 ```bash
 cd client
 npm install
-cp .env.example .env      # point at your backend if not localhost:5000
-npm run dev                # http://localhost:5173
-npm run build               # production build to client/dist
+cp .env.example .env
+npm run dev
 ```
 
-Sections included on the single page: top utility bar, sticky nav with
-mobile menu, hero, animated stats strip, services grid, an interactive
-"Why Choose Us" tabbed panel, testimonials carousel, key sectors, a
-newsletter signup wired to the API, footer, a floating contact rail, and a
-"Get a Quote" modal wired to the API.
+Production build:
 
-## Backend (`server/`)
+```bash
+npm run build
+```
 
-Express + Mongoose, with `/api/quotes` (POST to submit a quote request, GET
-to list them) and `/api/newsletter` (POST to subscribe).
+---
+
+## Backend Setup
 
 ```bash
 cd server
 npm install
-cp .env.example .env       # set MONGODB_URI to your MongoDB instance
-npm run dev                 # http://localhost:5000, auto-restarts on change
-npm start                   # production
+cp .env.example .env
+npm run dev
 ```
 
-The server starts accepting requests immediately and connects to MongoDB in
-the background, so a slow or temporarily unreachable database doesn't block
-the whole API — requests that touch the database will simply error until
-the connection is up.
+Production:
 
-### Endpoints
+```bash
+npm start
+```
 
-| Method | Path              | Body                                                                 |
-|--------|-------------------|-----------------------------------------------------------------------|
-| GET    | `/api/health`     | —                                                                     |
-| POST   | `/api/quotes`     | `{ name, company, contact, email, origin, destination, weight }`     |
-| GET    | `/api/quotes`     | — (latest 200)                                                        |
-| POST   | `/api/newsletter` | `{ name, email, mobile }`                                             |
+---
 
-## Notes on what's implemented vs. simplified from the source site
+## 🔐 Environment Variables
 
-This first pass focused on making the frontend polished and complete, as
-requested. A few things from the original WordPress site were intentionally
-simplified for a cleaner MERN single-page rebuild:
+Create a `.env` file inside the **server** directory.
 
-- The many separate sub-pages (About, each service, each industry, careers,
-  CSR, etc.) are not recreated as separate routes — this is a single page.
-  If you want some of them as real routes later, adding React Router is a
-  small follow-up.
-- The half-dozen popup forms on the original (feedback survey, brochure
-  download, complaint form, etc.) are consolidated into one "Get a Quote"
-  modal and the newsletter box, both wired to the backend. More forms can be
-  added the same way if you need them.
-- Testimonial/client photos and logos are left as text-only cards rather
-  than pulling third-party images.
+Example:
 
-Happy to add more pages, wire up MongoDB for you, or adjust the visual
-direction 
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret
+```
+
+Create a `.env` file inside the **client** directory if required by your frontend configuration.
+
+**Important**
+
+* Never commit `.env` files.
+* Never expose database credentials or API keys.
+* Keep all secrets in environment variables.
+
+---
+
+## 🎨 Branding & Theme Customization
+
+The project separates branding from application logic.
+
+### Company Configuration
+
+```
+client/src/config/site.js
+```
+
+Update:
+
+* Company name
+* Contact details
+* Navigation
+* Hero content
+* Services
+* Testimonials
+* Footer information
+
+### Theme Configuration
+
+```
+client/src/config/theme.js
+```
+
+Customize:
+
+* Brand colors
+* Typography
+* Border radius
+* Shadows
+* Design tokens
+
+This allows complete rebranding without editing React components.
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint            | Description              |
+| ------ | ------------------- | ------------------------ |
+| GET    | `/api/health`       | Health check             |
+| POST   | `/api/quotes`       | Submit quotation request |
+| GET    | `/api/quotes`       | Retrieve quote requests  |
+| POST   | `/api/newsletter`   | Subscribe to newsletter  |
+| POST   | `/api/track/lookup` | Shipment tracking        |
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* React Router
+* Plain CSS
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+
+---
+
+## 📦 Deployment
+
+The application can be deployed using platforms such as:
+
+* Vercel (Frontend)
+* Render (Backend)
+* MongoDB Atlas (Database)
+
+Environment variables should be configured through your hosting provider rather than committed to the repository.
+
+---
+
+## 🔒 Security
+
+This repository is intended to be public.
+
+To keep it secure:
+
+* `.env` files are excluded from version control.
+* Database credentials are never stored in the repository.
+* API secrets should always be configured through deployment environment variables.
+* Keep dependencies updated and periodically run:
+
+```bash
+npm audit
+```
+
+---
+
+## 📄 License
+
+This project is intended for educational and commercial use according to the applicable license terms.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Arnab Bhunia**.
