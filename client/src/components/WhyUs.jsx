@@ -19,16 +19,19 @@ export default function WhyUs() {
 
   return (
     <section id="why-us" className="section why-us">
-      <div className="container">
-        <div className={`section-head ${visible ? "is-in" : ""}`}>
-          <span className="eyebrow">Why Choose Us</span>
-          <h2>Single-window logistics, tailor-made for you</h2>
-          <p>
-            The Quick Transolution Pvt. Ltd. offers single-window solutions for multimodal
-            transport by air, rail, sea and land, backed by integrated
-            technology and end-to-end infrastructure.
-          </p>
+      <div className="why-us-banner">
+        <div className="container">
+          <div className={`section-head ${visible ? "is-in" : ""}`}>
+            <span className="eyebrow">Why Choose Us</span>
+            <h2>Single-window logistics, tailor-made for you</h2>
+            <p>
+              The Quick Transolution Pvt. Ltd. offers single-window solutions for multimodal
+              transport by air, rail, sea and land, backed by integrated
+              technology and end-to-end infrastructure.
+            </p>
+          </div>
         </div>
+      </div>
 
       <div className="container">
         {/* Tablet / desktop: tab list on the left, shared content panel on the right */}
@@ -85,7 +88,7 @@ export default function WhyUs() {
                     <span className="why-us-acc-chevron" aria-hidden="true" />
                   </button>
 
-                  <div className="why-us-acc-body-wrap">
+<div className="why-us-acc-body-wrap">
   <div className="why-us-acc-body">
     <div className="why-us-acc-body-inner">
       <p>{item.body}</p>
