@@ -1,5 +1,6 @@
 import { site } from "../config/site";
 import "./StickyContact.css";
+import { Link } from "react-router-dom";
 
 export default function StickyContact({ onOpenQuote, onToggleChat, chatOpen }) {
   return (
@@ -12,10 +13,10 @@ export default function StickyContact({ onOpenQuote, onToggleChat, chatOpen }) {
         <PhoneIcon />
         <span className="sticky-contact-tip">{site.contact.phoneDisplay}</span>
       </a>
-      <a href="#track" className="sticky-contact-btn" aria-label="Track shipment">
+      <Link to="/track" className="sticky-contact-btn" aria-label="Track shipment">
         <TrackIcon />
         <span className="sticky-contact-tip">Track Shipment</span>
-      </a>
+      </Link>
       <button
         className="sticky-contact-btn"
         onClick={onOpenQuote}

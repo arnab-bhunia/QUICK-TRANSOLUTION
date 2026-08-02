@@ -2,21 +2,7 @@ import { useState } from "react";
 import { trackShipment } from "../api/client";
 import { useAlert } from "../context/AlertContext";
 import "./TrackPage.css";
-
-const STEPS = [
-  {
-    title: "Find your tracking ID",
-    body: "It's on the SMS or email confirmation you received when the shipment was booked.",
-  },
-  {
-    title: "Enter it below",
-    body: "Some shipments are marked private and will also ask for the last 4 digits of the receiver's phone number.",
-  },
-  {
-    title: "View live status",
-    body: "See the current stage, last known location, and full movement history.",
-  },
-];
+import { site } from "../config/site";
 
 const STATUS_LABELS = {
   booked: "Booked",
@@ -79,22 +65,6 @@ export default function TrackPage() {
               location, and full movement history for your shipment.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="section track-steps">
-        <div className="container">
-          <ol className="track-steps-list">
-            {STEPS.map((step, i) => (
-              <li key={step.title} className="track-step">
-                <span className="track-step-num">{i + 1}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
 
@@ -191,6 +161,23 @@ export default function TrackPage() {
           )}
         </div>
       </section>
+
+      <section className="section track-steps">
+        <div className="container">
+          <ol className="track-steps-list">
+{site.track.steps.map((step, i) => (
+  <li key={step.title} className="track-step">
+    <div className="track-step-top">
+      <span className="track-step-num">{i + 1}</span>
+      <h3>{step.title}</h3>
+    </div>
+    <p>{step.body}</p>
+  </li>
+))}
+          </ol>
+        </div>
+      </section>
+
     </>
   );
 }

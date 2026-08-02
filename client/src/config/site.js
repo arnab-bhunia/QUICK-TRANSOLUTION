@@ -216,4 +216,28 @@ whyUs: [
       { label: "Terms & Conditions", href: "#" },
     ],
   },
+
+track: {
+  steps: [
+    {
+      title: "Find your tracking ID",
+      body: "It's on the SMS or email confirmation you received when the shipment was booked.",
+    },
+    {
+      title: "Enter it below",
+      body: "Some shipments are marked private and will also ask for the last 4 digits of the receiver's phone number.",
+    },
+    {
+      title: "View live status",
+      body: "See the current stage, last known location, and full movement history.",
+    },
+  ],
+},
+
+
+
+
+
+
+
 };

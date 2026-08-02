@@ -1,5 +1,6 @@
 import { site } from "../config/site";
 import "./TopBar.css";
+import { Link } from "react-router-dom";
 
 export default function TopBar() {
   return (
@@ -15,9 +16,7 @@ export default function TopBar() {
           </a> */}
         </div>
         <div className="topbar-actions">
-          <a href="#track" className="topbar-link topbar-link--accent">
-            Track Shipment
-          </a>
+          <Link to="/track" className="topbar-link topbar-link--accent">Track Shipment</Link>
           <a href="#login" className="topbar-link">
             Client Login
           </a>
