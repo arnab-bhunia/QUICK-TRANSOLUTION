@@ -3,6 +3,7 @@ import { trackShipment } from "../api/client";
 import { useAlert } from "../context/AlertContext";
 import "./TrackPage.css";
 import { site } from "../config/site";
+import FaqAccordion from "../components/FaqAccordion";
 
 const STATUS_LABELS = {
   booked: "Booked",
@@ -59,7 +60,7 @@ export default function TrackPage() {
         <div className="container">
           <div className="section-head is-in track-banner-head">
             <span className="eyebrow">Track Shipment</span>
-            <h1>Track your parcel in real time</h1>
+            <h1>Track your parcel in <span className="header-span">Real Time</span></h1>
             <p>
               Enter your tracking ID below to see the current status, last known
               location, and full movement history for your shipment.
@@ -72,16 +73,31 @@ export default function TrackPage() {
         <div className="container track-form-inner">
           <form className="track-form" onSubmit={submit}>
             <label className="track-field">
-              <span>Tracking ID</span>
-              <input
-                type="text"
-                placeholder="e.g. QT7K2M9XPL"
-                required
-                value={trackingId}
-                onChange={(e) => setTrackingId(e.target.value)}
-                autoComplete="off"
-              />
-            </label>
+  <span>Tracking ID</span>
+
+  <input
+    type="text"
+    placeholder="e.g. QT7K2M9XPL"
+    required
+    value={trackingId}
+    onChange={(e) => setTrackingId(e.target.value)}
+    autoComplete="off"
+  />
+
+  <span className="track-field__icon" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <line x1="16.65" y1="16.65" x2="21" y2="21" />
+    </svg>
+  </span>
+</label>
 
             {needsVerification && (
               <label className="track-field">
@@ -177,6 +193,49 @@ export default function TrackPage() {
           </ol>
         </div>
       </section>
+
+<section className="section track-info">
+  <div className="container track-info-grid">
+    <div className="track-info-card">
+      <h2>Important Information</h2>
+      <ul className="track-info-list">
+        {site.track.importantInfo.map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div className="track-info-card track-info-card--security">
+      <h2>Security Notice</h2>
+      <ul className="track-info-list">
+        {site.track.securityNotice.map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section className="section track-faq">
+  <div className="container">
+    <div className="section-head is-in">
+      <span className="eyebrow">FAQs</span>
+      <h2>Frequently Asked <span className="header-span">Questions</span></h2>
+    </div>
+    <FaqAccordion items={site.track.faqs} />
+  </div>
+</section>
+
+<section className="section track-help">
+  <div className="container track-help-inner">
+    <h2>Need Assistance?</h2>
+    <p>{site.track.needHelp}</p>
+    <a href="#contact" className="btn btn-primary">
+      Contact Support
+    </a>
+  </div>
+</section>
+
 
     </>
   );

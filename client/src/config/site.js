@@ -232,6 +232,49 @@ track: {
       body: "See the current stage, last known location, and full movement history.",
     },
   ],
+  importantInfo: [
+    "Tracking information may take 15\u201360 minutes to appear after a shipment is booked.",
+    "During weekends, holidays, or severe weather, updates may be delayed.",
+    "Some shipments receive updates only after reaching the next scanning facility.",
+    "International shipments may pause while undergoing customs clearance.",
+    "If no update appears for more than 24 hours, please contact customer support.",
+  ],
+  securityNotice: [
+    "Never share OTP, UPI PIN, CVV, passwords, or verification codes.",
+    "We never request payment through personal phone numbers.",
+    "Always contact us using official communication channels.",
+    "Verify suspicious messages before making any payment.",
+  ],
+  faqs: [
+    {
+      question: "Why is my tracking not updating?",
+      answer:
+        "A shipment is updated only after it reaches the next scanning point. Transit between facilities may temporarily show no new events.",
+    },
+    {
+      question: "Tracking ID not found?",
+      answer:
+        "Please wait a short while after booking. Newly created shipments may require some time before tracking becomes available.",
+    },
+    {
+      question: 'What does "In Transit" mean?',
+      answer:
+        "Your shipment is moving through our logistics network toward the destination.",
+    },
+    {
+      question: "What if my shipment is delayed?",
+      answer:
+        "Operational factors such as weather conditions, public holidays, customs clearance, or regional restrictions may affect delivery timelines.",
+    },
+    {
+      question:
+        'Why does my shipment show "Delivered" but I haven\'t received it?',
+      answer:
+        "Please check with the receiver, neighbors, or your building security first. If you still cannot locate the shipment, contact our support team immediately.",
+    },
+  ],
+  needHelp:
+    "If you're unable to locate your shipment, notice unexpected tracking information, or require delivery assistance, our customer support team is available to help. Please keep your Tracking ID ready when contacting us to ensure faster assistance.",
 },
 
 
