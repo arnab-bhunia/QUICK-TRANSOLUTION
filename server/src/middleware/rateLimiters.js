@@ -22,3 +22,11 @@ export const trackLookupLimiter = rateLimit({
   legacyHeaders: false,
   message: { message: "Too many tracking attempts. Please try again in a few minutes." },
 });
+
+export const signupLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 8,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Too many accounts created from this location. Please try again later." },
+});

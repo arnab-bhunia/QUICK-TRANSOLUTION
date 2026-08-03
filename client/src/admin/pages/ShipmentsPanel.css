@@ -1,0 +1,90 @@
+.admin-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.admin-panel-head h2,
+.admin-panel-head h3 {
+  font-size: 18px;
+  color: #f4f6f8;
+}
+
+.admin-empty {
+  color: #7c8b9e;
+  font-size: 13.5px;
+  padding: 8px 0;
+}
+
+.shipment-create-form {
+  margin-bottom: 20px;
+}
+
+.shipment-create-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 16px;
+}
+
+.admin-row-clickable {
+  cursor: pointer;
+}
+
+.admin-row-clickable:hover {
+  background: #1d2937;
+}
+
+.shipment-detail {
+  margin-top: 20px;
+}
+
+.shipment-status-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  gap: 0 12px;
+  align-items: end;
+}
+
+.shipment-status-form .admin-btn {
+  margin-bottom: 14px;
+}
+
+.shipment-visibility-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 20px;
+  font-size: 13.5px;
+  color: #9aa8ba;
+}
+
+.shipment-audit-heading {
+  font-size: 14px;
+  color: #f4f6f8;
+  margin-bottom: 10px;
+}
+
+.shipment-audit-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #1e2836;
+  font-size: 12.5px;
+}
+
+.shipment-audit-list li:last-child {
+  border-bottom: none;
+}
+
+.shipment-audit-meta {
+  color: #7c8b9e;
+}
+
+@media (max-width: 720px) {
+  .shipment-create-grid,
+  .shipment-status-form {
+    grid-template-columns: 1fr;
+  }
+}

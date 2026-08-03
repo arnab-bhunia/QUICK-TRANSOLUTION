@@ -1,8 +1,11 @@
 import { site } from "../config/site";
 import "./TopBar.css";
 import { Link } from "react-router-dom";
+import { useClientAuth } from "../context/ClientAuthContext";
 
 export default function TopBar() {
+  const { customer } = useClientAuth();
+
   return (
     <div className="topbar">
       <div className="container topbar-inner">
@@ -17,9 +20,9 @@ export default function TopBar() {
         </div>
         <div className="topbar-actions">
           <Link to="/track" className="topbar-link topbar-link--accent">Track Shipment</Link>
-          <a href="#login" className="topbar-link">
-            Client Login
-          </a>
+          <Link to={customer ? "/dashboard" : "/login"} className="topbar-link">
+            {customer ? "My Account" : "Client Login"}
+          </Link>
         </div>
       </div>
     </div>
