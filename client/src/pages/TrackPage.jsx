@@ -56,18 +56,24 @@ export default function TrackPage() {
 
   return (
     <>
-      <section className="section track-banner">
-        <div className="container">
-          <div className="section-head is-in track-banner-head">
-            <span className="eyebrow">Track Shipment</span>
-            <h1>Track your parcel in <span className="header-span">Real Time</span></h1>
-            <p>
-              Enter your tracking ID below to see the current status, last known
-              location, and full movement history for your shipment.
-            </p>
-          </div>
-        </div>
-      </section>
+<section className="section track-banner">
+  <div className="track-banner-bg">
+    <div className="container">
+      <div className="section-head is-in track-banner-head">
+        <span className="eyebrow">Track Shipment</span>
+        <h1>Track your parcel in <span className="header-span">Real Time</span></h1>
+        <p>
+          Enter your tracking ID below to see the current status, last known
+          location, and full movement history for your shipment.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile only: full-bleed image block below the header text -
+      not hidden like WhyUs, just restructured as its own block. */}
+  <div className="track-banner-mobile-image" aria-hidden="true" />
+</section>
 
       <section className="section track-form-section">
         <div className="container track-form-inner">
@@ -228,7 +234,7 @@ export default function TrackPage() {
 
 <section className="section track-help">
   <div className="container track-help-inner">
-    <h2>Need Assistance?</h2>
+    <h2>Need Assistance<span className="header-span">?</span></h2>
     <p>{site.track.needHelp}</p>
     <a href="#contact" className="btn btn-primary">
       Contact Support
