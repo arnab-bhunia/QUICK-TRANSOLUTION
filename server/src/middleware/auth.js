@@ -22,3 +22,14 @@ export async function requireAuth(req, res, next) {
   req.user = user;
   next();
 }
+
+// Stacks AFTER requireAuth (needs req.user already set). Restricts a
+// route to the "admin" role — regular "staff" accounts get a 403.
+// Used for staff management and the analytics dashboard, since those
+// are capabilities a founder/owner should have, not every staff login.
+export function requireAdminRole(req, res, next) {
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({ message: "Admin access required" });
+  }
+  next();
+}

@@ -20,7 +20,7 @@ export const theme = {
     signalDark: "#C23E24",
     // Neutrals
     // bg: "#F4F6F5",            // page background (cool paper, not warm cream)
-    bg: "#f1f1f1",
+    bg: "#fafafa",
     bgAlt: "#FFFFFF",         // card surfaces
     bgInk: "#0A1F2E",         // near-black section backgrounds (footer, stats)
     line: "#DDE3E1",          // hairline borders / dividers

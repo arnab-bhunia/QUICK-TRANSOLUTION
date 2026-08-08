@@ -175,3 +175,16 @@ export function listAllBookingsAdmin(page = 1) {
 export function updateBookingStatusAdmin(id, status) {
   return patch(`/client/admin/bookings/${id}/status`, { status });
 }
+
+// --- Admin-only: staff management + analytics ---
+export function listStaffAdmin() {
+  return get("/auth/staff");
+}
+
+export function createStaffAdmin(payload) {
+  return request("/auth/staff", payload);
+}
+
+export function getAnalyticsAdmin() {
+  return get("/auth/analytics");
+}

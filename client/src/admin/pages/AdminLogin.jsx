@@ -35,7 +35,7 @@ export default function AdminLogin() {
     <div className="admin-login-wrap">
       <form className="admin-login-form" onSubmit={submit}>
         <span className="admin-login-eyebrow">Staff Portal</span>
-        <h1>Sign in</h1>
+        <h1>Staff Login</h1>
 
         <label className="admin-field">
           <span>Email</span>
