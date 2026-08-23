@@ -1,8 +1,11 @@
 import { site } from "../config/site";
 import "./Footer.css";
+import SmartLink from "./SmartLink";
+import { useCookieConsent } from "../context/CookieConsentContext";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { openPreferences } = useCookieConsent();
 
   return (
     <footer id="contact" className="footer">
@@ -60,9 +63,14 @@ export default function Footer() {
           <ul>
             {site.footerLinks.policies.map((l) => (
               <li key={l.label}>
-                <a href={l.href}>{l.label}</a>
+                <SmartLink href={l.href}>{l.label}</SmartLink>
               </li>
             ))}
+            <li>
+              <button className="footer-cookie-link" onClick={openPreferences}>
+                Cookie Preferences
+              </button>
+            </li>
           </ul>
         </div>
       </div>

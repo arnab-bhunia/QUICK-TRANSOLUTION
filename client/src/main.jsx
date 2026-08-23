@@ -7,6 +7,7 @@ import { applyTheme } from "./config/theme.js";
 import { site } from "./config/site.js";
 import { AlertProvider } from "./context/AlertContext.jsx";
 import { ClientAuthProvider } from "./context/ClientAuthContext.jsx";
+import { CookieConsentProvider } from "./context/CookieConsentContext.jsx";
 
 applyTheme();
 
@@ -16,7 +17,9 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <AlertProvider>
         <ClientAuthProvider>
-          <App />
+          <CookieConsentProvider>
+            <App />
+          </CookieConsentProvider>
         </ClientAuthProvider>
       </AlertProvider>
     </BrowserRouter>

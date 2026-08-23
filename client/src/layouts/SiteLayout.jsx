@@ -12,6 +12,11 @@ import TrackPage from "../pages/TrackPage";
 import ClientLogin from "../pages/ClientLogin";
 import ClientSignup from "../pages/ClientSignup";
 import ClientDashboard from "../pages/ClientDashboard";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsConditions from "../pages/TermsConditions";
+import Disclaimer from "../pages/Disclaimer";
+import FAQPage from "../pages/FAQPage";
+import CookieConsentBanner from "../components/CookieConsentBanner";
 import { useMeasuredHeight } from "../hooks/useMeasuredHeight";
 
 // Public-facing site chrome (TopBar/Navbar/Footer/chat/quote modal)
@@ -41,6 +46,10 @@ export default function SiteLayout() {
           <Route path="/login" element={<ClientLogin />} />
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/dashboard" element={<ClientDashboard />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/faqs" element={<FAQPage />} />
         </Routes>
       </main>
       <Footer />
@@ -51,6 +60,7 @@ export default function SiteLayout() {
       />
       <ChatBot open={chatOpen} onClose={() => setChatOpen(false)} />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
+      <CookieConsentBanner />
     </>
   );
 }

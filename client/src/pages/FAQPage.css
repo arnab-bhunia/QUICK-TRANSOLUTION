@@ -1,0 +1,15 @@
+.faq-page-inner {
+  max-width: 760px;
+}
+
+.faq-page h1 {
+  font-size: clamp(30px, 4vw, 42px);
+  margin-top: 12px;
+}
+
+.faq-page-intro {
+  margin: 16px 0 30px;
+  font-size: 16px;
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+}

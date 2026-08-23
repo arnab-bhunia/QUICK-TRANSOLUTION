@@ -210,10 +210,10 @@ whyUs: [
       { label: "Blogs", href: "#" },
     ],
     policies: [
-      { label: "FAQs", href: "#" },
-      { label: "Disclaimer", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms & Conditions", href: "#" },
+      { label: "FAQs", href: "/faqs" },
+      { label: "Disclaimer", href: "/disclaimer" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms-conditions" },
     ],
   },
 
