@@ -1,7 +1,6 @@
 .footer {
   background: var(--color-bg-ink);
   color: rgba(255, 255, 255, 0.6);
-  border-top: 3px dashed rgba(255, 255, 255, 0.15);
 }
 
 .footer-top {

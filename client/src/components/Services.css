@@ -280,7 +280,7 @@ filter:blur(6px);
   grid-template-columns: 0.80fr 1.20fr;
   align-items: stretch;
   background: var(--color-bg-alt);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-lifted);
   opacity: 0;

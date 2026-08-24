@@ -37,8 +37,8 @@ export default function Stats() {
   return (
     <section className="stats" ref={ref}>
 
-      <CircuitBackground />
-      {/* <div className="stats-grid-bg" aria-hidden="true" /> */}
+      {/* <CircuitBackground /> */}
+      <div className="stats-grid-bg" aria-hidden="true" />
 
       <div className="container stats-strip">
         {site.stats.map((stat, i) => (

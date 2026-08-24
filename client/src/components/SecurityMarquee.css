@@ -22,7 +22,8 @@
 .security-marquee {
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(90deg, var(--color-signal), #ef6438);
+  /* background: linear-gradient(90deg, var(--color-signal), #ef6438); */
+  background: radial-gradient(circle, #ef6438, var(--color-signal));
   box-shadow: 0 8px 20px rgba(226, 74, 38, 0.12);
   animation: marqueeBar 22s ease-in-out infinite;
   will-change: transform;
