@@ -44,7 +44,7 @@ export const site = {
   ],
 
   hero: {
-    eyebrow: "Single-Window Logistics Since the 2026s",
+    eyebrow: "Single-Window Logistics Since the 2026's",
     heading: "Delivering Trust\nAcross the Region",
     body: "With over 50 years in the logistics industry, we move freight across India, Nepal, Bhutan & Bangladesh \u2014 by road, rail, air and sea \u2014 under one accountable roof.",
     primaryCta: { label: "Get a Quote", href: "#contact" },

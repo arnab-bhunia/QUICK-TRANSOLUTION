@@ -134,20 +134,20 @@
 }
 .stat-icon {
   width: 60px;
-  height: 60px;
+  height: 44px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-accent);
   border-radius: 16px;
-  background: rgba(255,255,255,.04);
+  /* background: rgba(255,255,255,.04); */
 }
 
 .stat-icon svg {
-  width: 40px;
-  height: 40px;
-  stroke: currentColor;
+  width: 68px;
+  height: 44px;
+  /* stroke: currentColor; */
   transition: .35s ease;
 }
 
