@@ -34,6 +34,23 @@
   color: var(--color-accent);
 }
 
+.footer-cookie-link {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14.5px;
+  color: inherit;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.footer-cookie-link:hover {
+  color: var(--color-accent);
+}
+
 .footer-brand-name {
   font-family: var(--font-display);
   font-size: 26px;

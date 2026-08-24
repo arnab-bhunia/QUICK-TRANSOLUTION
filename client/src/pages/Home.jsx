@@ -17,7 +17,7 @@ export default function Home({ onOpenQuote }) {
   // React Router doesn't auto-scroll on that, since there's no full page
   // reload for the browser to do it natively. This fills that one gap.
   useEffect(() => {
-    if (!location.hash) return;
+    if (!location.hash || location.hash === "#") return;
     const el = document.querySelector(location.hash);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   }, [location.hash]);

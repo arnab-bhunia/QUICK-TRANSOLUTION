@@ -41,7 +41,7 @@ export default function Footer() {
           <ul>
             {site.footerLinks.about.map((l) => (
               <li key={l.label}>
-                <a href={l.href}>{l.label}</a>
+                <SmartLink href={l.href}>{l.label}</SmartLink>
               </li>
             ))}
           </ul>
@@ -52,7 +52,7 @@ export default function Footer() {
           <ul>
             {site.footerLinks.quick.map((l) => (
               <li key={l.label}>
-                <a href={l.href}>{l.label}</a>
+                <SmartLink href={l.href}>{l.label}</SmartLink>
               </li>
             ))}
           </ul>
