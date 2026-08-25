@@ -41,7 +41,7 @@ export default function CookieConsentBanner() {
               Manage Preferences
             </button>
             <button className="cookie-btn cookie-btn-outline" onClick={rejectNonEssential}>
-              Reject Non-Essential
+              Only Essential
             </button>
             <button className="cookie-btn cookie-btn-primary" onClick={acceptAll}>
               Accept All

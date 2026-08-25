@@ -165,16 +165,42 @@
 }
 
 @media (max-width: 640px) {
-  .cookie-banner {
+   .cookie-banner {
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start !important;
     align-items: stretch;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    gap: 16px;
+  }
+
+  .cookie-banner-text {
+    flex: 0 0 auto;
+    margin: 0 !important;
   }
 
   .cookie-banner-actions {
-    justify-content: stretch;
+    flex: 0 0 auto;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 400px) {
+   .cookie-banner {
+    gap: 14px;
+    padding: 14px 18px;
   }
 
-  .cookie-banner-actions .cookie-btn {
-    flex: 1;
+  .cookie-banner-text {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .cookie-btn {
+    padding: 9px 12px;
+    font-size: 12px;
   }
 }
