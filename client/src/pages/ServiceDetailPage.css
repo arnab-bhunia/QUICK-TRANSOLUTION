@@ -8,7 +8,7 @@
 --------------------------------------------------------------------- */
 .service-detail-banner {
   position: relative;
-  min-height: 320px;
+  min-height: 330px;
   display: flex;
   align-items: flex-end;
   background-size: cover;
@@ -19,12 +19,12 @@
 .service-detail-banner-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 31, 46, 0.35) 0%,
-    rgba(10, 31, 46, 0.55) 60%,
-    rgba(10, 31, 46, 0.78) 100%
-  );
+background: linear-gradient(
+  180deg,
+  rgba(10, 31, 46, 0.18) 0%,
+  rgba(10, 31, 46, 0.32) 60%,
+  rgba(10, 31, 46, 0.48) 100%
+);
 }
 
 .service-detail-banner .container {

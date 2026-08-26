@@ -36,7 +36,7 @@ export default function ServiceDetailPage() {
       >
         <div className="service-detail-banner-scrim" />
         <div className="container">
-          <span className="service-detail-eyebrow">Our Services</span>
+          <span className="eyebrow">Our Services</span>
           <h1>{service.title}</h1>
         </div>
       </div>

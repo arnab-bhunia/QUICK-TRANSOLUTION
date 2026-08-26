@@ -60,7 +60,7 @@
   }
 
   .active .train-motion {
-    animation: trainCross 18s linear infinite;
+    animation: trainCross 27s linear infinite;
     animation-delay: 1.3s;
   }
 
@@ -96,9 +96,26 @@
   100% { transform: translateX(1300px); }
 }
 
-@keyframes trainCross {
+/* @keyframes trainCross {
   0%   { transform: translateX(1300px); }
   100% { transform: translateX(-400px); }
+} */
+ @keyframes trainCross {
+
+  /* Train waiting outside on the RIGHT */
+  0% {
+    transform: translateX(1300px);
+  }
+
+  /* Train crosses during GREEN */
+  66.66% {
+    transform: translateX(-400px);
+  }
+
+  /* Stay outside on the LEFT during RED + YELLOW */
+  100% {
+    transform: translateX(-400px);
+  }
 }
 
 @keyframes shipBob {
@@ -134,5 +151,105 @@
     opacity: 1;
     transform: translateY(0);
     transition: none;
+  }
+}
+
+
+/* =========================================
+   RAILWAY SIGNAL
+   ========================================= */
+
+.signal-green,
+.signal-yellow,
+.signal-red {
+  opacity: 0.15;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+/* GREEN = train crossing */
+@media (prefers-reduced-motion: no-preference) {
+
+  .active .signal-green {
+    animation: signalGreen 27s linear infinite;
+    animation-delay: 1.3s;
+  }
+
+  .active .signal-yellow {
+    animation: signalYellow 27s linear infinite;
+    animation-delay: 1.3s;
+  }
+
+  .active .signal-red {
+    animation: signalRed 27s linear infinite;
+    animation-delay: 1.3s;
+  }
+}
+
+
+/* =========================================
+   GREEN
+   0% → 66.66%
+   ========================================= */
+
+@keyframes signalGreen {
+
+  0%,
+  66.65% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px #22c55e);
+  }
+
+  66.66%,
+  100% {
+    opacity: 0.15;
+    filter: none;
+  }
+}
+
+
+/* =========================================
+   RED
+   66.66% → 88.88%
+   ========================================= */
+
+@keyframes signalRed {
+
+  0%,
+  66.65% {
+    opacity: 0.15;
+    filter: none;
+  }
+
+  66.66%,
+  88.88% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px var(--color-signal));
+  }
+
+  88.89%,
+  100% {
+    opacity: 0.15;
+    filter: none;
+  }
+}
+
+
+/* =========================================
+   YELLOW
+   88.88% → 100%
+   ========================================= */
+
+@keyframes signalYellow {
+
+  0%,
+  88.88% {
+    opacity: 0.15;
+    filter: none;
+  }
+
+  88.89%,
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px var(--color-accent));
   }
 }

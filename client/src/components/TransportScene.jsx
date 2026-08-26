@@ -102,7 +102,60 @@ const TransportScene = ({ active }) => {
           <path d="M676,393 Q788,340 900,393" fill="none" stroke="var(--color-primary-dark)" strokeWidth="3" opacity="0.4" />
           
           <line x1="0" y1="378" x2="1200" y2="378" stroke="var(--color-primary-dark)" strokeWidth="1.5" opacity="0.5" />
-          
+          {/* === RAILWAY TRAFFIC SIGNAL === */}
+<g className="rail-signal" transform="translate(300, 0)">
+
+  {/* Signal pole */}
+  <rect
+    x="0"
+    y="315"
+    width="5"
+    height="60"
+    rx="0"
+    fill="var(--color-primary-dark)"
+  />
+
+  {/* Signal housing */}
+  <rect
+    x="-8"
+    y="265"
+    width="21"
+    height="66"
+    rx="5"
+    fill="var(--color-ink)"
+    stroke="var(--color-primary-dark)"
+    strokeWidth="2"
+  />
+
+  {/* Green — TOP */}
+  <circle
+    className="signal-green"
+    cx="2.5"
+    cy="276"
+    r="5"
+    fill="#0ceb5e"
+  />
+
+  {/* Yellow — MIDDLE */}
+  <circle
+    className="signal-yellow"
+    cx="2.5"
+    cy="298"
+    r="5"
+    fill="var(--color-accent)"
+    opacity="0.18"
+  />
+
+  {/* Red — BOTTOM */}
+  <circle
+    className="signal-red"
+    cx="2.5"
+    cy="320"
+    r="5"
+    fill="#DC2626"
+  />
+
+</g>
           <g style={{ transform: 'translateY(347px)' }}>
             <g className="train-motion">
               <g className="train-body">
