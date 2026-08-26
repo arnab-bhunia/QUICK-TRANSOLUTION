@@ -1,0 +1,80 @@
+.enquire-sticky {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 150;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-signal);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+
+  box-shadow: 0 12px 28px rgba(214, 72, 43, 0.38);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.enquire-sticky:hover {
+  background: var(--color-signal-dark);
+  box-shadow: 0 14px 32px rgba(214, 72, 43, 0.46);
+}
+
+.enquire-sticky:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+/*
+ * Docked: no longer tracks the viewport. Anchored `bottom` value here is
+ * relative to the bottom of the whole page (see StickyEnquireBar.jsx for
+ * why), landing it just above the footer's top edge and staying there as
+ * the page scrolls further.
+ */
+.enquire-sticky.is-docked {
+  position: absolute;
+  bottom: calc(var(--footer-height, 260px) + 20px);
+}
+
+.enquire-sticky-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-white);
+  flex-shrink: 0;
+  animation: enquire-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes enquire-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.35);
+  }
+}
+
+@media (max-width: 640px) {
+  .enquire-sticky {
+    max-width: calc(100% - 32px);
+    bottom: 16px;
+    padding: 13px 22px;
+    font-size: 13.5px;
+  }
+
+  .enquire-sticky.is-docked {
+    bottom: calc(var(--footer-height, 320px) + 16px);
+  }
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
 import "./Services.css";
@@ -19,12 +20,12 @@ function ServiceCard({ service, index }) {
         <h3>{service.title}</h3>
         <span className="service-underline" aria-hidden="true" />
         <p>{service.summary}</p>
-        <a href="#contact" className="service-cta">
+        <Link to={`/services/${service.id}`} className="service-cta">
           Read More
           <span className="service-cta-arrow" aria-hidden="true">
             &rarr;
           </span>
-        </a>
+        </Link>
       </div>
 
       <div

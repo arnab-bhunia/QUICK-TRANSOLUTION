@@ -650,11 +650,11 @@ export const WarehouseIcon = () => (
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="80 136 336 312" fill="none">
   
   {/* <!-- Ground Grid --> */}
-  <path d="M96 352 L256 448 L416 352" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
-  <path d="M136 328 L256 400 L376 328" stroke="#1E293B" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  <path d="M96 352 L256 448 L416 352" stroke="#1E293B" strokeWidth="4" strokeLinecap="round"/>
+  <path d="M136 328 L256 400 L376 328" stroke="#1E293B" strokeWidth="3" strokeLinecap="round" opacity="0.5"/>
   
   {/* <!-- Outside Floor Blocks (Pavement) --> */}
-<g stroke="#CBD5E1" stroke-width="1.5" stroke-linejoin="round">
+<g stroke="#CBD5E1" strokeWidth="1.5" strokeLinejoin="round">
   <path d="M152 378 L166 386 L152 394 L138 386 Z" fill="#F8FAFC"/>
   <path d="M180 394 L194 402 L180 410 L166 402 Z" fill="#D98F1F"/> 
   <path d="M124 362 L138 370 L124 378 L110 370 Z" fill="#F1F5F9"/> 
@@ -669,73 +669,73 @@ export const WarehouseIcon = () => (
   
   {/* <!-- Warehouse Structure --> */}
   {/* <!-- Main Building Body --> */}
-  <path d="M128 240 L256 312 L256 416 L128 344 Z" fill="#334155" stroke="#475569" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M256 312 L384 240 L384 344 L256 416 Z" fill="#1E293B" stroke="#475569" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M128 240 L256 312 L256 416 L128 344 Z" fill="#334155" stroke="#475569" strokeWidth="3" strokeLinejoin="round"/>
+  <path d="M256 312 L384 240 L384 344 L256 416 Z" fill="#1E293B" stroke="#475569" strokeWidth="3" strokeLinejoin="round"/>
   
   {/* <!-- Roof --> */}
-  <path d="M128 240 L256 168 L384 240 L256 312 Z" fill="#64748B" stroke="#94A3B8" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M256 168 L256 312" stroke="#475569" stroke-width="2" opacity="0.3"/>
+  <path d="M128 240 L256 168 L384 240 L256 312 Z" fill="#64748B" stroke="#94A3B8" strokeWidth="3" strokeLinejoin="round"/>
+  <path d="M256 168 L256 312" stroke="#475569" strokeWidth="2" opacity="0.3"/>
   
   {/* <!-- Roof Accent / Skylight --> */}
   <path d="M200 200 L256 232 L312 200 L256 168 Z" fill="#38BDF8" opacity="0.9"/>
   
   {/* <!-- Loading Dock Door --> */}
-  <path d="M160 268 L220 302 L220 380 L160 346 Z" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+  <path d="M160 268 L220 302 L220 380 L160 346 Z" fill="#0F172A" stroke="#38BDF8" strokeWidth="2"/>
   
   {/* <!-- Door Scanning Lines --> */}
-  <path d="M175 278 L205 295" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-  <path d="M175 295 L205 312" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M175 278 L205 295" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+  <path d="M175 295 L205 312" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
   
   {/* <!-- STAIRS (Outside Door) --> */}
-  <g stroke-linejoin="round">
+  <g strokeLinejoin="round">
     {/* <!-- Stair Side Faces (Left) --> */}
-    <path d="M160 346 L152 348 L152 357 L160 355 Z" fill="#1E293B" stroke="#1E293B" stroke-width="1"/>
-    <path d="M152 357 L144 359 L144 368 L152 366 Z" fill="#1E293B" stroke="#1E293B" stroke-width="1"/>
-    <path d="M144 368 L136 370 L136 377 L144 375 Z" fill="#1E293B" stroke="#1E293B" stroke-width="1"/>
+    <path d="M160 346 L152 348 L152 357 L160 355 Z" fill="#1E293B" stroke="#1E293B" strokeWidth="1"/>
+    <path d="M152 357 L144 359 L144 368 L152 366 Z" fill="#1E293B" stroke="#1E293B" strokeWidth="1"/>
+    <path d="M144 368 L136 370 L136 377 L144 375 Z" fill="#1E293B" stroke="#1E293B" strokeWidth="1"/>
     
     {/* <!-- Stair Riser Fronts --> */}
-    <path d="M152 348 L188 369 L188 378 L152 357 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
-    <path d="M144 359 L180 380 L180 389 L144 368 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
-    <path d="M136 370 L172 391 L172 398 L136 377 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+    <path d="M152 348 L188 369 L188 378 L152 357 Z" fill="#334155" stroke="#475569" strokeWidth="1.5"/>
+    <path d="M144 359 L180 380 L180 389 L144 368 Z" fill="#334155" stroke="#475569" strokeWidth="1.5"/>
+    <path d="M136 370 L172 391 L172 398 L136 377 Z" fill="#334155" stroke="#475569" strokeWidth="1.5"/>
     
     {/* <!-- Stair Tread Tops --> */}
-    <path d="M160 346 L196 367 L188 369 L152 348 Z" fill="#475569" stroke="#94A3B8" stroke-width="1"/>
-    <path d="M152 357 L188 378 L180 380 L144 359 Z" fill="#475569" stroke="#94A3B8" stroke-width="1"/>
-    <path d="M144 368 L180 389 L172 391 L136 370 Z" fill="#475569" stroke="#94A3B8" stroke-width="1"/>
+    <path d="M160 346 L196 367 L188 369 L152 348 Z" fill="#475569" stroke="#94A3B8" strokeWidth="1"/>
+    <path d="M152 357 L188 378 L180 380 L144 359 Z" fill="#475569" stroke="#94A3B8" strokeWidth="1"/>
+    <path d="M144 368 L180 389 L172 391 L136 370 Z" fill="#475569" stroke="#94A3B8" strokeWidth="1"/>
   </g>
   
   {/* <!-- Threshold Platform (Right of Stairs) --> */}
-  <path d="M196 367 L220 380 L220 388 L196 375 Z" fill="#475569" stroke="#475569" stroke-width="1"/>
-  <path d="M196 375 L220 388 L220 384 L196 371 Z" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <path d="M196 367 L220 380 L220 388 L196 375 Z" fill="#475569" stroke="#475569" strokeWidth="1"/>
+  <path d="M196 375 L220 388 L220 384 L196 371 Z" fill="#334155" stroke="#334155" strokeWidth="1"/>
   
   {/* <!-- Window (Right Face) --> */}
-  <path d="M288 340 L352 302 L352 340 L288 378 Z" fill="#38BDF8" opacity="0.2" stroke="#38BDF8" stroke-width="2"/>
-  <path d="M288 340 L352 340" stroke="#38BDF8" stroke-width="2" opacity="0.5"/>
-  <path d="M320 321 L320 359" stroke="#38BDF8" stroke-width="2" opacity="0.5"/>
+  <path d="M288 340 L352 302 L352 340 L288 378 Z" fill="#38BDF8" opacity="0.2" stroke="#38BDF8" strokeWidth="2"/>
+  <path d="M288 340 L352 340" stroke="#38BDF8" strokeWidth="2" opacity="0.5"/>
+  <path d="M320 321 L320 359" stroke="#38BDF8" strokeWidth="2" opacity="0.5"/>
   
   {/* <!-- Scanning Beam --> */}
-  <path d="M160 346 L220 380" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-  <path d="M165 344 L165 352" stroke="#F59E0B" stroke-width="2"/>
-  <path d="M180 353 L180 361" stroke="#F59E0B" stroke-width="2"/>
-  <path d="M195 362 L195 370" stroke="#F59E0B" stroke-width="2"/>
-  <path d="M210 371 L210 379" stroke="#F59E0B" stroke-width="2"/>
+  <path d="M160 346 L220 380" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" opacity="0.8"/>
+  <path d="M165 344 L165 352" stroke="#F59E0B" strokeWidth="2"/>
+  <path d="M180 353 L180 361" stroke="#F59E0B" strokeWidth="2"/>
+  <path d="M195 362 L195 370" stroke="#F59E0B" strokeWidth="2"/>
+  <path d="M210 371 L210 379" stroke="#F59E0B" strokeWidth="2"/>
   
   {/* <!-- Floating Parcel --> */}
   <g transform="translate(320, 200)">
-    <path d="M0 16 L24 30 L48 16 L24 2 Z" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
-    <path d="M0 16 L0 40 L24 54 L24 30 Z" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="2"/>
-    <path d="M24 30 L24 54 L48 40 L48 16 Z" fill="#CBD5E1" stroke="#94A3B8" stroke-width="2"/>
+    <path d="M0 16 L24 30 L48 16 L24 2 Z" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="2"/>
+    <path d="M0 16 L0 40 L24 54 L24 30 Z" fill="#E2E8F0" stroke="#CBD5E1" strokeWidth="2"/>
+    <path d="M24 30 L24 54 L48 40 L48 16 Z" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="2"/>
     <path d="M8 20 L24 29 L40 20 L24 11 Z" fill="#38BDF8" opacity="0.8"/>
-    <path d="M24 -8 C32 -8 32 2 24 2" stroke="#F59E0B" stroke-width="2" fill="none" opacity="0.6"/>
-    <path d="M24 -16 C40 -16 40 2 24 2" stroke="#F59E0B" stroke-width="2" fill="none" opacity="0.4"/>
-    <path d="M24 -24 C48 -24 48 2 24 2" stroke="#F59E0B" stroke-width="2" fill="none" opacity="0.2"/>
+    <path d="M24 -8 C32 -8 32 2 24 2" stroke="#F59E0B" strokeWidth="2" fill="none" opacity="0.6"/>
+    <path d="M24 -16 C40 -16 40 2 24 2" stroke="#F59E0B" strokeWidth="2" fill="none" opacity="0.4"/>
+    <path d="M24 -24 C48 -24 48 2 24 2" stroke="#F59E0B" strokeWidth="2" fill="none" opacity="0.2"/>
   </g>
   
   {/* <!-- Shadow under floating box --> */}
   <ellipse cx="344" cy="270" rx="16" ry="8" fill="#000" opacity="0.3"/>
   
   {/* <!-- Data Flow Lines --> */}
-  <path d="M344 254 L344 290 L296 318" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4" opacity="0.6" fill="none"/>
+  <path d="M344 254 L344 290 L296 318" stroke="#38BDF8" strokeWidth="2" strokeDasharray="4 4" opacity="0.6" fill="none"/>
   <circle cx="296" cy="318" r="3" fill="#38BDF8"/>
 </svg>
 );
@@ -745,52 +745,28 @@ export const CustomerIcon = () => (
   <defs>
     {/* <!-- Deep space background --> */}
     <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#1e293b"/>
-      <stop offset="100%" stop-color="#0f172a"/>
+      <stop offset="0%" stopColor="#1e293b"/>
+      <stop offset="100%" stopColor="#0f172a"/>
     </radialGradient>
     
     {/* <!-- Subtle silver sheen for figures --> */}
     <linearGradient id="silver" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="100%" stop-color="#94a3b8"/>
+      <stop offset="0%" stopColor="#f8fafc"/>
+      <stop offset="100%" stopColor="#94a3b8"/>
     </linearGradient>
     
     {/* <!-- Premium accent glow --> */}
     <radialGradient id="accentGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+      <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25"/>
+      <stop offset="100%" stopColor="#38bdf8" stopOpacity="0"/>
     </radialGradient>
     
     {/* <!-- Soft shadow for depth --> */}
     <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#000" floodOpacity="0.4"/>
     </filter>
   </defs>
   
-  {/* <!-- Base circle --> */}
-  <circle cx="60" cy="60" r="58" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="1"/>
-  
-  {/* <!-- Tech grid pattern (very subtle) --> */}
-  <g opacity="0.08" stroke="#64748b" stroke-width="0.5">
-    <line x1="20" y1="40" x2="100" y2="40"/>
-    <line x1="20" y1="60" x2="100" y2="60"/>
-    <line x1="20" y1="80" x2="100" y2="80"/>
-    <line x1="40" y1="20" x2="40" y2="100"/>
-    <line x1="60" y1="20" x2="60" y2="100"/>
-    <line x1="80" y1="20" x2="80" y2="100"/>
-  </g>
-  
-  {/* <!-- Connection lines between abstract figures --> */}
-  <g stroke="#475569" stroke-width="1.2" stroke-linecap="round" opacity="0.6">
-    <line x1="60" y1="38" x2="42" y2="58"/>
-    <line x1="60" y1="38" x2="78" y2="58"/>
-    <line x1="42" y1="58" x2="78" y2="58"/>
-  </g>
-{/*   
-  <!-- Connection nodes --> */}
-  <circle cx="60" cy="38" r="2.5" fill="#38bdf8" opacity="0.9"/>
-  <circle cx="42" cy="58" r="2" fill="#64748b"/>
-  <circle cx="78" cy="58" r="2" fill="#64748b"/>
   
   {/* <!-- Left figure (abstract geometric human) --> */}
   <g filter="url(#softShadow)">
@@ -811,8 +787,8 @@ export const CustomerIcon = () => (
   </g>
   
   {/* <!-- Premium accent ring --> */}
-  <circle cx="60" cy="60" r="56" fill="none" stroke="#334155" stroke-width="1.5" opacity="0.8"/>
-  <circle cx="60" cy="60" r="56" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.3" stroke-dasharray="4 6"/>
+  <circle cx="60" cy="60" r="56" fill="none" stroke="#334155" strokeWidth="1.5" opacity="0.8"/>
+  <circle cx="60" cy="60" r="56" fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.3" />
   
   {/* <!-- Subtle glow behind center figure --> */}
   <circle cx="60" cy="55" r="25" fill="url(#accentGlow)"/>

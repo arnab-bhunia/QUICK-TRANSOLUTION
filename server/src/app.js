@@ -13,6 +13,7 @@ import authRoutes from "./routes/auth.js";
 import trackRoutes from "./routes/track.js";
 import clientRoutes from "./routes/client.js";
 import consentRoutes from "./routes/consent.js";
+import serviceEnquiryRoutes from "./routes/serviceEnquiries.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import { requireDbReady } from "./middleware/dbReady.js";
 import { generalLimiter } from "./middleware/rateLimiters.js";
@@ -70,6 +71,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/track", trackRoutes);
 app.use("/api/client", clientRoutes);
 app.use("/api/consent", consentRoutes);
+app.use("/api/service-enquiries", serviceEnquiryRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

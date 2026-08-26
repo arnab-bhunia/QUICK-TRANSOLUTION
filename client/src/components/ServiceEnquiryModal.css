@@ -1,0 +1,209 @@
+.enquiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(10, 31, 46, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.enquiry-modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.enquiry-modal {
+  position: relative;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  box-shadow: var(--shadow-lifted);
+  transform: translateY(24px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.35s ease;
+}
+
+.enquiry-modal.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.enquiry-modal h3 {
+  font-size: 26px;
+}
+
+.enquiry-modal-sub {
+  margin-top: 10px;
+  color: var(--color-ink-soft);
+  font-size: 14.5px;
+}
+
+.enquiry-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--color-ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.enquiry-modal-close:hover {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+/* Sign in / create account shortcut at the top of the modal */
+.enquiry-modal-auth-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--color-ink-soft);
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 20px;
+}
+
+.enquiry-modal-auth-hint a {
+  color: var(--color-signal);
+  font-weight: 700;
+}
+
+.enquiry-modal-auth-hint a:hover {
+  text-decoration: underline;
+}
+
+.enquiry-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.enquiry-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.enquiry-modal-form input,
+.enquiry-modal-form textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  font-size: 14.5px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.enquiry-modal-form input:focus,
+.enquiry-modal-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.enquiry-modal-textarea-wrap {
+  position: relative;
+}
+
+.enquiry-modal-textarea-wrap textarea {
+  min-height: 96px;
+}
+
+.enquiry-modal-counter {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 11.5px;
+  color: var(--color-ink-faint);
+  background: var(--color-bg);
+  padding: 1px 4px;
+  pointer-events: none;
+}
+
+.enquiry-modal-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  cursor: pointer;
+}
+
+.enquiry-modal-consent input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--color-signal);
+  cursor: pointer;
+}
+
+.enquiry-modal-consent a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.enquiry-modal-consent a:hover {
+  text-decoration: underline;
+}
+
+.enquiry-modal-submit {
+  margin-top: 6px;
+  width: 100%;
+}
+
+.enquiry-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.enquiry-modal-success {
+  padding: 20px 0 4px;
+  text-align: center;
+}
+
+.enquiry-modal-success h3 {
+  font-size: 24px;
+}
+
+.enquiry-modal-success p {
+  margin-top: 12px;
+  color: var(--color-ink-soft);
+}
+
+.enquiry-modal-success .btn {
+  margin-top: 22px;
+}
+
+@media (max-width: 520px) {
+  .enquiry-modal-row {
+    grid-template-columns: 1fr;
+  }
+  .enquiry-modal {
+    padding: 32px 22px;
+  }
+}

@@ -50,3 +50,12 @@ export const signupLimiter = rateLimit({
   message: { message: "Too many accounts created from this location. Please try again later." },
   store: makeStore("signup"),
 });
+
+export const enquiryLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Too many enquiries submitted. Please try again later." },
+  store: makeStore("enquiry"),
+});

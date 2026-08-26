@@ -89,6 +89,10 @@ export function submitQuote(payload) {
   return request("/quotes", payload);
 }
 
+export function submitServiceEnquiry(payload) {
+  return request("/service-enquiries", payload);
+}
+
 export function submitChatQuery(payload) {
   return request("/chat", payload);
 }

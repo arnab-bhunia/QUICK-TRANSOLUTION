@@ -9,6 +9,7 @@ import StickyContact from "../components/StickyContact";
 import ChatBot from "../components/ChatBot";
 import Home from "../pages/Home";
 import TrackPage from "../pages/TrackPage";
+import ServiceDetailPage from "../pages/ServiceDetailPage";
 import ClientLogin from "../pages/ClientLogin";
 import ClientSignup from "../pages/ClientSignup";
 import ClientDashboard from "../pages/ClientDashboard";
@@ -43,6 +44,7 @@ export default function SiteLayout() {
         <Routes>
           <Route path="/" element={<Home onOpenQuote={() => setQuoteOpen(true)} />} />
           <Route path="/track" element={<TrackPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/login" element={<ClientLogin />} />
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/dashboard" element={<ClientDashboard />} />

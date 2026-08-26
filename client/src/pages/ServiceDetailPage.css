@@ -1,0 +1,209 @@
+.service-detail {
+  background: var(--color-bg);
+  padding-bottom: 120px; /* room so content never sits under the sticky Enquire bar */
+}
+
+/* ---------------------------------------------------------------------
+   Banner: image at top, service name overlaid on top of it
+--------------------------------------------------------------------- */
+.service-detail-banner {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.service-detail-banner-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 31, 46, 0.35) 0%,
+    rgba(10, 31, 46, 0.55) 60%,
+    rgba(10, 31, 46, 0.78) 100%
+  );
+}
+
+.service-detail-banner .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.service-detail-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-highlight);
+  margin-bottom: 10px;
+}
+
+.service-detail-banner h1 {
+  color: var(--color-white);
+  font-size: clamp(30px, 4.5vw, 52px);
+  line-height: 1.1;
+  max-width: 720px;
+}
+
+/* ---------------------------------------------------------------------
+   Intro line
+--------------------------------------------------------------------- */
+.service-detail-intro {
+  max-width: 760px;
+  margin: 40px auto 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.service-detail-intro.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-detail-intro p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+/* ---------------------------------------------------------------------
+   Body: sections + highlights side panel
+--------------------------------------------------------------------- */
+.service-detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.service-detail-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.service-detail-section h2 {
+  font-size: 22px;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.service-detail-section p {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--color-ink-soft);
+}
+
+.service-detail-highlights {
+  align-self: start;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  position: sticky;
+  top: calc(var(--header-height, 90px) + 24px);
+}
+
+.service-detail-highlights h3 {
+  font-size: 17px;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.service-detail-highlights ul {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.service-detail-highlights li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.service-detail-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-signal);
+}
+
+.service-detail-inline-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+.service-detail-back {
+  margin: 56px 0 8px;
+}
+
+.service-detail-back a {
+  color: var(--color-ink-soft);
+  font-weight: 600;
+  font-size: 14.5px;
+  transition: color 0.2s ease;
+}
+
+.service-detail-back a:hover {
+  color: var(--color-signal);
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+--------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .service-detail-body {
+    grid-template-columns: 1fr;
+  }
+
+  .service-detail-highlights {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-detail-banner {
+    min-height: 240px;
+  }
+
+  .service-detail-banner .container {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .service-detail-intro {
+    margin-top: 28px;
+  }
+
+  .service-detail-intro p {
+    font-size: 16px;
+  }
+
+  .service-detail-body {
+    margin-top: 32px;
+    gap: 28px;
+  }
+
+  .service-detail-highlights {
+    padding: 24px;
+  }
+}
