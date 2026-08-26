@@ -105,7 +105,7 @@ const TransportScene = ({ active }) => {
           
           <g style={{ transform: 'translateY(347px)' }}>
             <g className="train-motion">
-              <g className="train-body" transform="translate(1300, 0)">
+              <g className="train-body">
                 <rect x="0" y="0" width="85" height="30" rx="3" fill="var(--color-primary)" />
                 <rect x="60" y="-20" width="24" height="20" rx="2" fill="var(--color-primary-light)" />
                 <rect x="66" y="-15" width="12" height="10" fill="var(--color-accent)" opacity="0.45" />

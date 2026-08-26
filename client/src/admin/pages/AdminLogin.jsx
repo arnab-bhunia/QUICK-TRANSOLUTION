@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import { useAlert } from "../../context/AlertContext";
@@ -11,10 +11,13 @@ export default function AdminLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [status, setStatus] = useState("idle");
 
-  if (staff) {
-    navigate("/admin", { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    if (staff) {
+      navigate("/admin", { replace: true });
+    }
+  }, [staff, navigate]);
+
+  if (staff) return null;
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
 
