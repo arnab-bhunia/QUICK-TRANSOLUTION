@@ -133,34 +133,36 @@ export default function ShipmentsPanel() {
         {!loaded && <p className="admin-empty">Loading...</p>}
         {loaded && shipments.length === 0 && <p className="admin-empty">No shipments yet.</p>}
         {shipments.length > 0 && (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Tracking ID</th>
-                <th>Route</th>
-                <th>Status</th>
-                <th>Visibility</th>
-                <th>Created</th>
-              </tr>
-            </thead>
-            <tbody>
-              {shipments.map((s) => (
-                <tr key={s._id} onClick={() => setSelected(s.trackingId)} className="admin-row-clickable">
-                  <td>{s.trackingId}</td>
-                  <td>
-                    {s.origin} → {s.destination}
-                  </td>
-                  <td>
-                    <span className={`admin-badge admin-badge-${s.currentStatus}`}>
-                      {STATUS_LABELS[s.currentStatus] || s.currentStatus}
-                    </span>
-                  </td>
-                  <td>{s.visibility}</td>
-                  <td>{new Date(s.createdAt).toLocaleDateString()}</td>
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Tracking ID</th>
+                  <th>Route</th>
+                  <th>Status</th>
+                  <th>Visibility</th>
+                  <th>Created</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {shipments.map((s) => (
+                  <tr key={s._id} onClick={() => setSelected(s.trackingId)} className="admin-row-clickable">
+                    <td>{s.trackingId}</td>
+                    <td>
+                      {s.origin} → {s.destination}
+                    </td>
+                    <td>
+                      <span className={`admin-badge admin-badge-${s.currentStatus}`}>
+                        {STATUS_LABELS[s.currentStatus] || s.currentStatus}
+                      </span>
+                    </td>
+                    <td>{s.visibility}</td>
+                    <td>{new Date(s.createdAt).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

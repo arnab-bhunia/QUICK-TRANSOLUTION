@@ -48,49 +48,51 @@ export default function BookingsPanel() {
         {!loaded && <p className="admin-empty">Loading...</p>}
         {loaded && bookings.length === 0 && <p className="admin-empty">No booking requests yet.</p>}
         {bookings.length > 0 && (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Customer</th>
-                <th>Route</th>
-                <th>Cargo</th>
-                <th>Submitted</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((b) => (
-                <tr key={b._id}>
-                  <td>
-                    {b.customer?.name}
-                    <br />
-                    <span className="bookings-customer-sub">
-                      {b.customer?.email} · {b.customer?.phone}
-                    </span>
-                  </td>
-                  <td>
-                    {b.origin} → {b.destination}
-                  </td>
-                  <td>{b.cargoDetails}</td>
-                  <td>{new Date(b.createdAt).toLocaleDateString()}</td>
-                  <td>
-                    <select
-                      className="bookings-status-select"
-                      value={b.status}
-                      disabled={savingId === b._id}
-                      onChange={(e) => changeStatus(b._id, e.target.value)}
-                    >
-                      {STATUSES.map((s) => (
-                        <option key={s} value={s}>
-                          {STATUS_LABELS[s]}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Route</th>
+                  <th>Cargo</th>
+                  <th>Submitted</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {bookings.map((b) => (
+                  <tr key={b._id}>
+                    <td>
+                      {b.customer?.name}
+                      <br />
+                      <span className="bookings-customer-sub">
+                        {b.customer?.email} · {b.customer?.phone}
+                      </span>
+                    </td>
+                    <td>
+                      {b.origin} → {b.destination}
+                    </td>
+                    <td>{b.cargoDetails}</td>
+                    <td>{new Date(b.createdAt).toLocaleDateString()}</td>
+                    <td>
+                      <select
+                        className="bookings-status-select"
+                        value={b.status}
+                        disabled={savingId === b._id}
+                        onChange={(e) => changeStatus(b._id, e.target.value)}
+                      >
+                        {STATUSES.map((s) => (
+                          <option key={s} value={s}>
+                            {STATUS_LABELS[s]}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

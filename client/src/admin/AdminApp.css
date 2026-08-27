@@ -7,9 +7,11 @@
 
 .admin-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 28px;
+  gap: 10px;
+  padding: 16px 20px;
   background: #161f2b;
   border-bottom: 1px solid #263241;
 }
@@ -111,8 +113,18 @@
   padding: 22px;
 }
 
+/* Wrap every <table> in a <div className="admin-table-wrap"> — this is
+   what makes tables scroll horizontally on narrow screens instead of
+   squeezing columns unreadable. -webkit-overflow-scrolling gives it
+   momentum scrolling on iOS. */
+.admin-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .admin-table {
   width: 100%;
+  min-width: 640px;
   border-collapse: collapse;
   font-size: 13.5px;
 }

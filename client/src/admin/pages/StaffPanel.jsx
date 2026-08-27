@@ -81,32 +81,34 @@ export default function StaffPanel() {
         {!loaded && <p className="admin-empty">Loading...</p>}
         {loaded && staffList.length === 0 && <p className="admin-empty">No staff accounts yet.</p>}
         {staffList.length > 0 && (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Last Login</th>
-                <th>Created</th>
-              </tr>
-            </thead>
-            <tbody>
-              {staffList.map((s) => (
-                <tr key={s._id}>
-                  <td>{s.name}</td>
-                  <td>{s.email}</td>
-                  <td>
-                    <span className={`admin-badge ${s.role === "admin" ? "admin-badge-converted" : "admin-badge-contacted"}`}>
-                      {s.role}
-                    </span>
-                  </td>
-                  <td>{s.lastLoginAt ? new Date(s.lastLoginAt).toLocaleString() : "Never"}</td>
-                  <td>{new Date(s.createdAt).toLocaleDateString()}</td>
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Last Login</th>
+                  <th>Created</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {staffList.map((s) => (
+                  <tr key={s._id}>
+                    <td>{s.name}</td>
+                    <td>{s.email}</td>
+                    <td>
+                      <span className={`admin-badge ${s.role === "admin" ? "admin-badge-converted" : "admin-badge-contacted"}`}>
+                        {s.role}
+                      </span>
+                    </td>
+                    <td>{s.lastLoginAt ? new Date(s.lastLoginAt).toLocaleString() : "Never"}</td>
+                    <td>{new Date(s.createdAt).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>
