@@ -93,9 +93,9 @@ export function submitServiceEnquiry(payload) {
   return request("/service-enquiries", payload);
 }
 
-// export function submitChatQuery(payload) {
-//   return request("/chat", payload);
-// }
+export function submitChatQuery(payload) {
+  return request("/chat", payload);
+}
 
 export function submitUnansweredQuery(payload) {
   return request("/chat/unanswered", payload);
@@ -148,6 +148,10 @@ export function adminLogout() {
 
 export function getAdminMe() {
   return get("/auth/me");
+}
+
+export function changePasswordAdmin(payload) {
+  return patch("/auth/change-password", payload);
 }
 
 // --- Staff shipment management ---

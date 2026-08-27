@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import AdminUser from "../models/AdminUser.js";
 import { signToken, COOKIE_NAME, cookieOptions } from "../utils/jwt.js";
+import { cacheDel } from "../config/redis.js";
 
 export async function login(req, res) {
   const { email, password } = req.body;
@@ -32,6 +33,7 @@ export async function login(req, res) {
     name: user.name,
     email: user.email,
     role: user.role,
+    mustChangePassword: user.mustChangePassword,
   });
 }
 
@@ -46,5 +48,46 @@ export function me(req, res) {
     name: req.user.name,
     email: req.user.email,
     role: req.user.role,
+    mustChangePassword: req.user.mustChangePassword,
   });
+}
+
+// ---------------------------------------------------------------------------
+// CHANGE PASSWORD — self-service, requires the current password. This is
+// how a staff/admin account gets off a temporary password (e.g. one that
+// was generated from their DOB at account creation) and clears the
+// mustChangePassword flag that gates access on the client.
+// ---------------------------------------------------------------------------
+export async function changePassword(req, res) {
+  const { currentPassword, newPassword } = req.body;
+
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ message: "Current and new password are required" });
+  }
+  if (newPassword.length < 8) {
+    return res.status(400).json({ message: "New password must be at least 8 characters" });
+  }
+  if (newPassword === currentPassword) {
+    return res.status(400).json({ message: "New password must be different from the current password" });
+  }
+
+  const user = await AdminUser.findById(req.user._id);
+  if (!user) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+
+  const valid = await bcrypt.compare(currentPassword, user.passwordHash);
+  if (!valid) {
+    return res.status(401).json({ message: "Current password is incorrect" });
+  }
+
+  user.passwordHash = await bcrypt.hash(newPassword, 12);
+  user.mustChangePassword = false;
+  await user.save();
+
+  // Drop the cached /me user so requireAuth doesn't keep serving the
+  // stale mustChangePassword: true value for up to USER_CACHE_TTL.
+  await cacheDel(`staff:${user._id}`);
+
+  res.json({ message: "Password updated" });
 }

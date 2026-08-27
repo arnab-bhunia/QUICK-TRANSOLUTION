@@ -152,7 +152,7 @@ const TransportScene = ({ active }) => {
     cx="2.5"
     cy="320"
     r="5"
-    fill="#DC2626"
+    fill="#f80202"
   />
 
 </g>

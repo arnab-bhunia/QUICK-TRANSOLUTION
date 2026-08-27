@@ -2,12 +2,16 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { AdminAuthProvider, useAdminAuth } from "./context/AdminAuthContext";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import ChangePassword from "./pages/ChangePassword";
 import "./AdminApp.css";
 
 function RequireStaffAuth({ children }) {
   const { staff, loading } = useAdminAuth();
   if (loading) return null;
   if (!staff) return <Navigate to="/admin/login" replace />;
+  // A temp password (e.g. one created via the "same as DOB" convenience
+  // option) must be changed before the account can do anything else.
+  if (staff.mustChangePassword) return <ChangePassword />;
   return children;
 }
 
