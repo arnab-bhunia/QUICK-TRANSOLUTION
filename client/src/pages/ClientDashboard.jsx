@@ -76,7 +76,7 @@ export default function ClientDashboard() {
             <h1>Welcome back, {customer.name.split(" ")[0]}</h1>
           </div>
           <button
-            className="btn btn-outline"
+            className="btn btn-outline logout-btn"
             onClick={async () => {
               await logout();
               navigate("/");

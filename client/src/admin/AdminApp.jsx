@@ -21,7 +21,7 @@ function AdminHeader() {
       <div className="admin-header-right">
         <span className="admin-header-user">{staff?.name}</span>
         <button
-          className="admin-btn admin-btn-ghost"
+          className="admin-btn admin-btn-ghost logout-btn"
           onClick={async () => {
             await logout();
             navigate("/admin/login");

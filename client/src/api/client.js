@@ -93,9 +93,9 @@ export function submitServiceEnquiry(payload) {
   return request("/service-enquiries", payload);
 }
 
-export function submitChatQuery(payload) {
-  return request("/chat", payload);
-}
+// export function submitChatQuery(payload) {
+//   return request("/chat", payload);
+// }
 
 export function submitUnansweredQuery(payload) {
   return request("/chat/unanswered", payload);

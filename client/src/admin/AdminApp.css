@@ -41,7 +41,7 @@
   justify-content: center;
   gap: 8px;
   padding: 10px 18px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 13.5px;
   cursor: pointer;
@@ -61,16 +61,6 @@
 .admin-btn-primary:disabled {
   opacity: 0.6;
   cursor: wait;
-}
-
-.admin-btn-ghost {
-  background: transparent;
-  border-color: #2c3948;
-  color: #cbd5e1;
-}
-
-.admin-btn-ghost:hover {
-  background: #1d2937;
 }
 
 .admin-field {

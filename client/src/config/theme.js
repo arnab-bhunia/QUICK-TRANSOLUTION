@@ -18,6 +18,12 @@ export const theme = {
     accentDark: "#D98F1F",
     signal: "#D6482B",        // brick-red — CTA buttons, urgent actions only
     signalDark: "#C23E24",
+
+    // Danger (destructive actions — logout, delete, remove)
+danger: "#C0392B",        // deep red — logout / destructive actions
+dangerDark: "#A93226",    // darker hover / pressed state
+dangerLight: "#E74C3C",   // lighter danger state / subtle indicators
+
     // Neutrals
     // bg: "#F4F6F5",            // page background (cool paper, not warm cream)
     bg: "#fafafa",
