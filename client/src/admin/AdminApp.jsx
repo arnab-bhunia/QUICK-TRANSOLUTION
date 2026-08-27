@@ -26,9 +26,9 @@ function AdminHeader() {
         <span className="admin-header-user">{staff?.name}</span>
         <button
           className="admin-btn admin-btn-ghost logout-btn"
-          onClick={async () => {
-            await logout();
-            navigate("/admin/login");
+          onClick={() => {
+            navigate("/");
+            logout();
           }}
         >
           Log out

@@ -35,7 +35,7 @@ export default function Testimonials() {
             {site.testimonials.map((t) => (
               <figure className="testimonial-slide" key={t.name}>
                 <span className="decoration-dots decoration-dots--tl" aria-hidden="true" />
-                <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
+                <blockquote className="testimonial-quote">&ldquo;{t.quote}&rdquo;</blockquote>
                  <div className="mini-line"></div>
                 <figcaption>
     <div className="testimonial-person">

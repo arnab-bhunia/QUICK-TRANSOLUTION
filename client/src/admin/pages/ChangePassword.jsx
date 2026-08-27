@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { changePasswordAdmin } from "../../api/client";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import { useAlert } from "../../context/AlertContext";
@@ -11,6 +12,7 @@ import "./AdminLogin.css";
 export default function ChangePassword() {
   const { refresh, logout } = useAdminAuth();
   const alert = useAlert();
+  const navigate = useNavigate();
   const [form, setForm] = useState({ currentPassword: "", newPassword: "", confirmPassword: "" });
   const [status, setStatus] = useState("idle");
 
@@ -35,6 +37,11 @@ export default function ChangePassword() {
     } finally {
       setStatus("idle");
     }
+  };
+
+  const handleLogout = () => {
+    navigate("/");
+    logout();
   };
 
   return (
@@ -87,7 +94,7 @@ export default function ChangePassword() {
         <button
           type="button"
           className="admin-btn admin-btn-ghost"
-          onClick={logout}
+          onClick={handleLogout}
         >
           Log out instead
         </button>
