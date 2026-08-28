@@ -12,6 +12,7 @@ import TrackPage from "../pages/TrackPage";
 import ServiceDetailPage from "../pages/ServiceDetailPage";
 import ClientLogin from "../pages/ClientLogin";
 import ClientSignup from "../pages/ClientSignup";
+import ClientVerifyOtp from "../pages/ClientVerifyOtp";
 import ClientDashboard from "../pages/ClientDashboard";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import TermsConditions from "../pages/TermsConditions";
@@ -47,6 +48,7 @@ export default function SiteLayout() {
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/login" element={<ClientLogin />} />
           <Route path="/signup" element={<ClientSignup />} />
+          <Route path="/verify-email" element={<ClientVerifyOtp />} />
           <Route path="/dashboard" element={<ClientDashboard />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />

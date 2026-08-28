@@ -109,3 +109,50 @@
   color: var(--color-ink-faint);
   text-align: center;
 }
+
+.client-auth-required {
+  color: var(--color-signal);
+  font-style: normal;
+  margin-left: 2px;
+}
+
+.client-auth-optional {
+  font-weight: 400;
+  color: var(--color-ink-faint);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.client-auth-hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-ink-faint);
+}
+
+.client-auth-verify-sub {
+  margin-top: -8px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.client-auth-otp-input {
+  letter-spacing: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.client-auth-resend-btn {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.client-auth-resend-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.client-auth-resend-cooldown {
+  color: var(--color-ink-faint);
+}

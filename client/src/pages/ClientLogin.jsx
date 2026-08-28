@@ -5,7 +5,7 @@ import { useAlert } from "../context/AlertContext";
 import "./ClientAuth.css";
 
 export default function ClientLogin() {
-  const { login } = useClientAuth();
+  const { login, resendOtp } = useClientAuth();
   const alert = useAlert();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
@@ -20,6 +20,20 @@ export default function ClientLogin() {
       await login(form);
       navigate("/dashboard");
     } catch (err) {
+      if (err.data?.needsVerification) {
+        // A fresh code is more useful than whatever they were sent at
+        // signup, which could be long expired by now — send a new one
+        // before routing them to the verification screen.
+        try {
+          await resendOtp({ email: err.data.email });
+        } catch {
+          // If resend itself fails, they can still hit "Resend code" on
+          // the next screen — no need to block the redirect over this.
+        }
+        alert.error("Please verify your email first — we've sent a new code.");
+        navigate("/verify-email", { state: { email: err.data.email } });
+        return;
+      }
       alert.error(err.message || "Something went wrong. Please try again.");
     } finally {
       setStatus("idle");

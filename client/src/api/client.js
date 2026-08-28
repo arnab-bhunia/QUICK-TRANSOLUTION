@@ -117,6 +117,14 @@ export function clientSignup(payload) {
   return request("/client/signup", payload);
 }
 
+export function verifyClientEmailOtp(payload) {
+  return request("/client/verify-email", payload);
+}
+
+export function resendClientEmailOtp(payload) {
+  return request("/client/resend-otp", payload);
+}
+
 export function clientLogin(payload) {
   return request("/client/login", payload);
 }
@@ -148,10 +156,6 @@ export function adminLogout() {
 
 export function getAdminMe() {
   return get("/auth/me");
-}
-
-export function changePasswordAdmin(payload) {
-  return patch("/auth/change-password", payload);
 }
 
 // --- Staff shipment management ---
@@ -195,4 +199,8 @@ export function createStaffAdmin(payload) {
 
 export function getAnalyticsAdmin() {
   return get("/auth/analytics");
+}
+
+export function changePasswordAdmin(payload) {
+  return patch("/auth/change-password", payload);
 }

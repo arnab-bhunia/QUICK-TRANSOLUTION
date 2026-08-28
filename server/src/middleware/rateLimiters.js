@@ -59,3 +59,12 @@ export const enquiryLimiter = rateLimit({
   message: { message: "Too many enquiries submitted. Please try again later." },
   store: makeStore("enquiry"),
 });
+
+export const otpLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 8,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Too many attempts. Please try again later." },
+  store: makeStore("otp"),
+});

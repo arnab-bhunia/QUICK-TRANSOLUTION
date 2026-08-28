@@ -16,25 +16,35 @@ import crypto from "crypto";
 const ALGORITHM = "aes-256-gcm";
 const IV_LENGTH = 12; // 96-bit IV is the recommended size for GCM
 
-function getKey() {
-  const raw = process.env.ENCRYPTION_KEY;
+// keyEnvVar lets a specific field use a DIFFERENT key from the main
+// ENCRYPTION_KEY (e.g. a dedicated PHONE_ENCRYPTION_KEY) if you want to
+// compartmentalize risk — a leak of one key wouldn't expose fields
+// encrypted under the other. This is optional: every call defaults to
+// ENCRYPTION_KEY, so nothing changes unless you explicitly set a second
+// key env var and pass its name in. One key for everything is perfectly
+// fine security-wise (AES-256-GCM with a fresh random IV per field
+// already gives each encrypted value its own independent ciphertext) —
+// the only reason to split keys is operational: e.g. rotating the phone
+// key later without having to also re-encrypt every service enquiry.
+function getKey(keyEnvVar = "ENCRYPTION_KEY") {
+  const raw = process.env[keyEnvVar];
   if (!raw) {
     throw new Error(
-      "ENCRYPTION_KEY is not set. Generate one with: node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\""
+      `${keyEnvVar} is not set. Generate one with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
     );
   }
   const key = Buffer.from(raw, "hex");
   if (key.length !== 32) {
-    throw new Error("ENCRYPTION_KEY must decode to exactly 32 bytes (64 hex characters).");
+    throw new Error(`${keyEnvVar} must decode to exactly 32 bytes (64 hex characters).`);
   }
   return key;
 }
 
 // Returns a single string safe to store in a String schema field:
 // "<iv-hex>:<authTag-hex>:<ciphertext-hex>"
-export function encryptField(plaintext) {
+export function encryptField(plaintext, keyEnvVar = "ENCRYPTION_KEY") {
   if (plaintext === null || plaintext === undefined) return null;
-  const key = getKey();
+  const key = getKey(keyEnvVar);
   const iv = crypto.randomBytes(IV_LENGTH);
   const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
 
@@ -47,12 +57,12 @@ export function encryptField(plaintext) {
   return `${iv.toString("hex")}:${authTag.toString("hex")}:${encrypted.toString("hex")}`;
 }
 
-export function decryptField(stored) {
+export function decryptField(stored, keyEnvVar = "ENCRYPTION_KEY") {
   if (!stored) return "";
   const [ivHex, authTagHex, dataHex] = stored.split(":");
   if (!ivHex || !authTagHex || !dataHex) return "";
 
-  const key = getKey();
+  const key = getKey(keyEnvVar);
   const decipher = crypto.createDecipheriv(ALGORITHM, key, Buffer.from(ivHex, "hex"));
   decipher.setAuthTag(Buffer.from(authTagHex, "hex"));
 
