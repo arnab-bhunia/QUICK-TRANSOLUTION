@@ -61,6 +61,8 @@ const TransportScene = ({ active }) => {
           <path d="M0,460 Q240,430 480,445 T960,425 T1200,450 L1200,720 L0,720 Z" fill="var(--color-primary-dark)" opacity="0.75" />
         </g>
 
+        
+
         {/* === WATER & SHIP === */}
         <g className="layer layer-ship">
           <rect x="0" y="480" width="1200" height="240" fill="var(--color-primary-light)" opacity="0.12" />
@@ -102,8 +104,9 @@ const TransportScene = ({ active }) => {
           <path d="M676,393 Q788,340 900,393" fill="none" stroke="var(--color-primary-dark)" strokeWidth="3" opacity="0.4" />
           
           <line x1="0" y1="378" x2="1200" y2="378" stroke="var(--color-primary-dark)" strokeWidth="1.5" opacity="0.5" />
+         
           {/* === RAILWAY TRAFFIC SIGNAL === */}
-<g className="rail-signal" transform="translate(300, 0)">
+          <g className="rail-signal" transform="translate(300, 0)">
 
   {/* Signal pole */}
   <rect
@@ -155,7 +158,8 @@ const TransportScene = ({ active }) => {
     fill="#f80202"
   />
 
-</g>
+          </g>
+          
           <g style={{ transform: 'translateY(347px)' }}>
             <g className="train-motion">
               <g className="train-body">
@@ -181,7 +185,85 @@ const TransportScene = ({ active }) => {
                 <rect x="238" y="9" width="17" height="14" fill="var(--color-signal)" opacity="0.75" />
                 <circle cx="206" cy="30" r="9" fill="var(--color-ink)" className="wheel" />
                 <circle cx="240" cy="30" r="9" fill="var(--color-ink)" className="wheel" />
+                
+                {/* === THIRD TRAIN COACH === */}
+                <rect x="274" y="5" width="75" height="25" rx="2" fill="var(--color-primary)"/>
+
+                {/* Coach windows */}
+                <rect x="280" y="9" width="20" height="14" fill="var(--color-truck)" opacity="0.65"/>
+                <rect x="303" y="9" width="20" height="14" fill="var(--color-truck)" opacity="0.65"/>
+                <rect x="326" y="9" width="17" height="14" fill="var(--color-truck)" opacity="0.65"/>
+
+                {/* Coach wheels */}
+                <circle cx="294" cy="30" r="9" fill="var(--color-ink)" className="wheel"/>
+                <circle cx="328" cy="30" r="9" fill="var(--color-ink)" className="wheel"/>
+
+                {/* Coupling */}
+                <rect x="261" y="20" width="8" height="4" fill="var(--color-ink)" opacity="0.5"/>
               </g>
+            </g>
+          </g>
+        </g>
+                {/* === CONTAINERS === */}
+        <g className="layer layer-containers">
+          <g style={{ transform: 'translateX(250px) translateY(495px)' }}>
+            <rect x="0" y="30" width="58" height="32" rx="2" fill="var(--color-accent)" />
+            <rect x="4" y="34" width="50" height="24" fill="none" stroke="var(--color-accent-dark)" strokeWidth="1" opacity="0.4" />
+            <rect x="0" y="0" width="58" height="28" rx="2" fill="var(--color-accent-dark)" />
+            <rect x="4" y="4" width="50" height="20" fill="none" stroke="var(--color-accent)" strokeWidth="1" opacity="0.4" />
+          </g>
+          <g style={{ transform: 'translateX(320px) translateY(520px)' }}>
+            <rect x="0" y="0" width="52" height="28" rx="2" fill="var(--color-signal)" />
+            <rect x="4" y="4" width="44" height="20" fill="none" stroke="var(--color-primary-dark)" strokeWidth="1" opacity="0.3" />
+          </g>
+          <g style={{ transform: 'translateX(960px) translateY(525px)' }}>
+            <rect x="0" y="0" width="55" height="28" rx="2" fill="var(--color-accent)" />
+            <rect x="4" y="4" width="47" height="20" fill="none" stroke="var(--color-accent-dark)" strokeWidth="1" opacity="0.4" />
+          </g>
+          <g style={{ transform: 'translateX(1025px) translateY(535px)' }}>
+            <rect x="0" y="0" width="50" height="22" rx="2" fill="var(--color-primary-light)" />
+          </g>
+        </g>
+
+        {/* === WAREHOUSE + WORKER === */}
+        <g className="layer layer-warehouse">
+          <g style={{ transform: 'translateX(30px) translateY(400px)' }}>
+            <rect x="5" y="150" width="210" height="10" rx="5" fill="var(--color-primary-dark)" opacity="0.15" />
+            <rect x="20" y="30" width="180" height="120" fill="var(--color-primary)" />
+            <polygon points="10,30 110,0 210,30" fill="var(--color-primary-dark)" />
+            <line x1="45" y1="15" x2="175" y2="15" stroke="var(--color-primary-light)" strokeWidth="1" opacity="0.35" />
+            <line x1="60" y1="8" x2="160" y2="8" stroke="var(--color-primary-light)" strokeWidth="1" opacity="0.25" />
+            <rect x="55" y="70" width="55" height="80" fill="var(--color-primary-dark)" />
+            <line x1="55" y1="88" x2="110" y2="88" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
+            <line x1="55" y1="106" x2="110" y2="106" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
+            <line x1="55" y1="124" x2="110" y2="124" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
+            <line x1="55" y1="142" x2="110" y2="142" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
+            <circle cx="118" cy="52" r="7" fill="var(--color-signal)" className="loading-light" />
+            <rect x="114" y="61" width="8" height="3" fill="var(--color-ink)" opacity="0.35" />
+            <rect x="140" y="50" width="20" height="16" rx="2" fill="var(--color-accent)" opacity="0.12" />
+            <rect x="168" y="50" width="20" height="16" rx="2" fill="var(--color-accent)" opacity="0.12" />
+            <rect x="53" y="68" width="59" height="84" fill="none" stroke="var(--color-primary-light)" strokeWidth="1" opacity="0.4" />
+
+            {/* Worker standing beside the warehouse */}
+            <g transform="translate(185, 95)">
+              {/* Hard hat */}
+              <path d="M4,4 Q10,-3 16,4 L16,6 L4,6 Z" fill="var(--color-accent)" />
+              {/* Head */}
+              <circle cx="10" cy="12" r="5.5" fill="#E8C39E" />
+              {/* Neck */}
+              <rect x="8" y="17" width="4" height="3" fill="#D4A574" />
+              {/* Safety vest */}
+              <path d="M5,20 L15,20 L17,40 L3,40 Z" fill="var(--color-accent)" />
+              <rect x="6" y="21" width="8" height="8" rx="1" fill="var(--color-accent-dark)" opacity="0.5" />
+              {/* Arms */}
+              <rect x="1" y="22" width="3" height="14" rx="1.5" fill="var(--color-ink)" />
+              <rect x="16" y="22" width="3" height="14" rx="1.5" fill="var(--color-ink)" />
+              {/* Legs */}
+              <rect x="6" y="40" width="3.5" height="14" rx="1" fill="var(--color-ink)" />
+              <rect x="10.5" y="40" width="3.5" height="14" rx="1" fill="var(--color-ink)" />
+              {/* Boots */}
+              <path d="M5,54 L9,54 L9,57 L5,57 Z" fill="var(--color-primary-dark)" />
+              <path d="M11,54 L15,54 L15,57 L11,57 Z" fill="var(--color-primary-dark)" />
             </g>
           </g>
         </g>
@@ -191,9 +273,33 @@ const TransportScene = ({ active }) => {
           <rect x="0" y="550" width="1200" height="170" fill="var(--color-primary-dark)" opacity="0.9" />
           <rect x="0" y="548" width="1200" height="2" fill="var(--color-accent)" opacity="0.5" />
           <line x1="0" y1="635" x2="1200" y2="635" stroke="var(--color-bg)" strokeWidth="4" strokeDasharray="50 35" opacity="0.85" />
+          <line x1="0"
+  y1="590"
+  x2="1200"
+  y2="590"
+  stroke="var(--color-bg)"
+  strokeWidth="2"
+  strokeDasharray="30 45"
+  opacity="0.18"
+          />
+          <line x1="0"
+  y1="685"
+  x2="1200"
+  y2="675"
+  stroke="var(--color-bg)"
+  strokeWidth="2"
+  strokeDasharray="30 45"
+  opacity="0.18"
+          />
           <rect x="0" y="548" width="1200" height="1" fill="var(--color-bg)" opacity="0.3" />
         </g>
-
+        
+<g opacity="0.12">
+  <path d="M80 660 H160" stroke="var(--color-bg)" strokeWidth="2" />
+  <path d="M280 610 H350" stroke="var(--color-bg)" strokeWidth="2" />
+  <path d="M720 610 H790" stroke="var(--color-bg)" strokeWidth="2" />
+  <path d="M950 700 H1040" stroke="var(--color-bg)" strokeWidth="2" />
+</g>
         {/* === TRUCK (gray body) === */}
         <g className="layer layer-truck">
           <g style={{ transform: 'translateY(535px)' }}>
@@ -237,69 +343,7 @@ const TransportScene = ({ active }) => {
           </g>
         </g>
 
-        {/* === WAREHOUSE + WORKER === */}
-        <g className="layer layer-warehouse">
-          <g style={{ transform: 'translateX(30px) translateY(400px)' }}>
-            <rect x="5" y="150" width="210" height="10" rx="5" fill="var(--color-primary-dark)" opacity="0.15" />
-            <rect x="20" y="30" width="180" height="120" fill="var(--color-primary)" />
-            <polygon points="10,30 110,0 210,30" fill="var(--color-primary-dark)" />
-            <line x1="45" y1="15" x2="175" y2="15" stroke="var(--color-primary-light)" strokeWidth="1" opacity="0.35" />
-            <line x1="60" y1="8" x2="160" y2="8" stroke="var(--color-primary-light)" strokeWidth="1" opacity="0.25" />
-            <rect x="55" y="70" width="55" height="80" fill="var(--color-primary-dark)" />
-            <line x1="55" y1="88" x2="110" y2="88" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
-            <line x1="55" y1="106" x2="110" y2="106" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
-            <line x1="55" y1="124" x2="110" y2="124" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
-            <line x1="55" y1="142" x2="110" y2="142" stroke="var(--color-primary)" strokeWidth="2" opacity="0.4" />
-            <circle cx="118" cy="52" r="7" fill="var(--color-signal)" className="loading-light" />
-            <rect x="114" y="61" width="8" height="3" fill="var(--color-ink)" opacity="0.35" />
-            <rect x="140" y="50" width="20" height="16" rx="2" fill="var(--color-accent)" opacity="0.12" />
-            <rect x="168" y="50" width="20" height="16" rx="2" fill="var(--color-accent)" opacity="0.12" />
-            <rect x="53" y="68" width="59" height="84" fill="none" stroke="var(--color-primary-light)" strokeWidth="1" opacity="0.4" />
 
-            {/* Worker standing beside the warehouse */}
-            <g transform="translate(228, 105)">
-              {/* Hard hat */}
-              <path d="M4,4 Q10,-3 16,4 L16,6 L4,6 Z" fill="var(--color-accent)" />
-              {/* Head */}
-              <circle cx="10" cy="12" r="5.5" fill="#E8C39E" />
-              {/* Neck */}
-              <rect x="8" y="17" width="4" height="3" fill="#D4A574" />
-              {/* Safety vest */}
-              <path d="M5,20 L15,20 L17,40 L3,40 Z" fill="var(--color-accent)" />
-              <rect x="6" y="21" width="8" height="8" rx="1" fill="var(--color-accent-dark)" opacity="0.5" />
-              {/* Arms */}
-              <rect x="1" y="22" width="3" height="14" rx="1.5" fill="var(--color-ink)" />
-              <rect x="16" y="22" width="3" height="14" rx="1.5" fill="var(--color-ink)" />
-              {/* Legs */}
-              <rect x="6" y="40" width="3.5" height="14" rx="1" fill="var(--color-ink)" />
-              <rect x="10.5" y="40" width="3.5" height="14" rx="1" fill="var(--color-ink)" />
-              {/* Boots */}
-              <path d="M5,54 L9,54 L9,57 L5,57 Z" fill="var(--color-primary-dark)" />
-              <path d="M11,54 L15,54 L15,57 L11,57 Z" fill="var(--color-primary-dark)" />
-            </g>
-          </g>
-        </g>
-
-        {/* === CONTAINERS === */}
-        <g className="layer layer-containers">
-          <g style={{ transform: 'translateX(250px) translateY(495px)' }}>
-            <rect x="0" y="30" width="58" height="32" rx="2" fill="var(--color-accent)" />
-            <rect x="4" y="34" width="50" height="24" fill="none" stroke="var(--color-accent-dark)" strokeWidth="1" opacity="0.4" />
-            <rect x="0" y="0" width="58" height="28" rx="2" fill="var(--color-accent-dark)" />
-            <rect x="4" y="4" width="50" height="20" fill="none" stroke="var(--color-accent)" strokeWidth="1" opacity="0.4" />
-          </g>
-          <g style={{ transform: 'translateX(320px) translateY(520px)' }}>
-            <rect x="0" y="0" width="52" height="28" rx="2" fill="var(--color-signal)" />
-            <rect x="4" y="4" width="44" height="20" fill="none" stroke="var(--color-primary-dark)" strokeWidth="1" opacity="0.3" />
-          </g>
-          <g style={{ transform: 'translateX(960px) translateY(525px)' }}>
-            <rect x="0" y="0" width="55" height="28" rx="2" fill="var(--color-accent)" />
-            <rect x="4" y="4" width="47" height="20" fill="none" stroke="var(--color-accent-dark)" strokeWidth="1" opacity="0.4" />
-          </g>
-          <g style={{ transform: 'translateX(1025px) translateY(535px)' }}>
-            <rect x="0" y="0" width="50" height="22" rx="2" fill="var(--color-primary-light)" />
-          </g>
-        </g>
       </svg>
     </div>
   );
