@@ -73,7 +73,11 @@ async function sendSignupOtp(email) {
 }
 
 export async function signup(req, res) {
-  const { name, email, phone, password, confirmPassword, dob, industry } = req.body;
+  const { name, email, phone, password, confirmPassword, dob, industry, agreedToTerms } = req.body;
+
+  if (agreedToTerms !== true) {
+    return res.status(400).json({ message: "Please accept the Terms of Service and Privacy Policy." });
+  }
 
   if (!name?.trim() || !email?.trim() || !phone?.trim() || !password || !dob) {
     return res.status(400).json({ message: "Please fill in all required fields." });
@@ -115,6 +119,7 @@ export async function signup(req, res) {
     industry: industry?.trim().slice(0, INDUSTRY_MAX) || "",
     passwordHash,
     emailVerified: false,
+    policyAcceptedAt: new Date(),
   });
 
   await sendSignupOtp(emailNorm);

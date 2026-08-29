@@ -1,0 +1,161 @@
+.dob-picker {
+  position: relative;
+}
+
+.dob-picker-trigger {
+  width: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  font-size: 14.5px;
+  font-family: inherit;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.dob-picker-trigger.is-placeholder {
+  color: var(--color-ink-faint);
+}
+
+.dob-picker-trigger:focus,
+.dob-picker-trigger:hover {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/*
+ * This is a plain <div>, not a native <select> popup or <input
+ * type="date"> — that's the whole point. A native picker's popup/wheel
+ * height is controlled entirely by the OS/browser and CSS cannot touch
+ * it. Because this panel is ours, max-height + overflow-y actually work,
+ * reliably, everywhere.
+ */
+.dob-picker-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  width: 280px;
+  max-width: calc(100vw - 40px);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 40px rgba(11, 59, 96, 0.18);
+  padding: 14px;
+}
+
+.dob-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.dob-picker-header button {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  color: var(--color-ink-soft);
+}
+
+.dob-picker-header button:hover {
+  background: var(--color-bg);
+}
+
+.dob-picker-header-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.dob-picker-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.dob-picker-weekdays span {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-ink-faint);
+}
+
+.dob-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.dob-picker-day {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 13px;
+  color: var(--color-ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dob-picker-day:hover {
+  background: var(--color-bg);
+}
+
+.dob-picker-day.is-selected {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.dob-picker-month-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.dob-picker-month {
+  padding: 12px 0;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: var(--color-ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dob-picker-month:hover {
+  background: var(--color-bg);
+}
+
+.dob-picker-month.is-selected {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+/* The one that actually matters: capped height + scroll, something no
+   native year <select> or date-input wheel would ever let you do. */
+.dob-picker-year-list {
+  max-height: 220px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.dob-picker-year {
+  padding: 10px 0;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: var(--color-ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dob-picker-year:hover {
+  background: var(--color-bg);
+}
+
+.dob-picker-year.is-selected {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+}

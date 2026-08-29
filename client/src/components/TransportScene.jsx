@@ -37,23 +37,51 @@ const TransportScene = ({ active }) => {
         </g>
 
         {/* === BIRDS === */}
-        <g className="layer layer-birds">
-          <g style={{ transform: 'translateX(1120px) translateY(130px)' }}>
-            <g className="bird-drift">
-              <path d="M0,0 Q10,-12 20,0" fill="none" stroke="var(--color-ink)" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
-            </g>
-          </g>
-          <g style={{ transform: 'translateX(1180px) translateY(105px)' }}>
-            <g className="bird-drift">
-              <path d="M0,0 Q8,-10 16,0" fill="none" stroke="var(--color-ink)" strokeWidth="1.5" opacity="0.2" strokeLinecap="round" />
-            </g>
-          </g>
-          <g style={{ transform: 'translateX(1080px) translateY(160px)' }}>
-            <g className="bird-drift">
-              <path d="M0,0 Q6,-8 12,0" fill="none" stroke="var(--color-ink)" strokeWidth="1.5" opacity="0.25" strokeLinecap="round" />
-            </g>
-          </g>
-        </g>
+<g className="layer layer-birds">
+
+  {/* Bird 1 — larger / foreground */}
+  <g style={{ transform: 'translateX(1120px) translateY(130px)' }}>
+    <g className="bird-drift bird-1">
+      <path
+        d="M0,0 Q7,-9 14,0 Q21,-9 28,0"
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeWidth="2"
+        opacity="0.35"
+        strokeLinecap="round"
+      />
+    </g>
+  </g>
+
+  {/* Bird 2 — smaller / higher */}
+  <g style={{ transform: 'translateX(1180px) translateY(105px)' }}>
+    <g className="bird-drift bird-2">
+      <path
+        d="M0,0 Q5,-7 10,0 Q15,-7 20,0"
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeWidth="1.5"
+        opacity="0.25"
+        strokeLinecap="round"
+      />
+    </g>
+  </g>
+
+  {/* Bird 3 — smaller / lower */}
+  <g style={{ transform: 'translateX(1080px) translateY(160px)' }}>
+    <g className="bird-drift bird-3">
+      <path
+        d="M0,0 Q4,-6 8,0 Q12,-6 16,0"
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeWidth="1.5"
+        opacity="0.3"
+        strokeLinecap="round"
+      />
+    </g>
+  </g>
+
+</g>
 
         {/* === HILLS === */}
         <g className="layer layer-hills">

@@ -25,6 +25,7 @@ const customerSchema = new mongoose.Schema(
     industry: { type: String, trim: true, maxlength: 100, default: "" },
 
     passwordHash: { type: String, required: true },
+    policyAcceptedAt: { type: Date, required: true }, // when they agreed to Terms & Privacy Policy
 
     // Gates login until the signup email-OTP flow completes — see
     // controllers/clientAuthController.js and models/EmailOtp.js.
