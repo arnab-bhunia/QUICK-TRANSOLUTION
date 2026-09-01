@@ -1,6 +1,7 @@
 import { verifyToken, COOKIE_NAME } from "../utils/jwt.js";
 import AdminUser from "../models/AdminUser.js";
 import { cacheGet, cacheSet } from "../config/redis.js";
+import { hasPermission } from "../config/permissions.js";
 
 // Trade-off worth knowing: a role change or account deletion can take
 // up to this long to take effect for an already-issued session, since
@@ -46,4 +47,17 @@ export function requireAdminRole(req, res, next) {
     return res.status(403).json({ message: "Admin access required" });
   }
   next();
+}
+
+// The general-purpose gate — checks a specific permission string rather
+// than a hardcoded role, so a route written once keeps working
+// correctly no matter how many roles end up holding that permission,
+// today or added later. See config/permissions.js.
+export function requirePermission(permission) {
+  return (req, res, next) => {
+    if (!hasPermission(req.user, permission)) {
+      return res.status(403).json({ message: "You don't have permission to do that." });
+    }
+    next();
+  };
 }

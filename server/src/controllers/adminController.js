@@ -5,16 +5,24 @@ import BookingRequest from "../models/BookingRequest.js";
 import AuditLog from "../models/AuditLog.js";
 import { encryptField, decryptField, hashLookupValue } from "../utils/crypto.js";
 import { OFFICE_CODES, getOfficeName, isValidOfficeCode } from "../config/offices.js";
+import { CREATION_RULES } from "../config/permissions.js";
 
 // ---------------------------------------------------------------------------
-// STAFF MANAGEMENT — creating staff/admin accounts from inside the app,
-// instead of only via the create-admin CLI script. Still no public
-// signup: only an already-authenticated admin can reach these routes.
+// STAFF MANAGEMENT — creating staff/admin/hr/manager accounts from inside
+// the app, instead of only via the create-admin CLI script. Still no
+// public signup: only an already-authenticated, permitted account can
+// reach these routes.
 //
-// Mobile number is PII and is encrypted at rest (see utils/crypto.js),
-// the same way customer PII is handled elsewhere in this codebase.
-// Office is restricted to the known office codes in config/offices.js —
-// never a free-text location — and stored in a single `officeCode` column.
+// Mobile number is PII and is encrypted at rest (see utils/crypto.js).
+// Office is restricted to the known office codes in config/offices.js.
+//
+// On top of that existing validation, account creation is now also
+// gated by CREATION_RULES (config/permissions.js) — which roles a given
+// creator is allowed to bring into the system — and, for "staff"
+// accounts specifically, by managedBy resolution: a manager creating
+// staff is force-assigned to themselves; an admin/hr creating staff
+// must explicitly choose a real, existing manager (see listManagers
+// below), never trusted as freeform input.
 // ---------------------------------------------------------------------------
 
 const MOBILE_REGEX = /^[6-9]\d{9}$/; // 10-digit Indian mobile number, no country code
@@ -26,6 +34,7 @@ function serializeStaff(user) {
     name: user.name,
     email: user.email,
     role: user.role,
+    managedBy: user.managedBy, // populated with { _id, name, email } where relevant
     mobileNumber: decryptField(user.encryptedMobile),
     officeCode: user.officeCode,
     officeName: getOfficeName(user.officeCode),
@@ -48,12 +57,37 @@ function validateDob(dobRaw) {
 }
 
 export async function listStaff(req, res) {
-  const staff = await AdminUser.find().select("-passwordHash").sort({ createdAt: -1 });
+  const requester = req.user;
+  let query = {};
+
+  // Scoping: a manager only ever sees their own direct reports. Every
+  // other role permitted to reach this route (admin, hr) sees everyone.
+  if (requester.role === "manager") {
+    query = { managedBy: requester._id, role: "staff" };
+  }
+
+  const staff = await AdminUser.find(query)
+    .select("-passwordHash -extraPermissions")
+    .populate("managedBy", "name email role")
+    .sort({ createdAt: -1 });
+
   res.json(staff.map(serializeStaff));
 }
 
+// Populates the "assign to manager" dropdown when an admin/hr creates a
+// staff account. Managers themselves never call this — their own staff
+// creations are auto-assigned to themselves, no picker needed.
+export async function listManagers(req, res) {
+  const managers = await AdminUser.find({ role: "manager" })
+    .select("name email")
+    .sort({ name: 1 });
+  res.json(managers.map((m) => ({ id: m._id, name: m.name, email: m.email })));
+}
+
 export async function createStaff(req, res) {
-  const { name, email, password, role, mobileNumber, officeCode, dob, bloodGroup } = req.body;
+  const requester = req.user;
+  const { name, email, password, role, mobileNumber, officeCode, dob, bloodGroup, managedBy } =
+    req.body;
 
   if (!name?.trim() || !email?.trim() || !password) {
     return res.status(400).json({ message: "Name, email, and password are required" });
@@ -61,8 +95,10 @@ export async function createStaff(req, res) {
   if (password.length < 8) {
     return res.status(400).json({ message: "Password must be at least 8 characters" });
   }
-  if (!["admin", "staff"].includes(role)) {
-    return res.status(400).json({ message: "Role must be 'admin' or 'staff'" });
+
+  const allowedToCreate = CREATION_RULES[requester.role] || [];
+  if (!allowedToCreate.includes(role)) {
+    return res.status(403).json({ message: `You are not allowed to create a "${role}" account.` });
   }
 
   const cleanMobile = String(mobileNumber || "").trim();
@@ -94,12 +130,40 @@ export async function createStaff(req, res) {
     return res.status(409).json({ message: "An account with this mobile number already exists" });
   }
 
+  // --- managedBy resolution — the security-sensitive part ---
+  let resolvedManagedBy = null;
+
+  if (role === "staff") {
+    if (requester.role === "manager") {
+      // Forced to self, full stop — a manager can never assign their
+      // new staff member to anyone else, no matter what the request
+      // body says.
+      resolvedManagedBy = requester._id;
+    } else {
+      // admin / hr creating staff: must explicitly pick a real manager.
+      if (!managedBy) {
+        return res.status(400).json({ message: "Please select a manager for this staff account." });
+      }
+      const manager = await AdminUser.findById(managedBy);
+      if (!manager || manager.role !== "manager") {
+        return res.status(400).json({ message: "Selected manager account is invalid." });
+      }
+      resolvedManagedBy = manager._id;
+    }
+  } else {
+    // Non-staff roles (hr, manager, admin, content_writer): managedBy is
+    // just an audit trail of who onboarded them, not used for any
+    // permission scoping.
+    resolvedManagedBy = requester._id;
+  }
+
   const passwordHash = await bcrypt.hash(password, 12);
   const user = await AdminUser.create({
     name: name.trim(),
     email: email.toLowerCase().trim(),
     passwordHash,
     role,
+    managedBy: resolvedManagedBy,
     encryptedMobile: encryptField(cleanMobile),
     mobileHash,
     officeCode,
@@ -115,11 +179,9 @@ export async function createStaff(req, res) {
 }
 
 // ---------------------------------------------------------------------------
-// ANALYTICS / AUDIT DASHBOARD — aggregate view across every shipment and
-// booking, plus a recent cross-shipment activity feed. Admin-only: this
-// is broader visibility than a single staff member reviewing one
-// shipment's own audit trail (which stays available to all staff via
-// GET /api/track/:trackingId/audit).
+// ANALYTICS / AUDIT DASHBOARD — unchanged. Still admin-only (not part of
+// HR's "staff part only" scope, and not something a manager needs beyond
+// their own shipments/bookings visibility).
 // ---------------------------------------------------------------------------
 
 export async function getAnalytics(req, res) {

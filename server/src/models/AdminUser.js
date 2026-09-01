@@ -22,7 +22,23 @@ const adminUserSchema = new mongoose.Schema(
       unique: true,
     },
     passwordHash: { type: String, required: true },
-    role: { type: String, enum: ["admin", "staff"], default: "staff" },
+    role: {
+      type: String,
+      enum: ["admin", "hr", "manager", "staff", "content_writer"],
+      default: "staff",
+    },
+
+    // Who created/supervises this account. For a "staff" account this IS
+    // the reporting manager (used to scope a manager's own view/creation
+    // rights to only their own people — see config/permissions.js and
+    // adminController.js). For every other role it's kept purely as an
+    // audit trail of who onboarded them.
+    managedBy: { type: mongoose.Schema.Types.ObjectId, ref: "AdminUser", default: null },
+
+    // Account-specific permissions ON TOP OF the role's defaults.
+    // Empty for every account today — reserved for a future "grant this
+    // specific person an extra permission" admin screen.
+    extraPermissions: { type: [String], default: [] },
 
     // Encrypted at rest — see utils/crypto.js encryptField/decryptField.
     // Never store or log the plaintext mobile number anywhere else.

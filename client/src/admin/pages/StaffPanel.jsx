@@ -1,10 +1,29 @@
 import { useEffect, useState } from "react";
-import { listStaffAdmin, createStaffAdmin } from "../../api/client";
+import { listStaffAdmin, createStaffAdmin, listManagersAdmin } from "../../api/client";
+import { useAdminAuth } from "../context/AdminAuthContext";
 import { useAlert } from "../../context/AlertContext";
 import { OFFICES } from "../../config/offices";
 import "./StaffPanel.css";
 
 const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+
+// Mirrors server/src/config/permissions.js CREATION_RULES — for the
+// dropdown's convenience only. The real enforcement is server-side in
+// adminController.createStaff; this just avoids showing someone an
+// option that would get rejected anyway.
+const CREATION_RULES = {
+  admin: ["admin", "hr", "manager", "staff", "content_writer"],
+  hr: ["hr", "manager", "staff", "content_writer"],
+  manager: ["staff"],
+};
+
+const ROLE_LABELS = {
+  admin: "Admin",
+  hr: "HR",
+  manager: "Manager",
+  staff: "Staff",
+  content_writer: "Content Writer",
+};
 
 const emptyForm = {
   name: "",
@@ -15,6 +34,7 @@ const emptyForm = {
   bloodGroup: "",
   password: "",
   role: "staff",
+  managedBy: "",
 };
 
 // Formats a yyyy-mm-dd date-input value as an 8-digit DDMMYYYY string —
@@ -31,18 +51,32 @@ function dobToPassword(dobValue) {
 }
 
 export default function StaffPanel() {
+  const { staff: me } = useAdminAuth();
   const alert = useAlert();
   const [staffList, setStaffList] = useState([]);
+  const [managers, setManagers] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [passwordFromDob, setPasswordFromDob] = useState(false);
   const [status, setStatus] = useState("idle");
+
+  const creatableRoles = CREATION_RULES[me?.role] || [];
+  // A manager creating staff is always auto-assigned to themselves —
+  // never needs (or gets) a manager picker. Admin/HR creating a staff
+  // account must choose one explicitly.
+  const needsManagerPicker = form.role === "staff" && me?.role !== "manager";
 
   const load = () => {
     listStaffAdmin()
       .then(setStaffList)
       .catch((err) => alert.error(err.message || "Could not load staff list."))
       .finally(() => setLoaded(true));
+
+    if (me?.role === "admin" || me?.role === "hr") {
+      listManagersAdmin()
+        .then(setManagers)
+        .catch(() => {}); // non-fatal — the picker just stays empty if this fails
+    }
   };
 
   useEffect(load, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -68,10 +102,17 @@ export default function StaffPanel() {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (needsManagerPicker && !form.managedBy) {
+      alert.error("Please select a manager for this staff account.");
+      return;
+    }
+
     setStatus("loading");
     try {
-      await createStaffAdmin(form);
-      alert.success(`${form.role === "admin" ? "Admin" : "Staff"} account created.`);
+      const payload = { ...form };
+      if (!needsManagerPicker) delete payload.managedBy;
+      await createStaffAdmin(payload);
+      alert.success(`${ROLE_LABELS[form.role]} account created.`);
       setForm(emptyForm);
       setPasswordFromDob(false);
       load();
@@ -85,7 +126,7 @@ export default function StaffPanel() {
   return (
     <div className="staff-panel">
       <div className="admin-panel-head">
-        <h2>Staff Accounts</h2>
+        <h2>Team</h2>
       </div>
 
       <form className="admin-card staff-create-form" onSubmit={submit}>
@@ -171,10 +212,27 @@ export default function StaffPanel() {
           <label className="admin-field">
             <span>Role</span>
             <select value={form.role} onChange={update("role")}>
-              <option value="staff">Staff</option>
-              <option value="admin">Admin</option>
+              {creatableRoles.map((r) => (
+                <option key={r} value={r}>
+                  {ROLE_LABELS[r]}
+                </option>
+              ))}
             </select>
           </label>
+
+          {needsManagerPicker && (
+            <label className="admin-field">
+              <span>Assign to manager</span>
+              <select value={form.managedBy} onChange={update("managedBy")}>
+                <option value="">Select a manager...</option>
+                {managers.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.name} ({m.email})
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
         </div>
 
         {passwordFromDob && (
@@ -191,7 +249,7 @@ export default function StaffPanel() {
 
       <div className="admin-card">
         {!loaded && <p className="admin-empty">Loading...</p>}
-        {loaded && staffList.length === 0 && <p className="admin-empty">No staff accounts yet.</p>}
+        {loaded && staffList.length === 0 && <p className="admin-empty">No team members yet.</p>}
         {staffList.length > 0 && (
           <div className="admin-table-wrap">
             <table className="admin-table">
@@ -204,6 +262,7 @@ export default function StaffPanel() {
                   <th>DOB</th>
                   <th>Blood Group</th>
                   <th>Role</th>
+                  <th>Manager</th>
                   <th>Password</th>
                   <th>Last Login</th>
                   <th>Created</th>
@@ -219,10 +278,17 @@ export default function StaffPanel() {
                     <td>{s.dob ? new Date(s.dob).toLocaleDateString() : "—"}</td>
                     <td>{s.bloodGroup || "—"}</td>
                     <td>
-                      <span className={`admin-badge ${s.role === "admin" ? "admin-badge-converted" : "admin-badge-contacted"}`}>
-                        {s.role}
+                      <span
+                        className={`admin-badge ${
+                          s.role === "admin" || s.role === "hr"
+                            ? "admin-badge-converted"
+                            : "admin-badge-contacted"
+                        }`}
+                      >
+                        {ROLE_LABELS[s.role] || s.role}
                       </span>
                     </td>
+                    <td>{s.role === "staff" && s.managedBy ? s.managedBy.name : "—"}</td>
                     <td>
                       {s.mustChangePassword ? (
                         <span className="admin-badge admin-badge-on_hold">Change required</span>

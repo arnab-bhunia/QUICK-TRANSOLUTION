@@ -2,6 +2,19 @@ import bcrypt from "bcryptjs";
 import AdminUser from "../models/AdminUser.js";
 import { signToken, COOKIE_NAME, cookieOptions } from "../utils/jwt.js";
 import { cacheDel } from "../config/redis.js";
+import { computePermissions } from "../config/permissions.js";
+
+function shape(user) {
+  return {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    managedBy: user.managedBy,
+    permissions: computePermissions(user),
+    mustChangePassword: user.mustChangePassword,
+  };
+}
 
 export async function login(req, res) {
   const { email, password } = req.body;
@@ -28,13 +41,7 @@ export async function login(req, res) {
   const token = signToken({ sub: user._id.toString() });
   res.cookie(COOKIE_NAME, token, cookieOptions);
 
-  res.json({
-    id: user._id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    mustChangePassword: user.mustChangePassword,
-  });
+  res.json(shape(user));
 }
 
 export function logout(req, res) {
@@ -43,13 +50,7 @@ export function logout(req, res) {
 }
 
 export function me(req, res) {
-  res.json({
-    id: req.user._id,
-    name: req.user.name,
-    email: req.user.email,
-    role: req.user.role,
-    mustChangePassword: req.user.mustChangePassword,
-  });
+  res.json(shape(req.user));
 }
 
 // ---------------------------------------------------------------------------

@@ -197,6 +197,10 @@ export function createStaffAdmin(payload) {
   return request("/auth/staff", payload);
 }
 
+export function listManagersAdmin() {
+  return get("/auth/managers");
+}
+
 export function getAnalyticsAdmin() {
   return get("/auth/analytics");
 }
