@@ -9,13 +9,14 @@
  * elements that are NOT position:sticky.
  */
 .security-marquee-sticky {
-  position: sticky;
-  top: var(--navbar-height, 76px);
+  position: absolute;
   left: 0;
   right: 0;
-  z-index: 99;
+  /* Put it immediately below the navbar */
+  top: var(--security-marquee-top);
   height: 35px;
   overflow: hidden;
+  z-index: 99;
   pointer-events: none;
 }
 

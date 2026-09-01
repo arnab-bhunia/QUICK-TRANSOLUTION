@@ -4,26 +4,44 @@
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - var(--header-height, 140px));
-  overflow: hidden;
-  padding: 60px 20px;
+  padding: 60px 12px;
+  background: var(--color-bg);
 }
 
-/* Full-bleed blurred brand-color wash behind the card. filter: blur()
-   on a large, oversized layer (rather than backdrop-filter here) keeps
-   this fast even on pages with lots of content behind it. */
-.client-auth-section::before {
-  content: "";
-  position: absolute;
-  inset: -10%;
-  background: radial-gradient(
-      circle at 20% 20%,
-      var(--color-primary) 0%,
-      transparent 55%
-    ),
-    radial-gradient(circle at 80% 80%, var(--color-signal) 0%, transparent 55%);
-  opacity: 0.28;
-  filter: blur(70px);
-  z-index: 0;
+/* Hidden by default — this IS the "keep mobile as it is now" behavior.
+   There's simply not enough width on a phone screen for a background
+   scene and a readable form side by side, so below 900px we don't try. */
+.client-auth-bg {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .client-auth-section {
+    justify-content: flex-start;
+    background: none;
+  }
+
+  .client-auth-inner {
+    margin: 0 0 0 clamp(8px, 1.5vw, 24px);
+  }
+
+  /* position: absolute (not fixed) — scoped to .client-auth-section
+     itself, which is position: relative, so this image only ever
+     covers the login/signup content area. Using `fixed` here was the
+     bug: fixed positioning paints relative to the whole viewport and,
+     per CSS stacking rules, sits above the non-positioned TopBar/
+     Footer regardless of z-index — which is exactly what was hiding
+     them. */
+  .client-auth-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("/auth-background.webp");
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+  }
 }
 
 .client-auth-inner {
@@ -94,7 +112,8 @@
 .client-auth-field input:focus,
 .client-auth-field textarea:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-signal);
+  box-shadow: 0 0 0 4px rgba(214, 72, 43, 0.15);
 }
 
 .client-auth-submit {

@@ -20,10 +20,10 @@
   color: var(--color-ink-faint);
 }
 
-.dob-picker-trigger:focus,
-.dob-picker-trigger:hover {
+.dob-picker-trigger:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-signal);
+  box-shadow: 0 0 0 4px rgba(214, 72, 43, 0.15);
 }
 
 /*

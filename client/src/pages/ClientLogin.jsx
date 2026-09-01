@@ -42,6 +42,7 @@ export default function ClientLogin() {
 
   return (
     <section className="section client-auth-section">
+      <div className="client-auth-bg" aria-hidden="true" />
       <div className="container client-auth-inner">
         <form className="client-auth-form" onSubmit={submit}>
           <span className="eyebrow">Client Login</span>
