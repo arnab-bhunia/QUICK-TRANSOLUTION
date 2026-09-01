@@ -79,9 +79,17 @@ export async function listStaff(req, res) {
 // creations are auto-assigned to themselves, no picker needed.
 export async function listManagers(req, res) {
   const managers = await AdminUser.find({ role: "manager" })
-    .select("name email")
+    .select("name email officeCode")
     .sort({ name: 1 });
-  res.json(managers.map((m) => ({ id: m._id, name: m.name, email: m.email })));
+  res.json(
+    managers.map((m) => ({
+      id: m._id,
+      name: m.name,
+      email: m.email,
+      officeCode: m.officeCode,
+      officeName: getOfficeName(m.officeCode),
+    }))
+  );
 }
 
 export async function createStaff(req, res) {

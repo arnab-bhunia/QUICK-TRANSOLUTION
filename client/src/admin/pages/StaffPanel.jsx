@@ -75,7 +75,7 @@ export default function StaffPanel() {
     if (me?.role === "admin" || me?.role === "hr") {
       listManagersAdmin()
         .then(setManagers)
-        .catch(() => {}); // non-fatal — the picker just stays empty if this fails
+        .catch((err) => alert.error(err.message || "Could not load managers list."));
     }
   };
 
@@ -220,19 +220,33 @@ export default function StaffPanel() {
             </select>
           </label>
 
-          {needsManagerPicker && (
-            <label className="admin-field">
-              <span>Assign to manager</span>
-              <select value={form.managedBy} onChange={update("managedBy")}>
-                <option value="">Select a manager...</option>
-                {managers.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.name} ({m.email})
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
+          {needsManagerPicker && (() => {
+            const sameOffice = managers.filter((m) => m.officeCode === form.officeCode);
+            const otherOffice = managers.filter((m) => m.officeCode !== form.officeCode);
+            const optionLabel = (m) => `${m.name} (${m.email}) — ${m.officeName || m.officeCode}`;
+            return (
+              <label className="admin-field">
+                <span>Assign to manager</span>
+                <select value={form.managedBy} onChange={update("managedBy")}>
+                  <option value="">Select a manager...</option>
+                  {form.officeCode && sameOffice.length > 0 && (
+                    <optgroup label="This office">
+                      {sameOffice.map((m) => (
+                        <option key={m.id} value={m.id}>{optionLabel(m)}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {otherOffice.length > 0 && (
+                    <optgroup label={form.officeCode ? "Other offices" : "All managers"}>
+                      {otherOffice.map((m) => (
+                        <option key={m.id} value={m.id}>{optionLabel(m)}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                </select>
+              </label>
+            );
+          })()}  
         </div>
 
         {passwordFromDob && (
