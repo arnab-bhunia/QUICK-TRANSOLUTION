@@ -21,7 +21,7 @@
 .footer-col ul {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .footer-col a {
@@ -122,4 +122,20 @@
   .footer-top {
     grid-template-columns: 1fr;
   }
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.footer-contact-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.footer-social a svg {
+  display: block;
+  flex-shrink: 0;
 }

@@ -4,7 +4,7 @@
   width: var(--sidebar-w);
   flex-shrink: 0;
   background: var(--admin-surface-alt);
-  border-right: 1px solid var(--admin-border);
+  border-right: 1px solid var(--admin-chrome-border);
   display: flex;
   flex-direction: column;
   transition: width 0.22s ease;
@@ -43,7 +43,7 @@
   border-radius: 8px;
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--admin-text-muted);
+  color: var(--admin-chrome-text-muted);
   text-align: left;
   white-space: nowrap;
   transition: background 0.15s ease, color 0.15s ease;
@@ -51,23 +51,24 @@
 
 .admin-sidebar-item:hover {
   background: var(--admin-surface-hover);
-  color: var(--admin-text-hover);
+  color: var(--admin-chrome-text-hover);
 }
 
 .admin-sidebar-item.is-active {
-  background: rgba(var(--admin-accent-rgb), 0.14);
+  background: var(--admin-accent);
   color: var(--admin-active-text);
 }
 
-.admin-sidebar-item.is-active .admin-sidebar-icon {
-  color: var(--admin-accent);
+.admin-sidebar-item.is-active .admin-sidebar-icon,
+.admin-sidebar-item.is-active .admin-sidebar-chevron {
+  color: var(--admin-active-text);
 }
 
 .admin-sidebar-icon {
   flex-shrink: 0;
   display: inline-flex;
   font-size: 18px;
-  color: var(--admin-text-faint);
+  color: var(--admin-chrome-text-faint);
 }
 
 .admin-sidebar-label {
@@ -81,13 +82,13 @@
   flex-shrink: 0;
   display: inline-flex;
   font-size: 12px;
-  color: var(--admin-text-dim);
+  color: var(--admin-chrome-text-dim);
   transition: transform 0.18s ease;
 }
 
 .admin-sidebar-chevron.is-open {
   transform: rotate(90deg);
-  color: var(--admin-text-faint);
+  color: var(--admin-chrome-text-faint);
 }
 
 /* Collapsed rail: icons only, everything else shrinks away rather than
@@ -114,7 +115,7 @@
   flex-direction: column;
   gap: 1px;
   margin: 2px 0 6px 41px;
-  border-left: 1px solid var(--admin-border);
+  border-left: 1px solid var(--admin-chrome-border);
   padding-left: 12px;
 }
 
@@ -123,14 +124,14 @@
   border-radius: 6px;
   font-size: 12.8px;
   font-weight: 500;
-  color: var(--admin-text-faint);
+  color: var(--admin-chrome-text-faint);
   text-align: left;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .admin-sidebar-subitem:hover {
   background: var(--admin-surface-hover);
-  color: var(--admin-text-hover);
+  color: var(--admin-chrome-text-hover);
 }
 
 .admin-sidebar-subitem.is-active {
@@ -147,8 +148,8 @@
   margin: 8px;
   padding: 9px;
   border-radius: 8px;
-  color: var(--admin-text-faint);
-  border-top: 1px solid var(--admin-border-soft);
+  color: var(--admin-chrome-text-faint);
+  border-top: 1px solid var(--admin-chrome-border);
   font-size: 12.5px;
   font-weight: 600;
   transition: background 0.15s ease, color 0.15s ease;
@@ -156,7 +157,7 @@
 
 .admin-sidebar-collapse-btn:hover {
   background: var(--admin-surface-hover);
-  color: var(--admin-text-hover);
+  color: var(--admin-chrome-text-hover);
 }
 
 .admin-sidebar-collapse-btn svg {
@@ -211,14 +212,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 14px;
-    border-bottom: 1px solid var(--admin-border);
-    background: var(--admin-surface);
+    border-bottom: 1px solid var(--admin-chrome-border);
+    background: var(--admin-header-bg);
   }
 
   .admin-sidebar-brand {
     font-weight: 700;
     font-size: 14.5px;
-    color: var(--admin-text-bright);
+    color: var(--admin-chrome-text-bright);
   }
 
   .admin-sidebar-close {
@@ -228,13 +229,13 @@
     width: 30px;
     height: 30px;
     border-radius: 7px;
-    color: var(--admin-text-muted);
+    color: var(--admin-chrome-text-muted);
     flex-shrink: 0;
   }
 
   .admin-sidebar-close:hover {
     background: var(--admin-surface-hover);
-    color: var(--admin-text-hover);
+    color: var(--admin-chrome-text-hover);
   }
 
   .admin-sidebar-collapse-btn {

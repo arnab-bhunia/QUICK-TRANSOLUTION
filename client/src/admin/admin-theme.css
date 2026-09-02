@@ -1,40 +1,53 @@
 /* Central color palette for the whole admin/staff portal — sidebar,
    topbar, cards, tables, badges, forms, buttons, the login screen.
    Change a value here and it updates everywhere that references it.
-   This is the one file to touch to re-theme the panel for a
-   different client or color scheme. Loaded once, from AdminApp.jsx,
-   so every admin component can use these vars. */
+   This is the one file to touch to re-theme the panel.
+
+   The panel has two visual zones that need separate token sets:
+     CONTENT — cards, tables, forms, the login panel. Light background,
+       dark text. Plain names: --admin-bg, --admin-text, etc.
+     CHROME — the topbar and sidebar only. Dark navy background, light
+       text. Prefixed names: --admin-chrome-*, plus --admin-header-bg
+       and --admin-surface-alt (the sidebar's own background).
+   Keeping these separate is what lets the topbar/sidebar stay dark
+   navy while every card and table on the page is light — using one
+   shared "text/bg" token for both zones is what breaks that (light
+   text becomes unreadable the moment it sits on a light card, or
+   vice versa), so don't collapse them back into one set later. */
 :root {
-  /* Surfaces */
-  --admin-bg: #0f1720; /* page background */
-  --admin-surface: #161f2b; /* header, cards, login form panel */
-  --admin-surface-alt: #131a24; /* sidebar background */
-  --admin-surface-hover: #1a2330; /* hover state on nav items */
-  --admin-row-hover: #1d2937; /* hover state on clickable table rows */
+  /* ---------- CONTENT (cards, tables, forms, login panel) ---------- */
+  --admin-bg: #e9ecf1; /* page canvas behind the cards */
+  --admin-card-bg: #ffffff; /* cards, login panel */
+  --admin-border: #e1e5eb; /* card/table-header borders */
+  --admin-border-soft: #eef1f4; /* table row dividers, list dividers */
+  --admin-input-border: #d8dee6; /* input/select borders */
+  --admin-row-hover: #f3f5f8; /* hovered table row */
 
-  /* Borders */
-  --admin-border: #263241; /* card / header / sidebar borders */
-  --admin-border-soft: #1e2836; /* table row dividers, subtle rules */
-  --admin-input-border: #2c3948; /* input / select borders */
+  --admin-text: #17233f; /* body text, input values */
+  --admin-text-bright: #0e1830; /* headings, emphasized values */
+  --admin-text-soft: #45536e; /* list values a touch dimmer than bright */
+  --admin-text-muted: #5b6b85; /* secondary text, field labels */
+  --admin-text-faint: #7c8aa3; /* tertiary text, meta, empty-state copy */
 
-  /* Text */
-  --admin-text: #e6eaf0; /* body text, input values */
-  --admin-text-bright: #f4f6f8; /* headings, brand, emphasized values */
-  --admin-text-soft: #cbd5e1; /* list values a touch dimmer than bright */
-  --admin-text-hover: #d7dee7; /* hovered nav/link text */
-  --admin-text-muted: #9aa8ba; /* secondary text, field labels */
-  --admin-text-faint: #7c8b9e; /* tertiary text, meta, empty-state copy */
-  --admin-text-dim: #5c6b7d; /* least prominent — resting chevrons/icons */
+  /* ---------- CHROME (topbar + sidebar only) ---------- */
+  --admin-header-bg: #081c34; /* topbar, and the mobile drawer's own head */
+  --admin-surface-alt: #182e4a; /* sidebar background (lighter navy) */
+  --admin-surface-hover: #21395a; /* hovered nav item background */
+  --admin-chrome-border: rgba(255, 255, 255, 0.1); /* all chrome edges/dividers */
 
-  /* Brand accent — buttons, links, active nav state, focus rings.
-     Kept as an RGB triplet too, so any tint of it (hover glows, active
-     backgrounds) can reuse the same hue at a different alpha instead
-     of needing its own separate hardcoded color. */
-  --admin-accent-rgb: 59, 130, 246; /* #3b82f6 */
+  --admin-chrome-text-bright: #ffffff; /* brand text */
+  --admin-chrome-text-hover: #eaf1fb; /* hovered nav text */
+  --admin-chrome-text-muted: #9db1cc; /* user name, hamburger/close icons */
+  --admin-chrome-text-faint: #7891b3; /* inactive nav icons/labels */
+  --admin-chrome-text-dim: #526480; /* resting chevrons — dimmest tier */
+
+  --admin-active-text: #ffffff; /* text/icon color on the solid active pill */
+
+  /* ---------- Shared (same in both zones) ---------- */
+  --admin-accent-rgb: 220, 90, 67; /* #dc5a43 */
   --admin-accent: rgb(var(--admin-accent-rgb));
-  --admin-accent-hover: #2f6fd9;
-  --admin-on-accent: #fff; /* text/icon color sitting on top of the accent */
-  --admin-active-text: #eaf1fd; /* text color for the active nav item */
+  --admin-accent-hover: #c64a34;
+  --admin-on-accent: #ffffff; /* text/icon color sitting on the accent */
 
   /* Status badges — each an RGB triplet so the tinted background and
      the solid text both derive from one value at different alphas. */

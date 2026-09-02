@@ -23,8 +23,8 @@
   justify-content: space-between;
   gap: 10px;
   padding: 16px 20px;
-  background: var(--admin-surface);
-  border-bottom: 1px solid var(--admin-border);
+  background: var(--admin-header-bg);
+  border-bottom: 1px solid var(--admin-chrome-border);
   flex-shrink: 0;
 }
 
@@ -42,15 +42,15 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  color: var(--admin-text-muted);
+  color: var(--admin-chrome-text-muted);
   flex-shrink: 0;
   font-size: 19px;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .admin-header-menu-btn:hover {
-  background: var(--admin-border-soft);
-  color: var(--admin-text-hover);
+  background: var(--admin-surface-hover);
+  color: var(--admin-chrome-text-hover);
 }
 
 @media (max-width: 860px) {
@@ -62,7 +62,7 @@
 .admin-header-brand {
   font-weight: 700;
   font-size: 15px;
-  color: var(--admin-text-bright);
+  color: var(--admin-chrome-text-bright);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -76,7 +76,7 @@
 
 .admin-header-user {
   font-size: 13.5px;
-  color: var(--admin-text-muted);
+  color: var(--admin-chrome-text-muted);
 }
 
 /* Shared control styles reused by every admin page/panel */
@@ -143,7 +143,7 @@
 }
 
 .admin-card {
-  background: var(--admin-surface);
+  background: var(--admin-card-bg);
   border: 1px solid var(--admin-border);
   border-radius: 10px;
   padding: 22px;

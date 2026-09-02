@@ -40,6 +40,10 @@
 }
 
 @media (max-width: 720px) {
+  .topbar-contact {
+    display: none;
+  }
+  
   .topbar-inner {
     height: auto;
     padding: 8px 0;

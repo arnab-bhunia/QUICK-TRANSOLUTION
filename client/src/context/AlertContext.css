@@ -19,6 +19,8 @@
 }
 
 .alert-item {
+  position: relative;
+  overflow: hidden;
   pointer-events: auto;
   display: flex;
   align-items: flex-start;
@@ -56,6 +58,32 @@
   to {
     opacity: 0;
     transform: translateY(-10px);
+  }
+}
+
+/* Thin countdown strip along the bottom edge — full width when the
+   alert appears, smoothly shrinking to nothing right as it's about to
+   auto-dismiss. Anchored at the left edge (transform-origin) so it
+   reads as time draining away left-to-right, not centered shrinking. */
+.alert-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--alert-color, var(--color-primary));
+  transform-origin: left;
+  animation-name: alert-bar-shrink;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes alert-bar-shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
   }
 }
 

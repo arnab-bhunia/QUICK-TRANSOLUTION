@@ -54,11 +54,11 @@ const ICONS = {
 
 export function AlertProvider({ children }) {
   const [alerts, setAlerts] = useState([]);
-  const timers = useRef({});
+  const timers = useRef({}); // id -> { timeoutId, remaining, startedAt }
   const idRef = useRef(0);
 
   const remove = useCallback((id) => {
-    window.clearTimeout(timers.current[id]);
+    window.clearTimeout(timers.current[id]?.timeoutId);
     delete timers.current[id];
     // Flag as leaving first so the exit animation can play, then drop it
     // from state once the animation has had time to finish.
@@ -72,19 +72,49 @@ export function AlertProvider({ children }) {
     (type, message, opts = {}) => {
       const id = ++idRef.current;
       const duration = opts.duration ?? DEFAULT_DURATION;
-      setAlerts((list) => [...list, { id, type, message, leaving: false }]);
+      setAlerts((list) => [
+        ...list,
+        { id, type, message, leaving: false, paused: false, barDuration: duration, barKey: 0 },
+      ]);
       if (duration > 0) {
-        timers.current[id] = window.setTimeout(() => remove(id), duration);
+        timers.current[id] = {
+          timeoutId: window.setTimeout(() => remove(id), duration),
+          remaining: duration,
+          startedAt: Date.now(),
+        };
       }
       return id;
     },
     [remove]
   );
 
-  const pause = useCallback((id) => window.clearTimeout(timers.current[id]), []);
+  // Pausing on hover stops the dismiss timer *and* freezes the progress
+  // bar at exactly the width it had reached — both run off the same
+  // wall-clock elapsed time, so freezing the CSS animation alongside
+  // clearing the timeout keeps them in sync with no extra bookkeeping.
+  const pause = useCallback((id) => {
+    const t = timers.current[id];
+    if (!t) return;
+    window.clearTimeout(t.timeoutId);
+    t.remaining = Math.max(0, t.remaining - (Date.now() - t.startedAt));
+    setAlerts((list) => list.map((a) => (a.id === id ? { ...a, paused: true } : a)));
+  }, []);
+
+  // Resuming restarts the timer with whatever time was actually left
+  // (not the full original duration), and bumps barKey so the bar
+  // element remounts — restarting its CSS animation cleanly at the
+  // matching shorter duration instead of jumping or snapping back.
   const resume = useCallback(
-    (id, duration = DEFAULT_DURATION) => {
-      timers.current[id] = window.setTimeout(() => remove(id), duration);
+    (id) => {
+      const t = timers.current[id];
+      if (!t) return;
+      t.startedAt = Date.now();
+      t.timeoutId = window.setTimeout(() => remove(id), t.remaining);
+      setAlerts((list) =>
+        list.map((a) =>
+          a.id === id ? { ...a, paused: false, barDuration: t.remaining, barKey: a.barKey + 1 } : a
+        )
+      );
     },
     [remove]
   );
@@ -116,6 +146,16 @@ export function AlertProvider({ children }) {
             <button className="alert-close" aria-label="Dismiss" onClick={() => remove(a.id)}>
               &times;
             </button>
+            {a.barDuration > 0 && (
+              <span
+                key={a.barKey}
+                className="alert-bar"
+                style={{
+                  animationDuration: `${a.barDuration}ms`,
+                  animationPlayState: a.paused ? "paused" : "running",
+                }}
+              />
+            )}
           </div>
         ))}
       </div>
