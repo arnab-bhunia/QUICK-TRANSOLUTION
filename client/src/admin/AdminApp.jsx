@@ -1,8 +1,11 @@
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { AdminAuthProvider, useAdminAuth } from "./context/AdminAuthContext";
+import { AdminLayoutProvider, useAdminLayout } from "./context/AdminLayoutContext";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ChangePassword from "./pages/ChangePassword";
+import { MenuIcon } from "./icons";
+import "./admin-theme.css";
 import "./AdminApp.css";
 
 function RequireStaffAuth({ children }) {
@@ -17,11 +20,22 @@ function RequireStaffAuth({ children }) {
 
 function AdminHeader() {
   const { staff, logout } = useAdminAuth();
+  const { toggleMobile } = useAdminLayout();
   const navigate = useNavigate();
 
   return (
     <header className="admin-header">
-      <span className="admin-header-brand">Quick Transolution — Staff Portal</span>
+      <div className="admin-header-left">
+        <button
+          type="button"
+          className="admin-header-menu-btn"
+          onClick={toggleMobile}
+          aria-label="Open menu"
+        >
+          <MenuIcon />
+        </button>
+        <span className="admin-header-brand">Quick Transolution — Staff Portal</span>
+      </div>
       <div className="admin-header-right">
         <span className="admin-header-user">{staff?.name}</span>
         <button
@@ -38,6 +52,15 @@ function AdminHeader() {
   );
 }
 
+function AdminAuthedLayout() {
+  return (
+    <div className="admin-authed-shell">
+      <AdminHeader />
+      <AdminDashboard />
+    </div>
+  );
+}
+
 function AdminRoutes() {
   return (
     <Routes>
@@ -46,10 +69,9 @@ function AdminRoutes() {
         path="*"
         element={
           <RequireStaffAuth>
-            <>
-              <AdminHeader />
-              <AdminDashboard />
-            </>
+            <AdminLayoutProvider>
+              <AdminAuthedLayout />
+            </AdminLayoutProvider>
           </RequireStaffAuth>
         }
       />

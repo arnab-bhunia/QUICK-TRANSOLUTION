@@ -1,0 +1,247 @@
+.admin-sidebar {
+  --sidebar-w: 224px;
+  --sidebar-w-collapsed: 68px;
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--admin-surface-alt);
+  border-right: 1px solid var(--admin-border);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.22s ease;
+  overflow: hidden;
+}
+
+.admin-sidebar.is-collapsed {
+  width: var(--sidebar-w-collapsed);
+}
+
+.admin-sidebar-mobile-head {
+  display: none;
+}
+
+.admin-sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-sidebar-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 11px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--admin-text-muted);
+  text-align: left;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-sidebar-item:hover {
+  background: var(--admin-surface-hover);
+  color: var(--admin-text-hover);
+}
+
+.admin-sidebar-item.is-active {
+  background: rgba(var(--admin-accent-rgb), 0.14);
+  color: var(--admin-active-text);
+}
+
+.admin-sidebar-item.is-active .admin-sidebar-icon {
+  color: var(--admin-accent);
+}
+
+.admin-sidebar-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  font-size: 18px;
+  color: var(--admin-text-faint);
+}
+
+.admin-sidebar-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-sidebar-chevron {
+  flex-shrink: 0;
+  display: inline-flex;
+  font-size: 12px;
+  color: var(--admin-text-dim);
+  transition: transform 0.18s ease;
+}
+
+.admin-sidebar-chevron.is-open {
+  transform: rotate(90deg);
+  color: var(--admin-text-faint);
+}
+
+/* Collapsed rail: icons only, everything else shrinks away rather than
+   wrapping or overflowing. The chevron/subnav make no sense with no
+   visible label to expand, so they simply never render collapsed
+   (handled in JS truth — see AdminSidebar.jsx isActive+subTabs gating
+   still applies, this just hides the leftover row width here). */
+.admin-sidebar.is-collapsed .admin-sidebar-label {
+  display: none;
+}
+
+.admin-sidebar.is-collapsed .admin-sidebar-chevron,
+.admin-sidebar.is-collapsed .admin-sidebar-subnav {
+  display: none;
+}
+
+.admin-sidebar.is-collapsed .admin-sidebar-item {
+  justify-content: center;
+  gap: 0;
+}
+
+.admin-sidebar-subnav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 2px 0 6px 41px;
+  border-left: 1px solid var(--admin-border);
+  padding-left: 12px;
+}
+
+.admin-sidebar-subitem {
+  padding: 7px 8px;
+  border-radius: 6px;
+  font-size: 12.8px;
+  font-weight: 500;
+  color: var(--admin-text-faint);
+  text-align: left;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-sidebar-subitem:hover {
+  background: var(--admin-surface-hover);
+  color: var(--admin-text-hover);
+}
+
+.admin-sidebar-subitem.is-active {
+  color: var(--admin-active-text);
+  background: rgba(var(--admin-accent-rgb), 0.1);
+}
+
+.admin-sidebar-collapse-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px;
+  padding: 9px;
+  border-radius: 8px;
+  color: var(--admin-text-faint);
+  border-top: 1px solid var(--admin-border-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-sidebar-collapse-btn:hover {
+  background: var(--admin-surface-hover);
+  color: var(--admin-text-hover);
+}
+
+.admin-sidebar-collapse-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.admin-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--admin-backdrop);
+  z-index: 55;
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 264px !important;
+    max-width: 82vw;
+    transform: translateX(-100%);
+    transition: transform 0.24s ease;
+    z-index: 60;
+    box-shadow: 24px 0 60px var(--admin-drawer-shadow);
+  }
+
+  .admin-sidebar.is-mobile-open {
+    transform: translateX(0);
+  }
+
+  /* The desktop "collapsed rail" concept doesn't apply once the sidebar
+     is a drawer — always render it fully expanded on mobile. */
+  .admin-sidebar.is-collapsed .admin-sidebar-label,
+  .admin-sidebar.is-collapsed .admin-sidebar-chevron {
+    display: initial;
+  }
+
+  .admin-sidebar.is-collapsed .admin-sidebar-subnav {
+    display: flex;
+  }
+
+  .admin-sidebar.is-collapsed .admin-sidebar-item {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .admin-sidebar-mobile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 14px;
+    border-bottom: 1px solid var(--admin-border);
+    background: var(--admin-surface);
+  }
+
+  .admin-sidebar-brand {
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--admin-text-bright);
+  }
+
+  .admin-sidebar-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    color: var(--admin-text-muted);
+    flex-shrink: 0;
+  }
+
+  .admin-sidebar-close:hover {
+    background: var(--admin-surface-hover);
+    color: var(--admin-text-hover);
+  }
+
+  .admin-sidebar-collapse-btn {
+    display: none;
+  }
+
+  .admin-sidebar-backdrop {
+    display: block;
+  }
+}

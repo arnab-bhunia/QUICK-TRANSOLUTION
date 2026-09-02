@@ -50,7 +50,7 @@ function dobToPassword(dobValue) {
   return `${day}${month}${year}`;
 }
 
-export default function StaffPanel() {
+export default function StaffPanel({ view = "directory" }) {
   const { staff: me } = useAdminAuth();
   const alert = useAlert();
   const [staffList, setStaffList] = useState([]);
@@ -75,7 +75,10 @@ export default function StaffPanel() {
     if (me?.role === "admin" || me?.role === "hr") {
       listManagersAdmin()
         .then(setManagers)
-        .catch((err) => alert.error(err.message || "Could not load managers list."));
+        .catch((err) => {
+          console.error("Failed to load managers list:", err);
+          alert.error("Could not load managers list. Please try again.");
+        });
     }
   };
 
@@ -126,10 +129,11 @@ export default function StaffPanel() {
   return (
     <div className="staff-panel">
       <div className="admin-panel-head">
-        <h2>Team</h2>
+        <h2>{view === "add" ? "Add Team Member" : "Team Directory"}</h2>
       </div>
 
-      <form className="admin-card staff-create-form" onSubmit={submit}>
+      {view === "add" && (
+        <form className="admin-card staff-create-form" onSubmit={submit}>
         <div className="staff-create-grid">
           <label className="admin-field">
             <span>Full name</span>
@@ -232,21 +236,25 @@ export default function StaffPanel() {
                   {form.officeCode && sameOffice.length > 0 && (
                     <optgroup label="This office">
                       {sameOffice.map((m) => (
-                        <option key={m.id} value={m.id}>{optionLabel(m)}</option>
+                        <option key={m.id} value={m.id}>
+                          {optionLabel(m)}
+                        </option>
                       ))}
                     </optgroup>
                   )}
                   {otherOffice.length > 0 && (
                     <optgroup label={form.officeCode ? "Other offices" : "All managers"}>
                       {otherOffice.map((m) => (
-                        <option key={m.id} value={m.id}>{optionLabel(m)}</option>
+                        <option key={m.id} value={m.id}>
+                          {optionLabel(m)}
+                        </option>
                       ))}
                     </optgroup>
                   )}
                 </select>
               </label>
             );
-          })()}  
+          })()}
         </div>
 
         {passwordFromDob && (
@@ -260,7 +268,9 @@ export default function StaffPanel() {
           {status === "loading" ? "Creating..." : "Create Account"}
         </button>
       </form>
+      )}
 
+      {view === "directory" && (
       <div className="admin-card">
         {!loaded && <p className="admin-empty">Loading...</p>}
         {loaded && staffList.length === 0 && <p className="admin-empty">No team members yet.</p>}
@@ -319,6 +329,7 @@ export default function StaffPanel() {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 }

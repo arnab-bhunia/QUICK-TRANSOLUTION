@@ -1,0 +1,49 @@
+/* Central color palette for the whole admin/staff portal — sidebar,
+   topbar, cards, tables, badges, forms, buttons, the login screen.
+   Change a value here and it updates everywhere that references it.
+   This is the one file to touch to re-theme the panel for a
+   different client or color scheme. Loaded once, from AdminApp.jsx,
+   so every admin component can use these vars. */
+:root {
+  /* Surfaces */
+  --admin-bg: #0f1720; /* page background */
+  --admin-surface: #161f2b; /* header, cards, login form panel */
+  --admin-surface-alt: #131a24; /* sidebar background */
+  --admin-surface-hover: #1a2330; /* hover state on nav items */
+  --admin-row-hover: #1d2937; /* hover state on clickable table rows */
+
+  /* Borders */
+  --admin-border: #263241; /* card / header / sidebar borders */
+  --admin-border-soft: #1e2836; /* table row dividers, subtle rules */
+  --admin-input-border: #2c3948; /* input / select borders */
+
+  /* Text */
+  --admin-text: #e6eaf0; /* body text, input values */
+  --admin-text-bright: #f4f6f8; /* headings, brand, emphasized values */
+  --admin-text-soft: #cbd5e1; /* list values a touch dimmer than bright */
+  --admin-text-hover: #d7dee7; /* hovered nav/link text */
+  --admin-text-muted: #9aa8ba; /* secondary text, field labels */
+  --admin-text-faint: #7c8b9e; /* tertiary text, meta, empty-state copy */
+  --admin-text-dim: #5c6b7d; /* least prominent — resting chevrons/icons */
+
+  /* Brand accent — buttons, links, active nav state, focus rings.
+     Kept as an RGB triplet too, so any tint of it (hover glows, active
+     backgrounds) can reuse the same hue at a different alpha instead
+     of needing its own separate hardcoded color. */
+  --admin-accent-rgb: 59, 130, 246; /* #3b82f6 */
+  --admin-accent: rgb(var(--admin-accent-rgb));
+  --admin-accent-hover: #2f6fd9;
+  --admin-on-accent: #fff; /* text/icon color sitting on top of the accent */
+  --admin-active-text: #eaf1fd; /* text color for the active nav item */
+
+  /* Status badges — each an RGB triplet so the tinted background and
+     the solid text both derive from one value at different alphas. */
+  --status-amber-rgb: 230, 160, 30; /* booked / pending / security note */
+  --status-purple-rgb: 139, 92, 246; /* in transit */
+  --status-cyan-rgb: 6, 182, 212; /* out for delivery */
+  --status-green-rgb: 34, 197, 94; /* delivered / converted */
+  --status-red-rgb: 239, 68, 68; /* on hold / rejected */
+
+  --admin-backdrop: rgba(6, 10, 15, 0.6); /* mobile sidebar overlay */
+  --admin-drawer-shadow: rgba(0, 0, 0, 0.5); /* mobile sidebar drop shadow */
+}

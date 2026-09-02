@@ -8,11 +8,11 @@
 .admin-panel-head h2,
 .admin-panel-head h3 {
   font-size: 18px;
-  color: #f4f6f8;
+  color: var(--admin-text-bright);
 }
 
 .admin-empty {
-  color: #7c8b9e;
+  color: var(--admin-text-faint);
   font-size: 13.5px;
   padding: 8px 0;
 }
@@ -32,7 +32,7 @@
 }
 
 .admin-row-clickable:hover {
-  background: #1d2937;
+  background: var(--admin-row-hover);
 }
 
 .shipment-detail {
@@ -56,12 +56,12 @@
   gap: 10px;
   margin: 8px 0 20px;
   font-size: 13.5px;
-  color: #9aa8ba;
+  color: var(--admin-text-muted);
 }
 
 .shipment-audit-heading {
   font-size: 14px;
-  color: #f4f6f8;
+  color: var(--admin-text-bright);
   margin-bottom: 10px;
 }
 
@@ -70,7 +70,7 @@
   align-items: center;
   gap: 10px;
   padding: 8px 0;
-  border-bottom: 1px solid #1e2836;
+  border-bottom: 1px solid var(--admin-border-soft);
   font-size: 12.5px;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .shipment-audit-meta {
-  color: #7c8b9e;
+  color: var(--admin-text-faint);
 }
 
 @media (max-width: 720px) {
