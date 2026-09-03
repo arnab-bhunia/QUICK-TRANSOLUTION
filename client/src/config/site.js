@@ -189,13 +189,14 @@ whyUs: [
 
 
   sectors: [
-    "FMCG",
-    "Pharmaceutical & Medical Equipment",
-    "Automobiles",
-    "Packaging",
-    "Publishing",
-    "Infrastructure & Engineering",
-    "Telecom",
+  "FMCG",
+  "Pharma & Healthcare",
+  "Automotive",
+  "Packaging",
+  "Publishing & Media",
+  "Infrastructure",
+  "Engineering",
+  "Telecom",
   ],
 
   footerLinks: {
