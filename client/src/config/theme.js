@@ -20,9 +20,9 @@ export const theme = {
     signalDark: "#C23E24",
 
     // Danger (destructive actions — logout, delete, remove)
-danger: "#C0392B",        // deep red — logout / destructive actions
-dangerDark: "#A93226",    // darker hover / pressed state
-dangerLight: "#E74C3C",   // lighter danger state / subtle indicators
+    danger: "#C0392B",        // deep red — logout / destructive actions
+    dangerDark: "#A93226",    // darker hover / pressed state
+    dangerLight: "#E74C3C",   // lighter danger state / subtle indicators
 
     // Neutrals
     // bg: "#F4F6F5",            // page background (cool paper, not warm cream)
@@ -33,7 +33,6 @@ dangerLight: "#E74C3C",   // lighter danger state / subtle indicators
     ink: "#132B3A",           // primary text
     inkSoft: "#4B6272",       // secondary text
     inkFaint: "#8299A6",      // captions, placeholders
-
     white: "#FFFFFF",
   },
 
@@ -50,10 +49,12 @@ dangerLight: "#E74C3C",   // lighter danger state / subtle indicators
     lg: "16px",
   },
 
-  shadow: {
-    card: "0 2px 16px rgba(11, 59, 96, 0.08)",
-    lifted: "0 12px 32px rgba(11, 59, 96, 0.16)",
-  },
+shadow: {
+  card: "0 2px 16px rgba(11, 59, 96, 0.08)",
+  lifted: "0 12px 32px rgba(11, 59, 96, 0.16)",
+  minimal: "0 1px 2px rgba(60, 64, 67, 0.30), 0 1px 3px rgba(60, 64, 67, 0.15)",
+  minimalHover: "0 2px 3px rgba(60, 64, 67, 0.32), 0 2px 5px rgba(60, 64, 67, 0.16)"
+},
 };
 
 // Injects the palette as CSS custom properties so plain CSS files can

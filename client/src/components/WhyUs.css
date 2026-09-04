@@ -123,7 +123,13 @@
   gap: 18px;
   align-self: start;
   animation: content-fade-in 0.45s ease;
-}
+  background-image: url("/quick-graphic.svg");
+  opacity: 0.7;
+  background-size: contain;
+  background-position: center;
+  background-color: var(--color-bg);
+} 
+/* global background graphic for quick-transolution is quick-graphic */
 
 .why-us-content h3 {
   font-size: 28px;

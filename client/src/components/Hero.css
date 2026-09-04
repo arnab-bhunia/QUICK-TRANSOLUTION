@@ -128,8 +128,9 @@
     right: 0;
     height: 55%;
     z-index: 0;
-    /* background-image: url("/hero-mobile-bg.png"); */
-    background-size: cover;
+    background-image: url("/quick-graphic.svg");
+    opacity: 0.8;
+    background-size: contain;
     background-position: center;
     background-color: var(--color-bg);
   }
