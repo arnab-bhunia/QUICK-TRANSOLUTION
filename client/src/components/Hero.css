@@ -129,7 +129,7 @@
     height: 55%;
     z-index: 0;
     background-image: url("/quick-graphic.svg");
-    opacity: 0.8;
+    opacity: 0.6;
     background-size: contain;
     background-position: center;
     background-color: var(--color-bg);

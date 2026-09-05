@@ -127,10 +127,10 @@
 
 .track-form {
   background: var(--color-bg-alt);
-  border: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   padding: 32px;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-minimal);
 }
 
 .track-field {
@@ -423,7 +423,6 @@
 } 
 .track-form-section {
   padding-top: 0px;
-
 }
 
 @media (max-width: 820px) {
