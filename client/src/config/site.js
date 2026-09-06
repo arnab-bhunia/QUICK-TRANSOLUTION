@@ -32,13 +32,21 @@ export const site = {
     { label: "LinkedIn", href: "#" },
   ],
 
-  nav: [
+    nav: [
     { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Why Us", href: "#why-us" },
-    { label: "Clients", href: "#clients" },
-    { label: "Sectors", href: "#sectors" },
+    {
+      label: "Company",
+      href: "#about",
+      submenu: [
+        { label: "Company Profile", href: "#about" },
+        { label: "Why Choose Us", href: "#why-us" },
+        { label: "Client Testimonials", href: "#clients" },
+        { label: "CSR & Sustainability", href: "#" },
+        { label: "Industries We Serve", href: "#sectors" },
+      ],
+    },
+    { label: "Solutions", href: "#services" },
+    { label: "Resources", href: "/blogs"},
     { label: "Track Shipment", href: "/track" },
     { label: "Contact", href: "#contact" },
   ],
@@ -208,7 +216,7 @@ whyUs: [
     quick: [
       { label: "Apply for a Franchise", href: "#" },
       { label: "Sales Enquiry", href: "#contact" },
-      { label: "Blogs", href: "#" },
+      { label: "Blogs", href: "/blogs" },
     ],
     policies: [
       { label: "FAQs", href: "/faqs" },

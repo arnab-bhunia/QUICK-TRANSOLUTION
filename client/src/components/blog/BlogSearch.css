@@ -1,0 +1,29 @@
+.blog-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-width: 420px;
+}
+
+.blog-search input {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: var(--radius-sm, 8px);
+  border: 1px solid var(--color-line, #DDE3E1);
+  font-size: 14.5px;
+}
+
+.blog-search input:focus {
+  outline: none;
+  border-color: var(--color-signal, #D6482B);
+  box-shadow: 0 0 0 4px rgba(214, 72, 43, 0.15);
+}
+
+.blog-search button {
+  padding: 11px 20px;
+  border-radius: var(--radius-sm, 8px);
+  background: var(--color-primary, #0B3B60);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}

@@ -18,6 +18,8 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import TermsConditions from "../pages/TermsConditions";
 import Disclaimer from "../pages/Disclaimer";
 import FAQPage from "../pages/FAQPage";
+import Blogs from "../pages/Blogs";
+import BlogDetails from "../pages/BlogDetails";
 import CookieConsentBanner from "../components/CookieConsentBanner";
 import { useMeasuredHeight } from "../hooks/useMeasuredHeight";
 
@@ -36,34 +38,77 @@ export default function SiteLayout() {
     <>
       <div ref={headerRef}>
         <TopBar />
+
         <div ref={navbarRef}>
           <Navbar onOpenQuote={() => setQuoteOpen(true)} />
         </div>
+
         <SecurityMarquee />
       </div>
+
       <main>
         <Routes>
-          <Route path="/" element={<Home onOpenQuote={() => setQuoteOpen(true)} />} />
+          {/* Existing routes */}
+          <Route
+            path="/"
+            element={<Home onOpenQuote={() => setQuoteOpen(true)} />}
+          />
+
           <Route path="/track" element={<TrackPage />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+
+          <Route
+            path="/services/:slug"
+            element={<ServiceDetailPage />}
+          />
+
+          {/* Client authentication */}
           <Route path="/login" element={<ClientLogin />} />
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/verify-email" element={<ClientVerifyOtp />} />
           <Route path="/dashboard" element={<ClientDashboard />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-conditions" element={<TermsConditions />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
+
+          {/* Legal / information pages */}
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicy />}
+          />
+
+          <Route
+            path="/terms-conditions"
+            element={<TermsConditions />}
+          />
+
+          <Route
+            path="/disclaimer"
+            element={<Disclaimer />}
+          />
+
           <Route path="/faqs" element={<FAQPage />} />
+
+          {/* Blog */}
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
         </Routes>
       </main>
+
       <Footer />
+
       <StickyContact
         onOpenQuote={() => setQuoteOpen(true)}
         onToggleChat={() => setChatOpen((v) => !v)}
         chatOpen={chatOpen}
       />
-      <ChatBot open={chatOpen} onClose={() => setChatOpen(false)} />
-      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
+
+      <ChatBot
+        open={chatOpen}
+        onClose={() => setChatOpen(false)}
+      />
+
+      <QuoteModal
+        open={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+      />
+
       <CookieConsentBanner />
     </>
   );

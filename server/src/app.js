@@ -14,9 +14,13 @@ import trackRoutes from "./routes/track.js";
 import clientRoutes from "./routes/client.js";
 import consentRoutes from "./routes/consent.js";
 import serviceEnquiryRoutes from "./routes/serviceEnquiries.js";
+import blogRoutes from "./routes/blogRoutes.js";
+import adminBlogRoutes from "./routes/adminBlogRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import { requireDbReady } from "./middleware/dbReady.js";
 import { generalLimiter } from "./middleware/rateLimiters.js";
+import { getSitemap } from "./controllers/sitemapController.js";
 
 const app = express();
 
@@ -72,6 +76,11 @@ app.use("/api/track", trackRoutes);
 app.use("/api/client", clientRoutes);
 app.use("/api/consent", consentRoutes);
 app.use("/api/service-enquiries", serviceEnquiryRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/admin/blogs", adminBlogRoutes);
+app.use("/api/admin/uploads", uploadRoutes);
+
+app.get("/api/sitemap.xml", getSitemap);
 
 app.use(notFound);
 app.use(errorHandler);

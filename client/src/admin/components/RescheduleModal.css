@@ -1,0 +1,38 @@
+.reschedule-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.reschedule-modal {
+  width: 100%;
+  max-width: 380px;
+}
+
+.reschedule-modal h3 {
+  margin: 0 0 8px;
+}
+
+.reschedule-modal-current {
+  color: #9aa8ba;
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+
+.reschedule-modal-error {
+  color: var(--color-danger, #c0392b);
+  font-size: 12.5px;
+  margin: 4px 0 0;
+}
+
+.reschedule-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}

@@ -72,12 +72,23 @@ export function CloseIcon(props) {
   );
 }
 
-// Points right by default; callers rotate it via inline style/CSS class
-// for the other directions (collapse toggle, sub-nav expand indicator).
 export function ChevronIcon(props) {
   return (
     <svg {...base} {...props}>
       <path d="M7.5 4.5 13 10l-5.5 5.5" />
+    </svg>
+  );
+}
+
+export function BlogIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="2.5" width="14" height="15" rx="2" />
+      <rect x="5.5" y="5" width="9" height="5" rx="1" />
+      <circle cx="8" cy="7" r="1" />
+      <path d="m6.5 9 2-2 2 2 1.5-1.5 2 2" />
+      <path d="M5.5 13h9" />
+      <path d="M5.5 15h6" />
     </svg>
   );
 }

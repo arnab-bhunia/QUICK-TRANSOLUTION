@@ -8,6 +8,7 @@ function ServiceCard({ service, index }) {
   return (
     <article
       ref={ref}
+      id={`service-${service.id}`}
       className={`service-card ${visible ? "is-in" : ""}`}
       style={{ transitionDelay: `${index * 70}ms` }}
     >

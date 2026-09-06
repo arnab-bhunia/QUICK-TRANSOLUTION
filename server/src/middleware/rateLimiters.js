@@ -10,6 +10,7 @@ import redisClient from "../config/redis.js";
 // same as before) whenever Redis isn't configured — e.g. local dev.
 function makeStore(prefix) {
   if (!redisClient) return undefined;
+
   return new RedisStore({
     prefix: `rl:${prefix}:`,
     sendCommand: (...args) => redisClient.call(...args),
@@ -29,7 +30,9 @@ export const loginLimiter = rateLimit({
   limit: 5,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { message: "Too many login attempts. Please try again later." },
+  message: {
+    message: "Too many login attempts. Please try again later.",
+  },
   store: makeStore("login"),
 });
 
@@ -38,7 +41,9 @@ export const trackLookupLimiter = rateLimit({
   limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { message: "Too many tracking attempts. Please try again in a few minutes." },
+  message: {
+    message: "Too many tracking attempts. Please try again in a few minutes.",
+  },
   store: makeStore("track"),
 });
 
@@ -47,7 +52,10 @@ export const signupLimiter = rateLimit({
   limit: 8,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { message: "Too many accounts created from this location. Please try again later." },
+  message: {
+    message:
+      "Too many accounts created from this location. Please try again later.",
+  },
   store: makeStore("signup"),
 });
 
@@ -56,7 +64,9 @@ export const enquiryLimiter = rateLimit({
   limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { message: "Too many enquiries submitted. Please try again later." },
+  message: {
+    message: "Too many enquiries submitted. Please try again later.",
+  },
   store: makeStore("enquiry"),
 });
 
@@ -65,6 +75,20 @@ export const otpLimiter = rateLimit({
   limit: 8,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { message: "Too many attempts. Please try again later." },
+  message: {
+    message: "Too many attempts. Please try again later.",
+  },
   store: makeStore("otp"),
+});
+
+// Blog image/PDF upload rate limiter
+export const uploadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    message: "Too many upload attempts. Please try again later.",
+  },
+  store: makeStore("upload"),
 });

@@ -6,6 +6,8 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  /* box-shadow: var(--shadow-minimal); */
+  border-bottom: 1px solid var(--color-line);
 }
 
 .navbar--scrolled {
@@ -75,6 +77,103 @@
 
 .navbar-links a:hover::after {
   width: 100%;
+}
+
+.navbar-item {
+  position: relative;
+}
+
+.navbar-item-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navbar-caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s ease;
+  opacity: 0.7;
+}
+
+.navbar-item.has-submenu:hover .navbar-caret {
+  transform: rotate(225deg) translateY(-1px);
+}
+
+/* Sits flush against the parent (top: 100%, no gap) so the hoverable
+   area is contiguous — the visual gap is padding-top *inside* this box,
+   not a real gap between two separate elements, so moving the pointer
+   straight down from the label into the panel never drops :hover. */
+.navbar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 12px;
+  min-width: 210px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.navbar-item.has-submenu.is-open .navbar-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.18s ease, visibility 0s linear 0s;
+}
+
+.navbar-item.has-submenu.is-open .navbar-dropdown-inner {
+  transform: translateY(0);
+}
+
+.navbar-dropdown-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-minimal);
+  transform: translateY(-6px);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar-item.has-submenu.is-open .navbar-dropdown-inner {
+  transform: translateY(0);
+}
+
+.navbar-links a.navbar-dropdown-link {
+  position: static;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--color-ink-soft);
+  transition: background 0.15s ease, color 0.15s ease;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+}
+.navbar-links a.navbar-dropdown-link:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+.navbar-links a.navbar-dropdown-link:first-child {
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+}
+
+.navbar-links a.navbar-dropdown-link::after {
+  display: none;
+}
+
+.navbar-links a.navbar-dropdown-link:hover {
+  background: var(--color-ink-soft);
+  color: var(--color-bg-alt);
 }
 
 .navbar-burger {
@@ -149,7 +248,8 @@
   padding: 8px 24px;
 }
 
-.navbar-mobile-links a {
+.navbar-mobile-links a,
+.navbar-mobile-links button {
   padding: 13px 0;
   border-bottom: 1px solid var(--color-line);
   font-weight: 500;
@@ -159,9 +259,69 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-mobile.is-open .navbar-mobile-links a {
+.navbar-mobile.is-open .navbar-mobile-links a,
+.navbar-mobile.is-open .navbar-mobile-links button {
   opacity: 1;
   transform: translateY(0);
+}
+
+.navbar-mobile-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  background: none;
+}
+
+.navbar-mobile-caret {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-right: 1.8px solid var(--color-ink-faint);
+  border-bottom: 1.8px solid var(--color-ink-faint);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.navbar-mobile-parent.is-open .navbar-mobile-caret {
+  transform: rotate(-135deg);
+}
+
+/* CSS-only smooth accordion: animating an `fr` track on
+   grid-template-rows gives a real height transition without measuring
+   pixel heights in JS, and stays cheap since each submenu is only a
+   handful of items (unlike the whole-menu panel above, which needed
+   the transform/opacity treatment instead — see the note on
+   .navbar-mobile). */
+.navbar-mobile-submenu-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.navbar-mobile-submenu-wrap.is-open {
+  grid-template-rows: 1fr;
+}
+
+.navbar-mobile-submenu-inner {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-left: 14px;
+}
+
+.navbar-mobile-links a.navbar-mobile-sublink {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--color-line);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+.navbar-mobile-submenu-inner .navbar-mobile-sublink:last-child {
+  border-bottom: none;
 }
 
 .navbar-mobile-cta {
