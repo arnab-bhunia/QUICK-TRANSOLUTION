@@ -47,7 +47,6 @@ export const site = {
     },
     { label: "Solutions", href: "#services" },
     { label: "Resources", href: "/blogs"},
-    { label: "Track Shipment", href: "/track" },
     { label: "Contact", href: "#contact" },
   ],
 

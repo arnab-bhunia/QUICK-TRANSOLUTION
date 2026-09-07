@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { site } from "../config/site";
 import { serviceDetails } from "../config/serviceDetails";
 import { slugify } from "../utils/slugify";
@@ -19,9 +20,6 @@ import "./Navbar.css";
 // `if (!service || !detail) return <Navigate to="/" />`). Add a new
 // service to serviceDetails.js later and its submenu link upgrades to
 // the detail page automatically, no change needed here.
-//
-// Sectors have no per-item detail page, so those still jump to the
-// specific chip on the page (see the anchor added in Sectors.jsx).
 function buildNavItems() {
   return site.nav.map((item) => {
     if (item.label === "Solutions") {
@@ -33,22 +31,39 @@ function buildNavItems() {
         })),
       };
     }
-    // if (item.label === "Sectors") {
-    //   return {
-    //     ...item,
-    //     submenu: site.sectors.map((s) => ({ label: s, href: `#sector-${slugify(s)}` })),
-    //   };
-    // }
     return item;
   });
 }
 
 export default function Navbar({ onOpenQuote }) {
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null); // mobile: which parent's submenu is expanded
 
   const navItems = buildNavItems();
+
+  const isNavItemActive = (item) => {
+  if (!item.submenu) {
+    if (item.href === "#home") {
+      return location.pathname === "/" && location.hash === "";
+    }
+
+    if (item.href.startsWith("#")) {
+      return location.pathname === "/" && location.hash === item.href;
+    }
+
+    return location.pathname === item.href;
+  }
+
+  return item.submenu.some((sub) => {
+    if (sub.href.startsWith("#")) {
+      return location.pathname === "/" && location.hash === sub.href;
+    }
+
+    return location.pathname === sub.href;
+  });
+};
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -89,13 +104,15 @@ export default function Navbar({ onOpenQuote }) {
         onMouseLeave={() => setOpenSubmenu(null)}
       >
         {/* Parent navigation link */}
-        <SmartLink
-          href={item.href}
-          className="navbar-item-label"
-        >
-          {item.label}
-          <span className="navbar-caret" aria-hidden="true" />
-        </SmartLink>
+<SmartLink
+  href={item.href}
+  className={`navbar-item-label ${
+    isNavItemActive(item) ? "active" : ""
+  }`}
+>
+  {item.label}
+  <span className="navbar-caret" aria-hidden="true" />
+</SmartLink>
 
         {/* Dropdown */}
         <div className="navbar-dropdown">
@@ -118,12 +135,13 @@ export default function Navbar({ onOpenQuote }) {
       </div>
     ) : (
       /* Normal navigation link */
-      <SmartLink
-        key={item.href}
-        href={item.href}
-      >
-        {item.label}
-      </SmartLink>
+<SmartLink
+  key={item.href}
+  href={item.href}
+  className={isNavItemActive(item) ? "active" : ""}
+>
+  {item.label}
+</SmartLink>
     )
   )}
 </nav>

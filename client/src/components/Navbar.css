@@ -6,7 +6,6 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  /* box-shadow: var(--shadow-minimal); */
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -48,7 +47,7 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 10px;
   font-size: 14.5px;
   font-weight: 500;
   color: var(--color-ink-soft);
@@ -56,27 +55,33 @@
 
 .navbar-links a {
   position: relative;
-  padding: 6px 0;
-  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: var(--color-ink-soft);
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.navbar-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-signal);
-  transition: width 0.25s ease;
-}
-
-.navbar-links a:hover {
+/* Minimal hover — no underline */
+.navbar-links a:hover,
+.navbar-item.has-submenu:hover > .navbar-item-label {
   color: var(--color-primary);
+  background: var(--color-line);
 }
 
-.navbar-links a:hover::after {
-  width: 100%;
+/* Remove underline completely */
+.navbar-links a::after {
+  display: none;
+}
+
+.navbar-links a.active {
+  color: var(--color-primary);
+  background: var(--color-line);
 }
 
 .navbar-item {
@@ -156,6 +161,7 @@
   transition: background 0.15s ease, color 0.15s ease;
   border-bottom: 1px solid var(--color-line);
   text-align: left;
+  border-radius: 0;
 }
 .navbar-links a.navbar-dropdown-link:last-child {
   border-bottom: none;
@@ -172,8 +178,8 @@
 }
 
 .navbar-links a.navbar-dropdown-link:hover {
-  background: var(--color-ink-soft);
-  color: var(--color-bg-alt);
+  background: var(--color-line);
+  color: var(--color-primary);
 }
 
 .navbar-burger {

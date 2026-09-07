@@ -1,18 +1,7 @@
-
-/*
- * IMPORTANT: `position: sticky` and a `transform`-based animation must never
- * live on the same element. A transform creates a new containing block,
- * which makes several mobile browsers (notably iOS Safari) miscalculate or
- * "freeze" sticky offsets mid-scroll — this was the cause of the marquee
- * getting stuck. Fix: sticky positioning lives on an outer wrapper that is
- * never animated; the show/hide + scrolling-text animations live on inner
- * elements that are NOT position:sticky.
- */
 .security-marquee-sticky {
   position: absolute;
   left: 0;
   right: 0;
-  /* Put it immediately below the navbar */
   top: var(--security-marquee-top);
   height: 35px;
   overflow: hidden;
@@ -26,119 +15,79 @@
   /* background: linear-gradient(90deg, var(--color-signal), #ef6438); */
   background: radial-gradient(circle, #ef6438, var(--color-signal));
   box-shadow: 0 8px 20px rgba(226, 74, 38, 0.12);
-  animation: marqueeBar 22s ease-in-out infinite;
+  animation: marqueeBar 35s ease-in-out infinite;
   will-change: transform;
 }
 
 .security-marquee-track {
-
   position: relative;
-
   top: 50%;
   transform: translateY(-50%);
-
   white-space: nowrap;
-
   display: flex;
   align-items: center;
   gap: 12px;
-
   padding-left: 100%;
-
   color: #fff;
-
   font-size: .9rem;
   font-weight: 600;
   letter-spacing: .2px;
-
-  animation: tickerMove 22s linear infinite;
+  animation: tickerMove 35s linear infinite;
   will-change: transform;
-
 }
 
 
 @keyframes marqueeBar{
 
     0%{
-
         transform:translateY(-100%);
         opacity:0;
-
     }
-
     4%{
-
         transform:translateY(0);
         opacity:1;
-
     }
-
     72%{
-
         transform:translateY(0);
         opacity:1;
-
     }
 
     76%{
-
         transform:translateY(-100%);
         opacity:0;
-
     }
-
     100%{
-
         transform:translateY(-100%);
         opacity:0;
-
     }
-
 }
 
 @keyframes tickerMove{
-
     0%{
-
         transform:
         translateY(-50%)
         translateX(0);
-
     }
-
     72%{
-
         transform:
         translateY(-50%)
         translateX(-220%);
-
     }
-
     100%{
-
         transform:
         translateY(-50%)
         translateX(-220%);
-
     }
-
 }
 
-
 @media (max-width:768px){
-
 .security-marquee{
-
     height:30px;
-
 }
 
 .security-marquee-track{
-
     font-size:.78rem;
-
     font-weight:500;
-
 }
 
 }
