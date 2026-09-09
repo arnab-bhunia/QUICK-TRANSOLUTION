@@ -229,3 +229,13 @@
   background: rgba(var(--status-red-rgb), 0.16);
   color: rgb(var(--status-red-rgb));
 }
+
+.admin-badge-new {
+  background: rgba(var(--status-amber-rgb), 0.16);
+  color: rgb(var(--status-amber-rgb));
+}
+
+.admin-badge-closed {
+  background: rgba(var(--status-green-rgb), 0.16);
+  color: rgb(var(--status-green-rgb));
+}

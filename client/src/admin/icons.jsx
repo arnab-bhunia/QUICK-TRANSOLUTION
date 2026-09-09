@@ -89,3 +89,13 @@ export function BlogIcon(props) {
     </svg>
   );
 }
+
+export function ServiceEnquiriesIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 4.5A1.5 1.5 0 0 1 5.5 3h6l4.5 4.5v9A1.5 1.5 0 0 1 14.5 18h-9A1.5 1.5 0 0 1 4 16.5v-12Z" />
+      <path d="M11.5 3v3.5A1.5 1.5 0 0 0 13 8h3.5" />
+      <path d="M7 11.5h6M7 14h4" />
+    </svg>
+  );
+}

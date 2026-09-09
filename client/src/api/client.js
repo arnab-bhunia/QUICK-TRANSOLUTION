@@ -400,3 +400,36 @@ export function uploadBlogImage(file) {
 export function uploadBlogPdf(file) {
   return uploadFile("/admin/uploads/pdf", file);
 }
+
+export function listServiceEnquiriesAdmin(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  return get(`/service-enquiries${qs ? `?${qs}` : ""}`);
+}
+
+export function getServiceEnquiryCountsAdmin() {
+  return get("/service-enquiries/counts");
+}
+
+export function getServiceEnquiryAdmin(id) {
+  return get(`/service-enquiries/${id}`);
+}
+
+export function getServiceEnquiryHistoryAdmin(id) {
+  return get(`/service-enquiries/${id}/history`);
+}
+
+export function updateServiceEnquiryStatusAdmin(id, status) {
+  return patch(`/service-enquiries/${id}/status`, { status });
+}
+
+export function sendServiceEnquiryEmailAdmin(id, payload) {
+  return request(`/service-enquiries/${id}/email`, payload);
+}
+
+export function getActiveServiceEnquiryEmailOperationAdmin(id) {
+  return get(`/service-enquiries/${id}/email/active`);
+}
+
+export function resolveServiceEnquiryEmailOperationAdmin(id, emailId, payload) {
+  return request(`/service-enquiries/${id}/email/${emailId}/resolve`, payload);
+}

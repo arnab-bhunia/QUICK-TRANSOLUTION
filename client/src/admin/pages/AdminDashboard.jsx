@@ -5,9 +5,10 @@ import BookingsPanel from "./BookingsPanel";
 import StaffPanel from "./StaffPanel";
 import AnalyticsPanel from "./AnalyticsPanel";
 import AdminSidebar from "../AdminSidebar";
-import { ShipmentsIcon, BookingsIcon, TeamIcon, AnalyticsIcon,BlogIcon,} from "../icons";
+import { ShipmentsIcon, BookingsIcon, TeamIcon, AnalyticsIcon,BlogIcon,ServiceEnquiriesIcon,} from "../icons";
 import "./AdminDashboard.css";
 import BlogManagement from "./BlogManagement";
+import ServiceEnquiriesPanel from "./serviceEnquiries/ServiceEnquiriesPanel";
 
 // Tabs are driven entirely by the logged-in account's `permissions`
 // array (computed server-side from role + server/src/config/permissions.js
@@ -44,7 +45,13 @@ const TABS = [
   label: "Blogs",
   permission: "blog:view",
   icon: BlogIcon,
-}
+},
+{
+  key: "service-enquiries",
+  label: "Service Enquiries",
+  permission: "service_enquiries:view",
+  icon: ServiceEnquiriesIcon,
+},
 ];
 
 function hasPermission(permissions, needed) {
@@ -78,6 +85,9 @@ export default function AdminDashboard() {
         )}
         {tab === "staff" && hasPermission(staff?.permissions, "team:view") && (
           <StaffPanel view={subTab} />
+        )}
+        {tab === "service-enquiries" && hasPermission(staff?.permissions, "service_enquiries:view") && (
+          <ServiceEnquiriesPanel permissions={staff?.permissions} />
         )}
         {tab === "analytics" && hasPermission(staff?.permissions, "analytics:view") && (
           <AnalyticsPanel />

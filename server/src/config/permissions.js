@@ -23,9 +23,9 @@ export const ROLE_PERMISSIONS = {
 
   // Same "team:view" / "team:create_staff" strings as hr above — the
   // controller scopes a manager down to managedBy = self internally.
-  manager: ["team:create_staff", "team:view", "shipments:view", "bookings:view"],
+  manager: ["team:create_staff", "team:view", "shipments:view", "bookings:view", "service_enquiries:view", "service_enquiries:contact", "service_enquiries:email", "service_enquiries:manage",],
 
-  staff: ["shipments:view", "bookings:view"],
+  staff: ["shipments:view", "bookings:view", "service_enquiries:view", "service_enquiries:contact", "service_enquiries:email",],
 
   // Reserved for a future role — not wired into any route or UI yet.
   // Exists here so turning it on later is additive, not a rewrite.
