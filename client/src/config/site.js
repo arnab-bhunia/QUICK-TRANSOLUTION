@@ -12,17 +12,14 @@ export const site = {
   shortTagline: "#1 India \u2026 West Bengal Transportation Provider",
 
   contact: {
-    phoneDisplay: "1800 112 243",
+    phoneDisplay: "1800 112243",
     phoneHref: "tel:1800112243",
     mobileDisplay: "+91-9319097898",
     mobileHref: "tel:+919319097898",
     email: "sales@quicktransolution.com",
     emailHref: "mailto:sales@quicktransolution.com",
     address: [
-      "Unit No. 504, 5th Floor,",
-  "Infinity Benchmark, Sector V, Salt Lake,",
-  "Kolkata – 700091,",
-  "West Bengal, India",
+      "Unit 504, Infinity Benchmark, Sector V, Salt Lake, Kolkata 700091, WB, India"
     ],
   },
 
@@ -151,16 +148,16 @@ whyUs: [
       quote:
         "Thank you for the quality of service your team provides \u2014 efficient, gracious, and consistent in how you conduct business.",
       company: "Godrej Consumer Products Ltd.",
-      image: "/testimonials/testimonials-common.webp",
+      image: "/testimonials/testimonials-male.webp",
       logo: "//godrej.svg"
       },
     {
-      name: "Ankush Koundal",
+      name: "Aaradhya Sen",
       role: "CPPD Custom & Transport",
       company: "Godrej Consumer Products Ltd.",
       quote:
         "Your team completed shipment clearance and delivery across every distribution site with steady dedication, working out solutions whenever our timelines were at risk.",
-    image: "/testimonials/testimonials-common.webp",
+    image: "/testimonials/testimonials-female.webp",
       logo: "//godrej.svg"
       },
     {
@@ -169,16 +166,16 @@ whyUs: [
       company: "Godrej Consumer Products Ltd.",
       quote:
         "Every consignment, from small parcels to bulk cargo, has been loaded, unloaded and transported safely and on schedule.",
-    image: "/testimonials/testimonials-common.webp",
+    image: "/testimonials/testimonials-male.webp",
       logo: "//godrej.svg"
       },
     {
-      name: "Manoj Kr. Punj",
+      name: "Riya Mukherjee",
       role: "Senior Manager, Export Logistics",
       company: "Godrej Consumer Products Ltd.",
       quote:
         "Good coordination and monitoring on every movement of our goods, with a track record we've come to rely on.",
-    image: "/testimonials/testimonials-common.webp",
+    image: "/testimonials/testimonials-female.webp",
       logo: "//godrej.svg"
       },
     {
@@ -187,7 +184,7 @@ whyUs: [
       company: "Godrej Consumer Products Ltd.",
       quote:
         "Vehicles placed exactly to our need, with prompt performance and timely delivery every time.",
-    image: "/testimonials/testimonials-common.webp",
+    image: "/testimonials/testimonials-male.webp",
       logo: "//godrej.svg"
       },
   ],
@@ -208,14 +205,14 @@ whyUs: [
 
   footerLinks: {
     about: [
+      { label: "CSR Activity", href: "#" },
       { label: "Company Profile", href: "#about" },
       { label: "Client Testimonials", href: "#clients" },
-      { label: "CSR Activity", href: "#" },
     ],
     quick: [
-      { label: "Apply for a Franchise", href: "#" },
+      { label: "Resources", href: "/blogs" },
       { label: "Sales Enquiry", href: "#contact" },
-      { label: "Blogs", href: "/blogs" },
+      { label: "Apply for a Franchise", href: "#" },
     ],
     policies: [
       { label: "FAQs", href: "/faqs" },

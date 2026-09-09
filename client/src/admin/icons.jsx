@@ -1,6 +1,3 @@
-// Minimal line-icon set for the admin sidebar. Single stroke style,
-// 20x20 viewBox, currentColor — deliberately no icon library dependency
-// since none was already in this project.
 const base = {
   width: "1em",
   height: "1em",

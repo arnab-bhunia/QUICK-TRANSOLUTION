@@ -123,7 +123,6 @@
   gap: 18px;
   align-self: start;
   animation: content-fade-in 0.45s ease;
-  background-image: url("/quick-graphic.svg");
   opacity: 0.7;
   background-size: contain;
   background-position: center;
@@ -139,7 +138,6 @@
 .why-us-content p {
   color: var(--color-ink-soft);
   font-size: 16px;
-  background: #ffffff;
 }
 
 .why-us-content .btn {
