@@ -36,7 +36,7 @@
   min-width: 90px;
   padding: 8px 20px;
   border-top: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-weight: 500;
   font-size: 15.5px;
   color: var(--color-primary);

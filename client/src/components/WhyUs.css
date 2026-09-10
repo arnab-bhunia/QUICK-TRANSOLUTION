@@ -80,7 +80,7 @@
   flex-shrink: 0;
   width: 32px;
   height: 32px;
-   aspect-ratio: 1 / 1; 
+  aspect-ratio: 1 / 1; 
   opacity: 1;
   transform: scale(0.92);
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -123,7 +123,6 @@
   gap: 18px;
   align-self: start;
   animation: content-fade-in 0.45s ease;
-  opacity: 0.7;
   background-size: contain;
   background-position: center;
   background-color: var(--color-bg);
@@ -227,14 +226,6 @@
     transform: rotate(-135deg);
   }
 
-  /*
-   * Variable-height accordion content: grid-template-rows 0fr -> 1fr is
-   * the only pure-CSS way to animate to an unknown/auto height smoothly.
-   * (This is the same technique that made the mobile NAV MENU feel janky
-   * earlier — but that was because it ran on every scroll frame under a
-   * sticky/backdrop-filter element. Here it's a single, isolated tap-driven
-   * transition on a small element, so the layout cost is a non-issue.)
-   */
 .why-us-acc-body-wrap {
   display: grid;
   grid-template-rows: 0fr;
@@ -273,22 +264,6 @@
   margin-top: 14px;
 }
 }
-
-
-/*
- * Icon theming — all colors for the 5 WhyUs icons live here.
- * Each icon carries a modifier class (.promo-icon--network, --shield,
- * --tracking, --package, --document) set in promotionsIcon.jsx.
- * Change the 3 variables below per icon to recolor it; nothing needs
- * to be touched in the .jsx file.
- *
- *   --icon-start / --icon-end : the two gradient stops (used by
- *                                 strokes and gradient fills)
- *   --icon-accent              : solid-color shapes (e.g. NetworkIcon's
- *                                 connection dots)
- * promo-icon-dot (the small white circles used as glow/check backgrounds)
- * is intentionally left white via a fixed rule below, not themed.
- */
 
 .promo-icon--network {
   --icon-start: #E85D00;
