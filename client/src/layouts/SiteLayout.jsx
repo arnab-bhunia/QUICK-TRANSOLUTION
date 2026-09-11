@@ -22,6 +22,7 @@ import Disclaimer from "../pages/Disclaimer";
 import FAQPage from "../pages/FAQPage";
 import CookieConsentBanner from "../components/CookieConsentBanner";
 import { useMeasuredHeight } from "../hooks/useMeasuredHeight";
+import CompanyProfile from "../pages/CompanyProfile";
 
 // Site chrome (TopBar/Navbar/SecurityMarquee/Footer) for every public
 // page EXCEPT the client login/signup/verify-email screens, which use
@@ -85,6 +86,7 @@ export default function SiteLayout() {
       <Routes>
         <Route element={<MainChrome onOpenQuote={() => setQuoteOpen(true)} />}>
           <Route path="/" element={<Home onOpenQuote={() => setQuoteOpen(true)} />} />
+          <Route path="/company-profile" element={<CompanyProfile onOpenQuote={() => setQuoteOpen(true)} />}/>
           <Route path="/track" element={<TrackPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/blogs" element={<Blogs />} />

@@ -7,15 +7,11 @@ import WhyUs from "../components/WhyUs";
 import Testimonials from "../components/Testimonials";
 import Sectors from "../components/Sectors";
 import Newsletter from "../components/Newsletter";
+import About from "../components/About";
 
 export default function Home({ onOpenQuote }) {
   const location = useLocation();
 
-  // Nav links like "#services" work as native browser anchors while
-  // already on "/". But arriving here FROM another page (e.g. clicking
-  // "Services" while on /track) is a real route change to "/#services" —
-  // React Router doesn't auto-scroll on that, since there's no full page
-  // reload for the browser to do it natively. This fills that one gap.
   useEffect(() => {
     if (!location.hash || location.hash === "#") return;
     const el = document.querySelector(location.hash);
@@ -25,6 +21,7 @@ export default function Home({ onOpenQuote }) {
   return (
     <>
       <Hero onOpenQuote={onOpenQuote} />
+      <About />
       <Stats />
       <Services />
       <WhyUs />

@@ -33,13 +33,13 @@ export const site = {
     { label: "Home", href: "#home" },
     {
       label: "Company",
-      href: "#about",
+      href: "/company-profile",
       submenu: [
-        { label: "Company Profile", href: "#about" },
+        { label: "Company Profile", href: "/company-profile" },
         { label: "Why Choose Us", href: "#why-us" },
         { label: "Client Testimonials", href: "#clients" },
         { label: "CSR & Sustainability", href: "#" },
-        { label: "Industries We Serve", href: "#sectors" },
+        { label: "Industries We Serve", href:  "/company-profile#industries" },
       ],
     },
     { label: "Solutions", href: "#services" },
@@ -206,7 +206,7 @@ whyUs: [
   footerLinks: {
     about: [
       { label: "CSR Activity", href: "#" },
-      { label: "Company Profile", href: "#about" },
+      { label: "Company Profile", href: "/company-profile" },
       { label: "Client Testimonials", href: "#clients" },
     ],
     quick: [

@@ -27,16 +27,35 @@ function setMeta(name, content, attr = "name") {
   tag.setAttribute("content", content);
 }
 
-export function useSeo({ title, description, image, canonicalUrl }) {
+// Social crawlers (Facebook/LinkedIn/Twitter) require an absolute
+// og:image URL — a site-relative path like "/services-banner-1.webp"
+// won't resolve for them. Callers that already pass a full URL (e.g.
+// a CMS-hosted blog image) are left untouched.
+function toAbsoluteUrl(url) {
+  if (!url) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  if (typeof window === "undefined") return url;
+  return new URL(url, window.location.origin).toString();
+}
+
+export function useSeo({
+  title,
+  description,
+  image,
+  canonicalUrl,
+  ogTitle,
+  ogDescription,
+  ogType = "article",
+}) {
   useEffect(() => {
     const previousTitle = document.title;
     if (title) document.title = title;
 
     setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-    setMeta("og:image", image, "property");
-    setMeta("og:type", "article", "property");
+    setMeta("og:title", ogTitle || title, "property");
+    setMeta("og:description", ogDescription || description, "property");
+    setMeta("og:image", toAbsoluteUrl(image), "property");
+    setMeta("og:type", ogType, "property");
 
     // Always look for an existing tag first — never create a second one
     // if this effect re-runs (e.g. navigating between two blog posts
@@ -66,5 +85,5 @@ export function useSeo({ title, description, image, canonicalUrl }) {
       const existing = document.querySelector('link[rel="canonical"]');
       if (existing) existing.remove();
     };
-  }, [title, description, image, canonicalUrl]);
+  }, [title, description, image, canonicalUrl, ogTitle, ogDescription, ogType]);
 }

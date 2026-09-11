@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
 import {
@@ -60,9 +61,9 @@ export default function WhyUs() {
             <div className="why-us-content" key={current.id}>
               <h3>{current.title}</h3>
               <p>{current.body}</p>
-              <a href="#contact" className="btn btn-outline">
-                Enquire Now
-              </a>
+              <Link to={`/company-profile#${current.id}`} className="btn btn-outline">
+                  Read More &rarr;
+              </Link>
             </div>
           </div>
 
@@ -92,9 +93,9 @@ export default function WhyUs() {
   <div className="why-us-acc-body">
     <div className="why-us-acc-body-inner">
       <p>{item.body}</p>
-      <a href="#contact" className="btn btn-outline">
-        Enquire Now
-      </a>
+      <Link to={`/company-profile#${item.id}`} className="btn btn-outline">
+  Read More &rarr;
+</Link>
     </div>
   </div>
 </div>

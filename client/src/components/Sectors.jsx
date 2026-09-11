@@ -1,6 +1,8 @@
 import { site } from "../config/site";
 import { useReveal } from "../hooks/useReveal";
 import "./Sectors.css";
+import { Link } from "react-router-dom";
+import { sectorSlugs } from "../config/company";
 import { FMCGIcon, PharmaIcon, AutomotiveIcon, PackagingIcon, PublishingIcon, InfrastructureIcon, EngineeringIcon, TelecomIcon,} from "../assets/industryIcon";
 
 export default function Sectors() {
@@ -34,18 +36,23 @@ export default function Sectors() {
         <div className="sectors-grid">
   {site.sectors.map((sector, i) => {
     const SectorIcon = sectorIcons[sector];
+    const slug = sectorSlugs[sector];
 
     return (
-      <a
-        href="#contact"
-        key={sector}
-        className={`sector-chip ${visible ? "is-in" : ""}`}
-        style={{ transitionDelay: `${i * 60}ms` }}
-      >
-        {SectorIcon && <SectorIcon className="sector-icon" />}
-        <span>{sector}</span>
-      </a>
-    );
+  <Link
+    to={
+      slug
+        ? `/company-profile#${slug}`
+        : "/company-profile#industries"
+    }
+    key={sector}
+    className={`sector-chip ${visible ? "is-in" : ""}`}
+    style={{ transitionDelay: `${i * 60}ms` }}
+  >
+    {SectorIcon && <SectorIcon className="sector-icon" />}
+    <span>{sector}</span>
+  </Link>
+);
   })}
 </div>
       </div>
