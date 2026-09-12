@@ -5,6 +5,7 @@ import { serviceDetails } from "../config/serviceDetails";
 import { companyProfile } from "../config/company";
 import { useSeo } from "../hooks/useSeo";
 import SmartLink from "../components/SmartLink";
+import AnimatedImageReveal from "../components/AnimatedImageReveal";
 import {
   NetworkIcon,
   ShieldIcon,
@@ -82,15 +83,22 @@ export default function CompanyProfile({ onOpenQuote }) {
   });
 
   return (
-    <div className="company-profile">
-      <div className="company-profile-banner">
-        <div className="company-profile-banner-scrim" />
-        <div className="container">
-          <span className="eyebrow">{companyProfile.hero.eyebrow}</span>
-          <h1>{companyProfile.hero.heading}</h1>
-          <p>{companyProfile.hero.body}</p>
-        </div>
-      </div>
+<div className="company-profile">
+  <div className="company-profile-banner">
+    <AnimatedImageReveal
+      src="/company/about-india-gate.webp"
+      alt="India Gate with road transport representing Quick Transolution's logistics network"
+      className="company-profile-banner-image"
+    />
+
+    <div className="company-profile-banner-scrim" />
+
+    <div className="container">
+      <span className="eyebrow">{companyProfile.hero.eyebrow}</span>
+      <h1>{companyProfile.hero.heading}</h1>
+      <p>{companyProfile.hero.body}</p>
+    </div>
+  </div>
 
       <article className="container company-profile-body">
         <section id="about" className="cp-section">

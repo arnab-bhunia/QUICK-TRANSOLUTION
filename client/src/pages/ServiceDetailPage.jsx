@@ -6,6 +6,7 @@ import { useReveal } from "../hooks/useReveal";
 import StickyEnquireBar from "../components/StickyEnquireBar";
 import ServiceEnquiryModal from "../components/ServiceEnquiryModal";
 import "./ServiceDetailPage.css";
+import AnimatedImageReveal from "../components/AnimatedImageReveal";
 
 /*
  * One component drives all 6 "Read More" pages instead of 6 near-identical
@@ -30,16 +31,22 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="service-detail">
-      <div
-        className="service-detail-banner"
-        style={{ backgroundImage: `url(${detail.banner})` }}
-      >
-        <div className="service-detail-banner-scrim" />
-        <div className="container">
-          <span className="eyebrow">Our Services</span>
-          <h1>{service.title}</h1>
-        </div>
-      </div>
+<div className="service-detail">
+  <div className="service-detail-banner">
+    <AnimatedImageReveal
+      src={detail.banner}
+      alt={`${service.title} service`}
+      className="service-detail-banner-image"
+    />
+
+    <div className="service-detail-banner-scrim" />
+
+    <div className="container">
+      <span className="eyebrow">Our Services</span>
+      <h1>{service.title}</h1>
+    </div>
+  </div>
+</div>
 
       <div className="container">
         <div

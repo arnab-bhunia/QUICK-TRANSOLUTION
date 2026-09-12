@@ -1,6 +1,6 @@
 .service-detail {
   background: var(--color-bg);
-  padding-bottom: 120px; /* room so content never sits under the sticky Enquire bar */
+  padding-bottom: 10px; /* room so content never sits under the sticky Enquire bar */
 }
 
 /* ---------------------------------------------------------------------
@@ -11,15 +11,25 @@
   min-height: 330px;
   display: flex;
   align-items: flex-end;
-  background-size: cover;
-  background-position: center;
   overflow: hidden;
+  background: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+.service-detail-banner-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .service-detail-banner-scrim {
   position: absolute;
   inset: 0;
-background: linear-gradient(
+  z-index: 1;
+  background: linear-gradient(
   180deg,
   rgba(10, 31, 46, 0.18) 0%,
   rgba(10, 31, 46, 0.32) 60%,
@@ -29,7 +39,7 @@ background: linear-gradient(
 
 .service-detail-banner .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding-bottom: 40px;
   padding-top: 40px;
 }
