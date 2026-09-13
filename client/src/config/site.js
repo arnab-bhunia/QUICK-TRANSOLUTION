@@ -213,6 +213,7 @@ whyUs: [
       { label: "Resources", href: "/blogs" },
       { label: "Sales Enquiry", href: "#contact" },
       { label: "Apply for a Franchise", href: "#" },
+      { label: "Careers", href: "/careers" },
     ],
     policies: [
       { label: "FAQs", href: "/faqs" },

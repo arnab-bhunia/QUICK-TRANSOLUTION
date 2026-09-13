@@ -19,7 +19,21 @@ export const ROLE_PERMISSIONS = {
   // ALL-vs-OWN distinction between hr and manager is enforced inside
   // adminController.listStaff (by role), not by using two different
   // permission strings — both need to pass the same route gate.
-  hr: ["team:create_hr", "team:create_manager", "team:create_staff", "team:view"],
+  // HR receives every Careers permission (per spec section 16) on top
+  // of its existing team-management grants.
+  hr: [
+    "team:create_hr",
+    "team:create_manager",
+    "team:create_staff",
+    "team:view",
+    "careers:view",
+    "careers:manage_jobs",
+    "careers:view_applications",
+    "careers:manage_applications",
+    "careers:download_resume",
+    "careers:export_applications",
+    "careers:notes",
+  ],
 
   // Same "team:view" / "team:create_staff" strings as hr above — the
   // controller scopes a manager down to managedBy = self internally.

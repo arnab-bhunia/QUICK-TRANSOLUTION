@@ -433,3 +433,150 @@ export function getActiveServiceEnquiryEmailOperationAdmin(id) {
 export function resolveServiceEnquiryEmailOperationAdmin(id, emailId, payload) {
   return request(`/service-enquiries/${id}/email/${emailId}/resolve`, payload);
 }
+
+// ============================================================================
+// CAREERS — public
+// ============================================================================
+
+export function listCareersJobs(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  return get(`/careers/jobs${qs ? `?${qs}` : ""}`);
+}
+
+export function getCareersJobBySlug(slug) {
+  return get(`/careers/jobs/${slug}`);
+}
+
+// multipart/form-data — resume file + text fields. Mirrors uploadFile()
+// above (same reasoning: never set Content-Type manually, the browser
+// generates the correct multipart boundary).
+export async function submitJobApplication(slug, formData) {
+  let res;
+  try {
+    res = await fetch(`${BASE_URL}/careers/jobs/${slug}/apply`, {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    });
+  } catch {
+    throw new Error(
+      "Unable to reach the server. Please check your connection and try again."
+    );
+  }
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const err = new Error(data.message || "Could not submit your application. Please try again.");
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+
+  return res.json();
+}
+
+// ============================================================================
+// CAREERS — admin (Jobs)
+// ============================================================================
+
+export function listJobOptionsAdmin() {
+  return get("/admin/careers/jobs/options");
+}
+
+export function listJobsAdmin(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  return get(`/admin/careers/jobs${qs ? `?${qs}` : ""}`);
+}
+
+export function getJobAdmin(id) {
+  return get(`/admin/careers/jobs/${id}`);
+}
+
+export function createJobAdmin(payload) {
+  return request("/admin/careers/jobs", payload);
+}
+
+export function updateJobAdmin(id, payload) {
+  return put(`/admin/careers/jobs/${id}`, payload);
+}
+
+export function deleteJobAdmin(id) {
+  return del(`/admin/careers/jobs/${id}`);
+}
+
+export function publishJobAdmin(id) {
+  return patch(`/admin/careers/jobs/${id}/publish`, {});
+}
+
+export function closeJobAdmin(id) {
+  return patch(`/admin/careers/jobs/${id}/close`, {});
+}
+
+export function archiveJobAdmin(id) {
+  return patch(`/admin/careers/jobs/${id}/archive`, {});
+}
+
+export function duplicateJobAdmin(id) {
+  return request(`/admin/careers/jobs/${id}/duplicate`, {});
+}
+
+// ============================================================================
+// CAREERS — admin (Applications)
+// ============================================================================
+
+export function listApplicationsAdmin(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  return get(`/admin/careers/applications${qs ? `?${qs}` : ""}`);
+}
+
+export function getApplicationAdmin(id) {
+  return get(`/admin/careers/applications/${id}`);
+}
+
+export function updateApplicationStatusAdmin(id, status) {
+  return patch(`/admin/careers/applications/${id}/status`, { status });
+}
+
+export function addApplicationNoteAdmin(id, text) {
+  return request(`/admin/careers/applications/${id}/notes`, { text });
+}
+
+export function getApplicationResumeAdmin(id, mode = "view") {
+  return get(`/admin/careers/applications/${id}/resume?mode=${mode}`);
+}
+
+// Excel export is a plain authenticated GET that returns a binary file —
+// not JSON, so it can't reuse the get()/request() helpers above. Kept
+// as a simple fetch + Blob download, same idea as uploadFile()'s direct
+// fetch usage for the multipart case.
+export async function exportApplicationsAdmin(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  let res;
+  try {
+    res = await fetch(`${BASE_URL}/admin/careers/applications/export${qs ? `?${qs}` : ""}`, {
+      method: "GET",
+      credentials: "include",
+    });
+  } catch {
+    throw new Error("Unable to reach the server. Please check your connection and try again.");
+  }
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.message || "Could not export applications.");
+  }
+
+  const blob = await res.blob();
+  const disposition = res.headers.get("Content-Disposition") || "";
+  const match = disposition.match(/filename="([^"]+)"/);
+  const fileName = match?.[1] || "careers-applications.xlsx";
+
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(url);
+}

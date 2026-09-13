@@ -301,24 +301,6 @@ const TransportScene = ({ active }) => {
           <rect x="0" y="550" width="1200" height="170" fill="var(--color-primary-dark)" opacity="0.9" />
           <rect x="0" y="548" width="1200" height="2" fill="var(--color-accent)" opacity="0.5" />
           <line x1="0" y1="635" x2="1200" y2="635" stroke="var(--color-bg)" strokeWidth="4" strokeDasharray="50 35" opacity="0.85" />
-          <line x1="0"
-  y1="590"
-  x2="1200"
-  y2="590"
-  stroke="var(--color-bg)"
-  strokeWidth="2"
-  strokeDasharray="30 45"
-  opacity="0.18"
-          />
-          <line x1="0"
-  y1="685"
-  x2="1200"
-  y2="675"
-  stroke="var(--color-bg)"
-  strokeWidth="2"
-  strokeDasharray="30 45"
-  opacity="0.18"
-          />
           <rect x="0" y="548" width="1200" height="1" fill="var(--color-bg)" opacity="0.3" />
         </g>
         

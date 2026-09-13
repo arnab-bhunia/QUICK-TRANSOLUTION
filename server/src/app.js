@@ -17,6 +17,8 @@ import serviceEnquiryRoutes from "./routes/serviceEnquiries.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import adminBlogRoutes from "./routes/adminBlogRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import careersRoutes from "./routes/careers.js";
+import adminCareersRoutes from "./routes/adminCareers.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import { requireDbReady } from "./middleware/dbReady.js";
 import { generalLimiter } from "./middleware/rateLimiters.js";
@@ -79,6 +81,8 @@ app.use("/api/service-enquiries", serviceEnquiryRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/admin/blogs", adminBlogRoutes);
 app.use("/api/admin/uploads", uploadRoutes);
+app.use("/api/careers", careersRoutes);
+app.use("/api/admin/careers", adminCareersRoutes);
 
 app.get("/api/sitemap.xml", getSitemap);
 

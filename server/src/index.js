@@ -2,6 +2,7 @@ import "dotenv/config";
 import app from "./app.js";
 import { connectDB } from "./config/db.js";
 import { startBlogScheduler } from "./utils/blogScheduler.js";
+import { startRecruitmentScheduler } from "./utils/recruitmentScheduler.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,3 +15,7 @@ app.listen(PORT, () => {
 
 connectDB();
 startBlogScheduler();
+// Careers-only scheduler — independent of, and untouched-by, the Blog
+// scheduler above. See utils/recruitmentScheduler.js for why these are
+// deliberately kept as two separate schedulers.
+startRecruitmentScheduler();

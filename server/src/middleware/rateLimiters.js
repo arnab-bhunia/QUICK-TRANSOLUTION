@@ -92,3 +92,18 @@ export const uploadLimiter = rateLimit({
   },
   store: makeStore("upload"),
 });
+
+// Careers — job application submissions. Looser than enquiryLimiter
+// since a genuine candidate may legitimately apply to several different
+// openings, but still bounded to blunt scripted/bulk submission abuse
+// (see spec section 18: duplicate/abuse protection).
+export const careersApplyLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 15,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    message: "Too many applications submitted. Please try again later.",
+  },
+  store: makeStore("careers-apply"),
+});

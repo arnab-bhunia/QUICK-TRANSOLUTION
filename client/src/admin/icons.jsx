@@ -99,3 +99,14 @@ export function ServiceEnquiriesIcon(props) {
     </svg>
   );
 }
+
+export function CareersIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="2.5" y="6" width="15" height="10" rx="1.6" />
+      <path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h3A1.5 1.5 0 0 1 13 4.5V6" />
+      <path d="M2.5 10.5h15" />
+      <rect x="8.5" y="9.3" width="3" height="2.4" rx="0.5" />
+    </svg>
+  );
+}

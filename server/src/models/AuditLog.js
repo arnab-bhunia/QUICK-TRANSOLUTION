@@ -30,6 +30,23 @@ const auditLogSchema = new mongoose.Schema(
       index: true,
       default: null,
     },
+
+    // Careers equivalents of `shipment`/`serviceEnquiry` above — set on
+    // entries created by the Careers module. A record sets AT MOST one
+    // of `job` / `jobApplication`, never both.
+    job: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Job",
+      index: true,
+      default: null,
+    },
+    jobApplication: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "JobApplication",
+      index: true,
+      default: null,
+    },
+
     action: {
       type: String,
       enum: [
@@ -47,6 +64,20 @@ const auditLogSchema = new mongoose.Schema(
         // A staff member manually reviewed an "email_send_unknown"
         // operation and resolved it, one way or the other.
         "email_operation_resolved",
+
+        // --- Careers ---
+        "job_created",
+        "job_updated",
+        "job_published",
+        "job_closed",
+        "job_archived",
+        "job_duplicated",
+        "application_viewed",
+        "application_status_changed",
+        "resume_viewed",
+        "resume_downloaded",
+        "application_note_added",
+        "applications_exported",
       ],
       required: true,
     },

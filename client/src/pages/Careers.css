@@ -1,0 +1,101 @@
+.careers-page {
+  background: var(--color-bg, #fafafa);
+}
+
+.careers-hero {
+  max-width: 680px;
+  padding-bottom: 30px;
+}
+
+.careers-hero h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--color-primary, #0B3B60);
+  margin-top: 10px;
+}
+
+.careers-hero p {
+  margin-top: 16px;
+  color: var(--color-ink-soft, #4B6272);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.careers-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.careers-search-input {
+  flex: 1 1 260px;
+}
+
+.careers-filters input,
+.careers-filters select {
+  padding: 11px 14px;
+  border: 1px solid var(--color-line, #DDE3E1);
+  border-radius: var(--radius-sm, 4px);
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: var(--color-bg-alt, #fff);
+  color: var(--color-ink, #132B3A);
+}
+
+.careers-filters select {
+  min-width: 160px;
+}
+
+.careers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.careers-status {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-ink-faint, #8299A6);
+}
+
+.careers-status-error {
+  color: var(--color-signal, #D6482B);
+}
+
+.careers-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.careers-pagination button {
+  padding: 9px 16px;
+  border: 1px solid var(--color-line, #DDE3E1);
+  border-radius: var(--radius-sm, 4px);
+  background: var(--color-bg-alt, #fff);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-primary, #0B3B60);
+}
+
+.careers-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.careers-pagination span {
+  font-size: 13.5px;
+  color: var(--color-ink-soft, #4B6272);
+}
+
+@media (max-width: 640px) {
+  .careers-hero {
+    margin-bottom: 8px;
+  }
+  .careers-filters select,
+  .careers-search-input {
+    flex: 1 1 100%;
+  }
+}

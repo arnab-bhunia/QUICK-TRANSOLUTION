@@ -12,6 +12,9 @@ import TrackPage from "../pages/TrackPage";
 import ServiceDetailPage from "../pages/ServiceDetailPage";
 import Blogs from "../pages/Blogs";
 import BlogDetails from "../pages/BlogDetails";
+import Careers from "../pages/Careers";      
+import JobDetails from "../pages/JobDetails"; 
+import JobApply from "../pages/JobApply";    
 import ClientLogin from "../pages/ClientLogin";
 import ClientSignup from "../pages/ClientSignup";
 import ClientVerifyOtp from "../pages/ClientVerifyOtp";
@@ -91,6 +94,9 @@ export default function SiteLayout() {
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<BlogDetails />} />
+          <Route path="/careers" element={<Careers />} />                        
+          <Route path="/careers/jobs/:slug" element={<JobDetails />} />         
+          <Route path="/careers/jobs/:slug/apply" element={<JobApply />} />
           <Route path="/dashboard" element={<ClientDashboard />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />
