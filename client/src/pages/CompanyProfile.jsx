@@ -6,6 +6,7 @@ import { companyProfile } from "../config/company";
 import { useSeo } from "../hooks/useSeo";
 import SmartLink from "../components/SmartLink";
 import AnimatedImageReveal from "../components/AnimatedImageReveal";
+import Reveal from "../components/Reveal";
 import {
   NetworkIcon,
   ShieldIcon,
@@ -83,39 +84,39 @@ export default function CompanyProfile({ onOpenQuote }) {
   });
 
   return (
-<div className="company-profile">
-  <div className="company-profile-banner">
-    <AnimatedImageReveal
-      src="/company/about-india-gate.webp"
-      alt="India Gate with road transport representing Quick Transolution's logistics network"
-      className="company-profile-banner-image"
-    />
+    <div className="company-profile">
+      <div className="company-profile-banner">
+        <AnimatedImageReveal
+          src="/company/about-india-gate.webp"
+          alt="India Gate with road transport representing Quick Transolution's logistics network"
+          className="company-profile-banner-image"
+        />
 
-    <div className="company-profile-banner-scrim" />
+        <div className="company-profile-banner-scrim" />
 
-    <div className="container">
-      <span className="eyebrow">{companyProfile.hero.eyebrow}</span>
-      <h1>{companyProfile.hero.heading}</h1>
-      <p>{companyProfile.hero.body}</p>
-    </div>
-  </div>
+        <Reveal className="container" threshold={0.1}>
+          <span className="eyebrow">{companyProfile.hero.eyebrow}</span>
+          <h1>{companyProfile.hero.heading}</h1>
+          <p>{companyProfile.hero.body}</p>
+        </Reveal>
+      </div>
 
       <article className="container company-profile-body">
-        <section id="about" className="cp-section">
+        <Reveal as="section" id="about" className="cp-section">
           <h2>{companyProfile.about.heading}</h2>
           {companyProfile.about.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
-        </section>
+        </Reveal>
 
-        <section id="story" className="cp-section">
+        <Reveal as="section" id="story" className="cp-section">
           <h2>{companyProfile.story.heading}</h2>
           {companyProfile.story.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
-        </section>
+        </Reveal>
 
-        <section id="mission-vision" className="cp-section">
+        <Reveal as="section" id="mission-vision" className="cp-section">
           <h2>Mission &amp; Vision</h2>
           <div className="cp-mv-grid">
             <div className="cp-mv-card">
@@ -127,98 +128,98 @@ export default function CompanyProfile({ onOpenQuote }) {
               <p>{companyProfile.vision.body}</p>
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section id="why-us" className="cp-section">
-          <h2>Why Choose Us</h2>
-          <div className="cp-whyus-grid">
-            {companyProfile.whyUsDetails.map((detail) => {
-              const base = site.whyUs.find((w) => w.id === detail.id);
-              const Icon = whyUsIcons[detail.id];
-              if (!base) return null;
-              return (
-                <div key={detail.id} id={detail.id} className="cp-whyus-item">
-                  <span className="cp-whyus-icon" aria-hidden="true">
-                    {Icon && <Icon />}
-                  </span>
-                  <h3>{base.title}</h3>
-                  {detail.paragraphs.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-        </section>
+<section id="why-us" className="cp-section">
+  <h2>Why Choose Us</h2>
+  <div className="cp-whyus-grid">
+    {companyProfile.whyUsDetails.map((detail, i) => {
+      const base = site.whyUs.find((w) => w.id === detail.id);
+      const Icon = whyUsIcons[detail.id];
+      if (!base) return null;
+      return (
+        <Reveal key={detail.id} id={detail.id} className="cp-whyus-item" delay={i * 60}>
+          <span className="cp-whyus-icon" aria-hidden="true">
+            {Icon && <Icon />}
+          </span>
+          <h3>{base.title}</h3>
+          {detail.paragraphs.map((p, j) => (
+            <p key={j}>{p}</p>
+          ))}
+        </Reveal>
+      );
+    })}
+  </div>
+</section>
 
         <section id="our-services" className="cp-section">
-          <h2>Our Services</h2>
-          <div className="cp-services-grid">
-            {companyProfile.services.map((svc) => {
-              const base = site.services.find((s) => s.id === svc.id);
-              if (!base) return null;
-              const hasDetail = Boolean(serviceDetails[svc.id]);
-              return (
-                <div key={svc.id} className="cp-service-item">
-                  <h3>{base.title}</h3>
-                  <p>{svc.body}</p>
-                  {hasDetail && (
-                    <Link to={`/services/${svc.id}`} className="cp-service-link">
-                      Click here <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
+  <h2>Our Services</h2>
+  <div className="cp-services-grid">
+    {companyProfile.services.map((svc, i) => {
+      const base = site.services.find((s) => s.id === svc.id);
+      if (!base) return null;
+      const hasDetail = Boolean(serviceDetails[svc.id]);
+      return (
+        <Reveal key={svc.id} className="cp-service-item" delay={i * 60}>
+          <h3>{base.title}</h3>
+          <p>{svc.body}</p>
+          {hasDetail && (
+            <Link to={`/services/${svc.id}`} className="cp-service-link">
+              Click here <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
+        </Reveal>
+      );
+    })}
+  </div>
+</section>
 
         <section id="industries" className="cp-section">
-          <h2>Industries We Serve</h2>
-          <div className="cp-industries-grid">
-            {companyProfile.industries.map((ind) => {
-              const Icon = industryIcons[ind.id];
-              return (
-                <div key={ind.id} id={ind.id} className="cp-industry-item">
-                  <span className="cp-industry-icon" aria-hidden="true">
-                    {Icon && <Icon />}
-                  </span>
-                  <h3>{ind.title}</h3>
-                  {ind.paragraphs.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-        </section>
+  <h2>Industries We Serve</h2>
+  <div className="cp-industries-grid">
+    {companyProfile.industries.map((ind, i) => {
+      const Icon = industryIcons[ind.id];
+      return (
+        <Reveal key={ind.id} id={ind.id} className="cp-industry-item" delay={i * 60}>
+          <span className="cp-industry-icon" aria-hidden="true">
+            {Icon && <Icon />}
+          </span>
+          <h3>{ind.title}</h3>
+          {ind.paragraphs.map((p, j) => (
+            <p key={j}>{p}</p>
+          ))}
+        </Reveal>
+      );
+    })}
+  </div>
+</section>
 
         <section id="how-we-work" className="cp-section">
-          <h2>{companyProfile.howWeWork.heading}</h2>
-          <ol className="cp-howwework-list">
-            {companyProfile.howWeWork.steps.map((step, i) => (
-              <li key={step.title}>
-                <span className="cp-howwework-index" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
+  <h2>{companyProfile.howWeWork.heading}</h2>
+  <ol className="cp-howwework-list">
+    {companyProfile.howWeWork.steps.map((step, i) => (
+      <Reveal as="li" key={step.title} delay={i * 60}>
+        <span className="cp-howwework-index" aria-hidden="true">
+          {String(i + 1).padStart(2, "0")}
+        </span>
+        <div>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </div>
+      </Reveal>
+    ))}
+  </ol>
+</section>
 
-        <section id="technology" className="cp-section">
+        <Reveal as="section" id="technology" className="cp-section">
           <h2>{companyProfile.technology.heading}</h2>
           {companyProfile.technology.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
-        </section>
+        </Reveal>
       </article>
 
-      <section id="cta" className="cp-cta">
+      <Reveal as="section" id="cta" className="cp-cta">
         <div className="container cp-cta-inner">
           <h2>{companyProfile.cta.heading}</h2>
           <p>{companyProfile.cta.body}</p>
@@ -231,7 +232,7 @@ export default function CompanyProfile({ onOpenQuote }) {
             </SmartLink>
           </div>
         </div>
-      </section>
+      </Reveal>
     </div>
   );
 }
