@@ -297,6 +297,22 @@ export function changePasswordAdmin(payload) {
   return patch("/auth/change-password", payload);
 }
 
+export function getAccountAdmin() {
+  return get("/auth/account");
+}
+
+export function forgotPasswordAdmin(payload) {
+  return request("/auth/forgot-password", payload);
+}
+
+export function verifyForgotPasswordOtpAdmin(payload) {
+  return request("/auth/forgot-password/verify", payload);
+}
+
+export function resetForgotPasswordAdmin(payload) {
+  return request("/auth/forgot-password/reset", payload);
+}
+
 export function listBlogs(params = {}) {
   const qs = new URLSearchParams(params).toString();
 

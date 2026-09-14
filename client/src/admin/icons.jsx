@@ -110,3 +110,12 @@ export function CareersIcon(props) {
     </svg>
   );
 }
+
+export function AccountIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="10" cy="6.6" r="3.1" />
+      <path d="M3.8 16.8c.7-3.4 2.9-5.2 6.2-5.2s5.5 1.8 6.2 5.2" />
+    </svg>
+  );
+}

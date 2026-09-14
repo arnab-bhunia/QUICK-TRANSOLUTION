@@ -15,9 +15,10 @@ const emailOtpSchema = new mongoose.Schema(
   {
     email: { type: String, required: true, trim: true, lowercase: true, index: true },
     otpHash: { type: String, required: true },
-    purpose: { type: String, enum: ["signup"], default: "signup" },
+    purpose: { type: String, enum: ["signup", "password_reset"], default: "signup" },
     attempts: { type: Number, default: 0 },
     expiresAt: { type: Date, required: true },
+    consumedAt: { type: Date, default: null },
   },
   { timestamps: true }
 );

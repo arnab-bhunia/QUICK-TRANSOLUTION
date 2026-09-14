@@ -30,3 +30,17 @@
   color: var(--admin-text-bright);
   margin: 8px 0 22px;
 }
+
+.admin-login-forgot-link {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--admin-text-muted);
+}
+
+.admin-login-forgot-link:hover {
+  color: var(--admin-accent);
+  text-decoration: underline;
+}

@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { AdminAuthProvider, useAdminAuth } from "./context/AdminAuthContext";
 import { AdminLayoutProvider, useAdminLayout } from "./context/AdminLayoutContext";
 import AdminLogin from "./pages/AdminLogin";
+import ForgotPassword from "./pages/ForgotPassword";
 import AdminDashboard from "./pages/AdminDashboard";
 import ChangePassword from "./pages/ChangePassword";
 import { MenuIcon } from "./icons";
@@ -65,6 +66,7 @@ function AdminRoutes() {
   return (
     <Routes>
       <Route path="login" element={<AdminLogin />} />
+      <Route path="forgot-password" element={<ForgotPassword />} />
       <Route
         path="*"
         element={

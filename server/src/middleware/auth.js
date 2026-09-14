@@ -23,6 +23,17 @@ export async function requireAuth(req, res, next) {
     return res.status(401).json({ message: "Session expired, please log in again" });
   }
 
+    const versionDoc = await AdminUser.findById(payload.sub).select("sessionVersion").lean();
+  if (!versionDoc) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+
+  const tokenVersion = payload.sv || 0;
+  const currentVersion = versionDoc.sessionVersion || 0;
+  if (tokenVersion !== currentVersion) {
+    return res.status(401).json({ message: "Session expired, please log in again" });
+  }
+
   const cacheKey = `staff:${payload.sub}`;
   let user = await cacheGet(cacheKey);
 

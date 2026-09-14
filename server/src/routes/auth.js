@@ -1,8 +1,17 @@
 import { Router } from "express";
-import { login, logout, me, changePassword } from "../controllers/authController.js";
+import {
+  login,
+  logout,
+  me,
+  changePassword,
+  getAccount,
+  forgotPassword,
+  verifyForgotPasswordOtp,
+  resetForgotPassword,
+} from "../controllers/authController.js";
 import { listStaff, createStaff, getAnalytics, listManagers } from "../controllers/adminController.js";
 import { requireAuth, requireAdminRole } from "../middleware/auth.js";
-import { loginLimiter } from "../middleware/rateLimiters.js";
+import { loginLimiter, otpLimiter } from "../middleware/rateLimiters.js";
 
 const router = Router();
 
@@ -10,7 +19,10 @@ router.post("/login", loginLimiter, login);
 router.post("/logout", requireAuth, logout);
 router.get("/me", requireAuth, me);
 router.patch("/change-password", requireAuth, changePassword);
-
+router.get("/account", requireAuth, getAccount);
+router.post("/forgot-password", otpLimiter, forgotPassword);
+router.post("/forgot-password/verify", otpLimiter, verifyForgotPasswordOtp);
+router.post("/forgot-password/reset", otpLimiter, resetForgotPassword);
 // Admin-only — staff management + analytics dashboard
 router.get("/staff", requireAuth, requireAdminRole, listStaff);
 router.post("/staff", requireAuth, requireAdminRole, createStaff);

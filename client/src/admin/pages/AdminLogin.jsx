@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import { useAlert } from "../../context/AlertContext";
 import "./AdminLogin.css";
@@ -65,6 +65,9 @@ export default function AdminLogin() {
         <button className="admin-btn admin-btn-primary" disabled={status === "loading"}>
           {status === "loading" ? "Signing in..." : "Sign In"}
         </button>
+         <Link to="/admin/forgot-password" className="admin-login-forgot-link">
+          Forgot password?
+        </Link>
       </form>
     </div>
   );

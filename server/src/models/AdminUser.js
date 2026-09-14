@@ -68,6 +68,12 @@ const adminUserSchema = new mongoose.Schema(
     mustChangePassword: { type: Boolean, default: true },
 
     lastLoginAt: { type: Date },
+    // Bumped whenever the account's password changes or is reset via the
+    // forgot-password flow. Every JWT embeds the version that was current
+    // at sign-in time (see utils/jwt.js callers + middleware/auth.js); a
+    // mismatch means the token was issued before the most recent password
+    // change, so it's rejected and the holder must log in again.
+    sessionVersion: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
