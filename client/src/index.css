@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;650;700;750&display=swap");
 :root {
   /* Defaults mirror config/theme.js so there's no flash before JS applies it */
   --color-primary: #0B3B60;
@@ -23,6 +23,7 @@
   --color-danger: #C0392B;
   --color-danger-dark: #A93226;
   --color-danger-light: #E74C3C;
+  --color-topbar:#173B4A;
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body: 'Inter', sans-serif;

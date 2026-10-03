@@ -1,6 +1,7 @@
 .chatbot-panel {
   position: fixed;
-  right: 22px;
+  left: 24px;
+  right: auto;
   bottom: 96px;
   z-index: 150;
   width: min(340px, calc(100vw - 44px));
@@ -143,7 +144,8 @@
 
 @media (max-width: 720px) {
   .chatbot-panel {
-    right: 14px;
+   left: 16px;
+right: auto;
     bottom: 82px;
   }
 }

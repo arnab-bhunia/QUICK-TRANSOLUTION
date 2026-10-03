@@ -7,7 +7,7 @@
 export const theme = {
   colors: {
     // Core brand
-    primary: "#0B3B60",       // deep freight-navy — headers, nav, primary buttons
+    primary: "#0B3B60",      
     primaryDark: "#082A47",   // hover / pressed states, footer base
     primaryLight: "#2C5F87",  // secondary text on navy, subtle borders
     highlight: "#F2C14E",     // warm yellow — the outline/secondary button's own color
@@ -34,6 +34,8 @@ export const theme = {
     inkSoft: "#4B6272",       // secondary text
     inkFaint: "#8299A6",      // captions, placeholders
     white: "#FFFFFF",
+
+    topbar: "#173B4A",
   },
 
   fonts: {

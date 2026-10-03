@@ -1,0 +1,283 @@
+/* ============================================================
+   ChatbotLauncher V2 — Quick Transolution living assistant
+   Palette: Sage #8CA37A / Deep Olive #556B4F / Forest Ink #193B34
+   Warm Amber #F2B04C / Soft Cream #FAF7EF / Muted Border #DDE4D8
+   ============================================================ */
+
+.qt-launcher {
+  /* Brand */
+  --qt-sage: #8ca37a;
+  --qt-olive: #556b4f;
+  --qt-forest: #193b34;
+  --qt-amber: #f2b04c;
+  --qt-cream: #faf7ef;
+  --qt-border: #dde4d8;
+
+  /* Motion language — premium easing, transform/opacity only */
+  --qt-ease-out: cubic-bezier(0.16, 1, 0.32, 1);
+  --qt-ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  right: auto;
+  z-index: 60;
+
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: filter 0.45s var(--qt-ease-soft);
+}
+
+/* ---------- ambient aura: sage & cream, mostly transparent ---------- */
+
+.qt-launcher__aura {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 54%,
+    rgba(140, 163, 122, 0.2) 0%,
+    rgba(250, 247, 239, 0.12) 44%,
+    rgba(250, 247, 239, 0) 68%
+  );
+  pointer-events: none;
+  z-index: -1;
+  animation: qt-aura 6.8s var(--qt-ease-soft) infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes qt-aura {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+/* ---------- body: breathing + lift + tilt + imperative lean ---------- */
+
+.qt-launcher__float {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  animation: qt-breathe 7.5s var(--qt-ease-soft) infinite;
+  /* soft external shadow — forest-tinted, material, never glowing */
+  filter: drop-shadow(0 6px 16px rgba(25, 59, 52, 0.24))
+    drop-shadow(0 1px 3px rgba(25, 59, 52, 0.12));
+  transition: filter 0.45s var(--qt-ease-soft);
+  will-change: transform;
+}
+
+.qt-launcher:hover .qt-launcher__float {
+  filter: drop-shadow(0 9px 20px rgba(25, 59, 52, 0.28))
+    drop-shadow(0 0 12px rgba(242, 176, 76, 0.12));
+}
+
+.qt-launcher__tilt {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.65s var(--qt-ease-out);
+  will-change: transform;
+}
+
+.qt-launcher:hover .qt-launcher__tilt {
+  /* tiny lift — the assistant "notices" */
+  transform: translateY(-1.5px);
+}
+
+.qt-launcher:active .qt-launcher__tilt {
+  /* tactile press: scale(1) → .96 → 1 */
+  transition-duration: 0.12s;
+  transform: scale(0.96);
+}
+
+.qt-launcher__lean {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- the mark ---------- */
+
+.qt-launcher .qt-launcher__mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* eye focal group — translate is set imperatively (cursor + idle look),
+   the CSS transition smooths every move into a calm drift */
+.qt-mark__eye-track {
+  transition: transform 0.7s var(--qt-ease-out);
+  will-change: transform;
+}
+
+/* blink is applied to an inner group so it never fights the translate */
+.qt-mark__eye-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.16s ease-in-out;
+}
+
+.qt-launcher.is-blinking .qt-mark__eye-blink,
+.qt-mark--blinking .qt-mark__eye-blink {
+  transform: scaleY(0.08);
+}
+
+/* amber orbital arc + travelling point — gentle, isolated movements */
+.qt-mark__orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 1.4s var(--qt-ease-out),
+    opacity 0.6s var(--qt-ease-soft);
+}
+
+.qt-mark__orbit-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 1.5s var(--qt-ease-soft);
+}
+
+.qt-launcher:hover .qt-mark__orbit {
+  opacity: 1;
+}
+
+/* ---------- focus — keyboard-visible, brand-true ---------- */
+
+.qt-launcher:focus {
+  outline: none;
+}
+
+.qt-launcher:focus-visible {
+  outline: none;
+  border-radius: 46% 50% 52% 48% / 48% 50% 50% 52%;
+  box-shadow: 0 0 0 2px #fafafa, 0 0 0 4px var(--qt-amber);
+}
+
+/* ---------- breathing keyframes: 1–2px float + slight settle ---------- */
+
+@keyframes qt-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  38% {
+    transform: translateY(-1.6px) scale(1.004);
+  }
+  72% {
+    transform: translateY(-0.4px) scale(1.001);
+  }
+}
+
+/* ============================================================
+   Helper message — cream surface, sage border, a gentle invitation
+   ============================================================ */
+
+.qt-helper {
+  position: fixed;
+  left: 92px;
+  right: auto;
+  bottom: 34px;
+  z-index: 59;
+
+  max-width: 240px;
+  padding: 10px 14px;
+  border: 1px solid var(--qt-border);
+  border-radius: 10px;
+  background: var(--qt-cream);
+  box-shadow: 0 4px 14px rgba(25, 59, 52, 0.08),
+    0 1px 3px rgba(25, 59, 52, 0.05);
+
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  color: var(--qt-forest);
+
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.26s var(--qt-ease-soft),
+    transform 0.26s var(--qt-ease-soft);
+}
+
+.qt-helper--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* small connector dot — suggests origin without a cartoon tail */
+.qt-helper::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: 14px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--qt-cream);
+  border: 1px solid var(--qt-border);
+  box-shadow: 1px 1px 2px rgba(25, 59, 52, 0.05);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .qt-launcher {
+    width: 52px;
+    height: 52px;
+   left: 20px;
+  right: auto;
+    bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .qt-helper {
+    left: 84px;
+  right: auto;
+    bottom: 30px;
+    max-width: 200px;
+    font-size: 12.5px;
+  }
+}
+
+/* ============================================================
+   Reduced motion — present but still
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .qt-launcher__float,
+  .qt-launcher__aura {
+    animation: none;
+  }
+
+  .qt-mark__eye-track,
+  .qt-mark__eye-blink,
+  .qt-mark__orbit,
+  .qt-mark__orbit-dot,
+  .qt-launcher__tilt,
+  .qt-helper {
+    transition-duration: 0.01ms;
+  }
+
+  .qt-launcher:hover .qt-launcher__tilt {
+    transform: none;
+  }
+}

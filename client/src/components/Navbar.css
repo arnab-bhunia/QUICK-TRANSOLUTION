@@ -19,19 +19,33 @@
   display: flex;
   align-items: center;
   gap: 32px;
-  height: 76px;
+  height: 68px;
+}
+
+.navbar-cta .btn {
+  padding: 10px 18px;
+  min-height: 38px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.navbar-cta .btn-primary:hover {
+  background: var(--color-accent-dark);
+  transform: none;
+  box-shadow: none;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   margin-right: auto;
 }
 
 .navbar-brand-mark {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -39,7 +53,7 @@
 .navbar-brand-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 21px;
   color: var(--color-primary);
   letter-spacing: 0.01em;
 }
@@ -47,8 +61,8 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14.5px;
+  gap: 8px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-ink-soft);
 }
@@ -57,8 +71,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-
-  padding: 8px 10px;
+  padding: 6px 9px;
   border-radius: 999px;
   color: var(--color-ink-soft);
 
@@ -108,10 +121,6 @@
   transform: rotate(225deg) translateY(-1px);
 }
 
-/* Sits flush against the parent (top: 100%, no gap) so the hoverable
-   area is contiguous — the visual gap is padding-top *inside* this box,
-   not a real gap between two separate elements, so moving the pointer
-   straight down from the label into the panel never drops :hover. */
 .navbar-dropdown {
   position: absolute;
   top: 100%;
@@ -209,14 +218,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/*
- * Animating `grid-template-rows` forces the browser to re-run layout on
- * every animation frame (it's a layout property, not a compositor one),
- * which is what made the mobile menu feel laggy. Transform + opacity are
- * compositor-only and stay smooth even on low-end phones, so the panel is
- * now an absolutely-positioned overlay that slides/fades in instead of
- * pushing the page layout around.
- */
 .navbar-mobile {
   position: absolute;
   top: 100%;
@@ -294,12 +295,6 @@
   transform: rotate(-135deg);
 }
 
-/* CSS-only smooth accordion: animating an `fr` track on
-   grid-template-rows gives a real height transition without measuring
-   pixel heights in JS, and stays cheap since each submenu is only a
-   handful of items (unlike the whole-menu panel above, which needed
-   the transform/opacity treatment instead — see the note on
-   .navbar-mobile). */
 .navbar-mobile-submenu-wrap {
   display: grid;
   grid-template-rows: 0fr;
