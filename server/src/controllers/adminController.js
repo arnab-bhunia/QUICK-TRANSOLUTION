@@ -4,7 +4,9 @@ import Shipment from "../models/Shipment.js";
 import BookingRequest from "../models/BookingRequest.js";
 import AuditLog from "../models/AuditLog.js";
 import { encryptField, decryptField, hashLookupValue } from "../utils/crypto.js";
-import { OFFICE_CODES, getOfficeName, isValidOfficeCode } from "../config/offices.js";
+import Office from "../models/Office.js";
+import { getOfficeNameMap } from "../utils/offices.js";
+import { withOfficeAssignment, OfficeRuleError } from "../utils/officeAssignment.js";
 import { CREATION_RULES } from "../config/permissions.js";
 
 // ---------------------------------------------------------------------------
@@ -14,7 +16,7 @@ import { CREATION_RULES } from "../config/permissions.js";
 // reach these routes.
 //
 // Mobile number is PII and is encrypted at rest (see utils/crypto.js).
-// Office is restricted to the known office codes in config/offices.js.
+// Office must be an ACTIVE office in the offices collection (models/Office.js).
 //
 // On top of that existing validation, account creation is now also
 // gated by CREATION_RULES (config/permissions.js) — which roles a given
@@ -28,7 +30,7 @@ import { CREATION_RULES } from "../config/permissions.js";
 const MOBILE_REGEX = /^[6-9]\d{9}$/; // 10-digit Indian mobile number, no country code
 const MIN_STAFF_AGE_YEARS = 18;
 
-function serializeStaff(user) {
+function serializeStaff(user, officeName = null) {
   return {
     _id: user._id,
     name: user.name,
@@ -37,7 +39,7 @@ function serializeStaff(user) {
     managedBy: user.managedBy, // populated with { _id, name, email } where relevant
     mobileNumber: decryptField(user.encryptedMobile),
     officeCode: user.officeCode,
-    officeName: getOfficeName(user.officeCode),
+    officeName,
     dob: user.dob,
     bloodGroup: user.bloodGroup || null,
     mustChangePassword: user.mustChangePassword,
@@ -71,7 +73,8 @@ export async function listStaff(req, res) {
     .populate("managedBy", "name email role")
     .sort({ createdAt: -1 });
 
-  res.json(staff.map(serializeStaff));
+  const names = await getOfficeNameMap(staff.map((u) => u.officeCode));
+  res.json(staff.map((u) => serializeStaff(u, names.get(u.officeCode) || null)));
 }
 
 // Populates the "assign to manager" dropdown when an admin/hr creates a
@@ -81,13 +84,14 @@ export async function listManagers(req, res) {
   const managers = await AdminUser.find({ role: "manager" })
     .select("name email officeCode")
     .sort({ name: 1 });
+  const names = await getOfficeNameMap(managers.map((m) => m.officeCode));
   res.json(
     managers.map((m) => ({
       id: m._id,
       name: m.name,
       email: m.email,
       officeCode: m.officeCode,
-      officeName: getOfficeName(m.officeCode),
+      officeName: names.get(m.officeCode) || null,
     }))
   );
 }
@@ -114,8 +118,15 @@ export async function createStaff(req, res) {
     return res.status(400).json({ message: "A valid 10-digit mobile number is required" });
   }
 
-  if (!isValidOfficeCode(officeCode)) {
-    return res.status(400).json({ message: `Office must be one of: ${OFFICE_CODES.join(", ")}` });
+  if (typeof officeCode !== "string" || !officeCode.trim()) {
+    return res.status(400).json({ message: "Please select an office" });
+  }
+  const office = await Office.findOne({ code: officeCode.trim().toUpperCase() }).lean();
+  if (!office) {
+    return res.status(400).json({ message: "Selected office is invalid" });
+  }
+  if (!office.isActive) {
+    return res.status(400).json({ message: "Selected office is inactive and cannot receive new employees" });
   }
 
   const dobError = validateDob(dob);
@@ -166,24 +177,40 @@ export async function createStaff(req, res) {
   }
 
   const passwordHash = await bcrypt.hash(password, 12);
-  const user = await AdminUser.create({
-    name: name.trim(),
-    email: email.toLowerCase().trim(),
-    passwordHash,
-    role,
-    managedBy: resolvedManagedBy,
-    encryptedMobile: encryptField(cleanMobile),
-    mobileHash,
-    officeCode,
-    dob: new Date(dob),
-    bloodGroup: bloodGroup || null,
-    // Always required to change on first login — this is doubly important
-    // when the temp password was generated from the staff member's DOB,
-    // since that's a predictable/guessable password.
-    mustChangePassword: true,
-  });
+  // The insert runs under the office's concurrency protection (see
+  // utils/officeAssignment.js) so it can't race a deactivation of the office.
+  let user;
+  try {
+    user = await withOfficeAssignment(office.code, async (session) => {
+      const [created] = await AdminUser.create(
+        [
+          {
+            name: name.trim(),
+            email: email.toLowerCase().trim(),
+            passwordHash,
+            role,
+            managedBy: resolvedManagedBy,
+            encryptedMobile: encryptField(cleanMobile),
+            mobileHash,
+            officeCode: office.code,
+            dob: new Date(dob),
+            bloodGroup: bloodGroup || null,
+            // Always required to change on first login — this is doubly important
+            // when the temp password was generated from the staff member's DOB,
+            // since that's a predictable/guessable password.
+            mustChangePassword: true,
+          },
+        ],
+        session ? { session } : {}
+      );
+      return created;
+    });
+  } catch (err) {
+    if (err instanceof OfficeRuleError) return res.status(err.status).json({ message: err.message });
+    throw err;
+  }
 
-  res.status(201).json(serializeStaff(user));
+  res.status(201).json(serializeStaff(user, office.name));
 }
 
 // ---------------------------------------------------------------------------

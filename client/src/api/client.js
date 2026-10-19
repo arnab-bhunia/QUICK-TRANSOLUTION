@@ -289,6 +289,34 @@ export function listManagersAdmin() {
   return get("/auth/managers");
 }
 
+// ---- Offices (MongoDB is the source of truth; admin-only) ----
+export function listOfficesAdmin(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  return get(`/admin/offices${qs ? `?${qs}` : ""}`);
+}
+
+// Read-only active offices (code + name) for the staff-creation dropdown.
+// Available to anyone who can create staff; grants no office-management rights.
+export function listOfficeOptions() {
+  return get("/admin/offices/options");
+}
+
+export function createOfficeAdmin(payload) {
+  return request("/admin/offices", payload);
+}
+
+export function updateOfficeAdmin(code, payload) {
+  return patch(`/admin/offices/${encodeURIComponent(code)}`, payload);
+}
+
+export function deactivateOfficeAdmin(code) {
+  return patch(`/admin/offices/${encodeURIComponent(code)}/deactivate`, {});
+}
+
+export function reactivateOfficeAdmin(code) {
+  return patch(`/admin/offices/${encodeURIComponent(code)}/reactivate`, {});
+}
+
 export function getAnalyticsAdmin() {
   return get("/auth/analytics");
 }

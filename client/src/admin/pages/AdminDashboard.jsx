@@ -5,12 +5,13 @@ import BookingsPanel from "./BookingsPanel";
 import StaffPanel from "./StaffPanel";
 import AnalyticsPanel from "./AnalyticsPanel";
 import AdminSidebar from "../AdminSidebar";
-import { ShipmentsIcon, BookingsIcon, TeamIcon, AnalyticsIcon,BlogIcon,ServiceEnquiriesIcon,CareersIcon,AccountIcon} from "../icons";
+import { ShipmentsIcon, BookingsIcon, TeamIcon, AnalyticsIcon,BlogIcon,ServiceEnquiriesIcon,CareersIcon,AccountIcon, OfficesIcon } from "../icons";
 import "./AdminDashboard.css";
 import BlogManagement from "./BlogManagement";
 import ServiceEnquiriesPanel from "./serviceEnquiries/ServiceEnquiriesPanel";
 import CareersPanel from "./careers/CareersPanel";
 import MyAccount from "./MyAccount";
+import OfficesPanel from "./OfficesPanel";
 // Tabs are driven entirely by the logged-in account's `permissions`
 // array (computed server-side from role + server/src/config/permissions.js
 // — see authController.js `shape()`), not a hardcoded role check. Adding
@@ -34,6 +35,12 @@ const TABS = [
       { key: "directory", label: "Directory" },
       { key: "add", label: "Add Member" },
     ],
+  },
+  {
+  key: "offices",
+  label: "Offices",
+  permission: "offices:manage",
+  icon: OfficesIcon,
   },
   {
     key: "analytics",
@@ -102,6 +109,9 @@ export default function AdminDashboard() {
         )}
         {tab === "staff" && hasPermission(staff?.permissions, "team:view") && (
           <StaffPanel view={subTab} />
+        )}
+        {tab === "offices" && hasPermission(staff?.permissions, "offices:manage") && (
+        <OfficesPanel />
         )}
         {tab === "service-enquiries" && hasPermission(staff?.permissions, "service_enquiries:view") && (
           <ServiceEnquiriesPanel permissions={staff?.permissions} />

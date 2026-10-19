@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { OFFICE_CODES } from "../config/offices.js";
 
 // ============================================================================
 // ADMIN / STAFF USER
@@ -53,12 +52,14 @@ const adminUserSchema = new mongoose.Schema(
       default: null,
     },
 
-    // Office is stored as a single column holding one of the known office
-    // codes from config/offices.js — never a free-text location.
+    // Office is stored as a single column holding an Office.code (see
+    // models/Office.js). It is validated against the offices collection in
+    // the controllers — never a free-text location.
     officeCode: {
       type: String,
       required: true,
-      enum: OFFICE_CODES,
+      trim: true,
+      index: true,
     },
 
     // Forces a password change on first login. Always true for new

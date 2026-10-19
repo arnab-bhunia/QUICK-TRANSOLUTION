@@ -7,34 +7,38 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "create-admin": "node src/scripts/createAdmin.js"
+    "create-admin": "node src/scripts/createAdmin.js",
+    "seed-offices": "node src/scripts/seedOffices.js",
+    "test": "node --test --test-concurrency=1 test/officeId.test.js test/officeProtocol.model.test.js test/offices.integration.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.7.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
     "express": "^4.22.2",
     "express-async-errors": "^3.1.1",
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^7.4.1",
+    "file-type": "^22.0.2",
     "helmet": "^8.0.0",
     "ioredis": "^5.4.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.8.0",
     "morgan": "^1.11.0",
+    "multer": "^2.1.1",
     "nanoid": "^5.0.9",
     "nodemailer": "^9.0.5",
-    "rate-limit-redis": "^4.2.0",
-    "file-type": "^22.0.2",
-    "multer": "^2.1.1",
-    "cloudinary": "^2.7.0",
-    "exceljs": "^4.4.0"
+    "rate-limit-redis": "^4.2.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "mongodb-memory-server": "^10.1.4",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.3.1"
   }
 }

@@ -5,7 +5,7 @@ import AuditLog from "../models/AuditLog.js";
 import { signToken, COOKIE_NAME, cookieOptions } from "../utils/jwt.js";
 import { cacheDel } from "../config/redis.js";
 import { computePermissions } from "../config/permissions.js";
-import { getOfficeName } from "../config/offices.js";
+import { getOfficeNameMap } from "../utils/offices.js";
 import { generateOtp, hashOtp } from "../utils/otp.js";
 import { sendMail } from "../utils/mailer.js";
 
@@ -80,16 +80,19 @@ export async function getAccount(req, res) {
   if (!user) {
     return res.status(401).json({ message: "Not authenticated" });
   }
-
+const officeNames = await getOfficeNameMap([user.officeCode]);
   res.json({
-    id: user._id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    manager: user.managedBy ? { name: user.managedBy.name, role: user.managedBy.role } : null,
-    office: { code: user.officeCode, name: getOfficeName(user.officeCode) },
-    lastLoginAt: user.lastLoginAt,
-  });
+id: user._id,
+name: user.name,
+email: user.email,
+role: user.role,
+manager: user.managedBy ? { name: user.managedBy.name, role: user.managedBy.role } : null,
+office: {
+code: user.officeCode,
+name: officeNames.get(user.officeCode) || null,
+},
+lastLoginAt: user.lastLoginAt,
+});
 }
 
 // ---------------------------------------------------------------------------

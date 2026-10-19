@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { listStaffAdmin, createStaffAdmin, listManagersAdmin } from "../../api/client";
+import { listStaffAdmin, createStaffAdmin, listManagersAdmin, listOfficeOptions } from "../../api/client";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import { useAlert } from "../../context/AlertContext";
-import { OFFICES } from "../../config/offices";
 import "./StaffPanel.css";
 
 const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -55,6 +54,9 @@ export default function StaffPanel({ view = "directory" }) {
   const alert = useAlert();
   const [staffList, setStaffList] = useState([]);
   const [managers, setManagers] = useState([]);
+  // Active offices only — fetched from the API (MongoDB is the source of
+  // truth). Inactive offices can't receive new employees.
+  const [offices, setOffices] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [passwordFromDob, setPasswordFromDob] = useState(false);
@@ -71,6 +73,11 @@ export default function StaffPanel({ view = "directory" }) {
       .then(setStaffList)
       .catch((err) => alert.error(err.message || "Could not load staff list."))
       .finally(() => setLoaded(true));
+
+    // Read-only active offices; requires team:create_staff, not office management.
+    listOfficeOptions()
+      .then(setOffices)
+      .catch((err) => alert.error(err.message || "Could not load offices."));
 
     if (me?.role === "admin" || me?.role === "hr") {
       listManagersAdmin()
@@ -165,7 +172,7 @@ export default function StaffPanel({ view = "directory" }) {
               <option value="" disabled>
                 Select office
               </option>
-              {OFFICES.map((office) => (
+              {offices.map((office) => (
                 <option key={office.code} value={office.code}>
                   {office.code} — {office.name}
                 </option>

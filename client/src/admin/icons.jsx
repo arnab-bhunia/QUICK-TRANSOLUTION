@@ -119,3 +119,14 @@ export function AccountIcon(props) {
     </svg>
   );
 }
+
+export function OfficesIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 17.5V4.5A1.5 1.5 0 0 1 5.5 3h6A1.5 1.5 0 0 1 13 4.5v13" />
+      <path d="M13 8.5h1.5A1.5 1.5 0 0 1 16 10v7.5" />
+      <path d="M2.5 17.5h15" />
+      <path d="M7 6.5h2M7 9.5h2M7 12.5h2" />
+    </svg>
+  );
+}
