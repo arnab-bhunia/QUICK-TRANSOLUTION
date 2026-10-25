@@ -134,7 +134,7 @@ const TransportScene = ({ active }) => {
           <line x1="0" y1="378" x2="1200" y2="378" stroke="var(--color-primary-dark)" strokeWidth="1.5" opacity="0.5" />
          
           {/* === RAILWAY TRAFFIC SIGNAL === */}
-          <g className="rail-signal" transform="translate(300, 0)">
+          <g className="rail-signal" transform="translate(850, 0)">
 
   {/* Signal pole */}
   <rect
@@ -200,17 +200,17 @@ const TransportScene = ({ active }) => {
                 <rect x="85" y="20" width="8" height="4" fill="var(--color-ink)" opacity="0.5" />
                 
                 <rect x="98" y="5" width="75" height="25" rx="2" fill="var(--color-primary)" />
-                <rect x="104" y="9" width="20" height="14" fill="var(--color-accent)" opacity="0.65" />
-                <rect x="127" y="9" width="20" height="14" fill="var(--color-accent)" opacity="0.65" />
-                <rect x="150" y="9" width="17" height="14" fill="var(--color-accent)" opacity="0.65" />
+                <rect x="104" y="9" width="20" height="14" fill="var(--color-signal)" opacity="0.85" />
+                <rect x="127" y="9" width="20" height="14" fill="var(--color-signal)" opacity="0.85" />
+                <rect x="150" y="9" width="17" height="14" fill="var(--color-signal)" opacity="0.85" />
                 <circle cx="118" cy="30" r="9" fill="var(--color-ink)" className="wheel" />
                 <circle cx="152" cy="30" r="9" fill="var(--color-ink)" className="wheel" />
                 <rect x="173" y="20" width="8" height="4" fill="var(--color-ink)" opacity="0.5" />
                 
                 <rect x="186" y="5" width="75" height="25" rx="2" fill="var(--color-primary)" />
-                <rect x="192" y="9" width="20" height="14" fill="var(--color-signal)" opacity="0.75" />
-                <rect x="215" y="9" width="20" height="14" fill="var(--color-signal)" opacity="0.75" />
-                <rect x="238" y="9" width="17" height="14" fill="var(--color-signal)" opacity="0.75" />
+                <rect x="192" y="9" width="20" height="14" fill="var(--color-truck)" opacity="0.85" />
+                <rect x="215" y="9" width="20" height="14" fill="var(--color-truck)" opacity="0.85" />
+                <rect x="238" y="9" width="17" height="14" fill="var(--color-truck)" opacity="0.85" />
                 <circle cx="206" cy="30" r="9" fill="var(--color-ink)" className="wheel" />
                 <circle cx="240" cy="30" r="9" fill="var(--color-ink)" className="wheel" />
                 
@@ -218,9 +218,9 @@ const TransportScene = ({ active }) => {
                 <rect x="274" y="5" width="75" height="25" rx="2" fill="var(--color-primary)"/>
 
                 {/* Coach windows */}
-                <rect x="280" y="9" width="20" height="14" fill="var(--color-truck)" opacity="0.65"/>
-                <rect x="303" y="9" width="20" height="14" fill="var(--color-truck)" opacity="0.65"/>
-                <rect x="326" y="9" width="17" height="14" fill="var(--color-truck)" opacity="0.65"/>
+                <rect x="280" y="9" width="20" height="14" fill="var(--color-green)" opacity="0.65"/>
+                <rect x="303" y="9" width="20" height="14" fill="var(--color-green)" opacity="0.65"/>
+                <rect x="326" y="9" width="17" height="14" fill="var(--color-green)" opacity="0.65"/>
 
                 {/* Coach wheels */}
                 <circle cx="294" cy="30" r="9" fill="var(--color-ink)" className="wheel"/>

@@ -44,9 +44,21 @@ const TABS = [
   },
   {
     key: "analytics",
-    label: "Audit & Analytics",
+    label: "Analytics",
     permission: "analytics:view",
     icon: AnalyticsIcon,
+    subTabs: [
+      { key: "overview", label: "Business Overview" },
+      { key: "trends", label: "Business Trends" },
+      { key: "shipments", label: "Shipments & Logistics" },
+      { key: "bookings", label: "Booking Requests" },
+      { key: "enquiries", label: "Service Enquiries" },
+      { key: "workforce", label: "Team & Offices" },
+      { key: "recruitment", label: "Recruitment" },
+      { key: "content", label: "Content Performance" },
+      { key: "explorer", label: "Data Explorer" },
+      { key: "audit", label: "Audit" },
+    ],
   },
   {
   key: "blogs",
@@ -117,7 +129,7 @@ export default function AdminDashboard() {
           <ServiceEnquiriesPanel permissions={staff?.permissions} />
         )}
         {tab === "analytics" && hasPermission(staff?.permissions, "analytics:view") && (
-          <AnalyticsPanel />
+          <AnalyticsPanel view={subTab} />
         )}
         {tab === "blogs" && hasPermission(staff?.permissions, "blog:view") && (
           <BlogManagement />

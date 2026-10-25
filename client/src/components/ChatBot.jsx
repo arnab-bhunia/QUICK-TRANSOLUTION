@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { chatFallbackPrompt, chatFallbackThanks, chatGreeting } from "../config/faq";
 import { matchFaq } from "../utils/matchFaq";
 import { submitUnansweredQuery } from "../api/client";
@@ -26,8 +27,8 @@ export default function ChatBot({ open, onClose }) {
     });
   }, [messages, open]);
 
-  const addMessage = (from, text) =>
-    setMessages((m) => [...m, { id: nextId(), from, text }]);
+  const addMessage = (from, text, links = []) =>
+    setMessages((m) => [...m, { id: nextId(), from, text, links }]);
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -56,7 +57,7 @@ export default function ChatBot({ open, onClose }) {
 
     const match = matchFaq(text);
     if (match) {
-      addMessage("bot", match.answer);
+      addMessage("bot", match.answer, match.links || []);
     } else {
       addMessage("bot", chatFallbackPrompt + " (or type 'skip' to leave it blank)");
       setPendingQuestion(text);
@@ -84,7 +85,16 @@ export default function ChatBot({ open, onClose }) {
       <div className="chatbot-messages" ref={scrollRef}>
         {messages.map((m) => (
           <div key={m.id} className={`chatbot-bubble chatbot-bubble--${m.from}`}>
-            {m.text}
+            <span>{m.text}</span>
+            {m.links?.length > 0 && (
+              <div className="chatbot-answer-links">
+                {m.links.map((item) => (
+                  <Link key={`${item.label}:${item.href}`} to={item.href}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

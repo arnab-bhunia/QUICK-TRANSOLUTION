@@ -34,8 +34,8 @@ export const theme = {
     inkSoft: "#4B6272",       // secondary text
     inkFaint: "#8299A6",      // captions, placeholders
     white: "#FFFFFF",
-
     topbar: "#173B4A",
+    green: "#00eb62",
   },
 
   fonts: {

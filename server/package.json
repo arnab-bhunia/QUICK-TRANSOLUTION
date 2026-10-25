@@ -9,7 +9,8 @@
     "start": "node src/index.js",
     "create-admin": "node src/scripts/createAdmin.js",
     "seed-offices": "node src/scripts/seedOffices.js",
-    "test": "node --test --test-concurrency=1 test/officeId.test.js test/officeProtocol.model.test.js test/offices.integration.test.js"
+    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "test:analytics": "node --test --test-concurrency=1 test/analytics*.test.js"
   },
   "keywords": [],
   "author": "",

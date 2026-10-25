@@ -321,6 +321,56 @@ export function getAnalyticsAdmin() {
   return get("/auth/analytics");
 }
 
+export function getAnalyticsOverviewAdmin(params = {}) {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") query.set(key, String(value));
+  });
+  return get(`/analytics/overview${query.size ? `?${query.toString()}` : ""}`);
+}
+
+
+export function getAnalyticsReportAdmin(report, params = {}) {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") query.set(key, String(value));
+  });
+  const safeReport = String(report || "").toLowerCase();
+  return get(`/analytics/reports/${encodeURIComponent(safeReport)}${query.size ? `?${query.toString()}` : ""}`);
+}
+
+export function getAnalyticsExplorerAdmin(params = {}) {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") query.set(key, String(value));
+  });
+  return get(`/analytics/explorer${query.size ? `?${query.toString()}` : ""}`);
+}
+
+export async function downloadAnalyticsExplorerAdmin(params = {}) {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") query.set(key, String(value));
+  });
+  let response;
+  try {
+    response = await fetch(`${BASE_URL}/analytics/explorer/export?${query.toString()}`, {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+    });
+  } catch {
+    throw new Error("Unable to reach the server. Please check your connection and try again.");
+  }
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    const error = new Error(data.message || "Export failed. Please try again.");
+    error.status = response.status;
+    throw error;
+  }
+  return response.blob();
+}
+
 export function changePasswordAdmin(payload) {
   return patch("/auth/change-password", payload);
 }

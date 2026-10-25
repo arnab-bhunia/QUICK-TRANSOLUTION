@@ -24,6 +24,7 @@
   --color-danger-dark: #A93226;
   --color-danger-light: #E74C3C;
   --color-topbar:#173B4A;
+  --color-green: #00eb62;
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -104,8 +105,8 @@ ul {
 .container {
   width: 100%;
   max-width: var(--container-w);
-  margin: 0 auto;
-  padding: 0 24px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
 }
 
 .eyebrow {

@@ -78,6 +78,7 @@ const auditLogSchema = new mongoose.Schema(
         "resume_downloaded",
         "application_note_added",
         "applications_exported",
+        "analytics_exported",
         "account_password_changed",
         "account_password_reset_requested",
         "account_password_reset_completed",
